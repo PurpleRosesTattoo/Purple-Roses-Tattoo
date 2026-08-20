@@ -638,7 +638,77 @@ section{padding:92px 0!important}
   document.querySelectorAll('.artist').forEach(a=>artistObserver.observe(a));
 })();
 </script>
-</head>
+<style id="pr-final-motion">
+/* ===== PURPLE ROSES — FINAL MOTION SYSTEM ===== */
+:root{--pr-purple:#9d55ff;--pr-blue:#4c9dff;--pr-bg:#07050b}
+html,body{width:100%;max-width:100%;overflow-x:hidden}
+body{background:var(--pr-bg)}
+/* Hero: one mathematical center line */
+.hero,.hero-inner,.hero-content,.hero-copy,.hero-logo-wrap{
+  width:100%;max-width:none;margin-left:auto!important;margin-right:auto!important;
+  text-align:center!important;
+}
+.hero-inner,.hero-content{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important}
+.hero-logo-wrap{display:flex!important;justify-content:center!important;align-items:center!important}
+.hero-logo-wrap img,.hero-logo,.hero img.logo{display:block!important;margin:0 auto!important;left:auto!important;right:auto!important;transform-origin:center center}
+
+/* Botanical transition rails: between sections only */
+.pr-vine-zone{
+  position:relative;
+  height:clamp(110px,16vw,210px);
+  width:100%;
+  overflow:hidden;
+  pointer-events:none;
+  z-index:1;
+}
+.pr-vine{
+  position:absolute;
+  top:50%;
+  width:min(72vw,760px);
+  max-height:190px;
+  height:auto;
+  object-fit:contain;
+  will-change:transform;
+  transform:translate3d(0,-50%,0);
+  opacity:1;
+  filter:drop-shadow(0 8px 18px rgba(80,40,180,.12));
+}
+.pr-vine.left{right:calc(100% - 5vw);transform:translate3d(0,-50%,0) rotate(0deg)}
+.pr-vine.right{left:calc(100% - 5vw);transform:translate3d(0,-50%,0) scaleX(-1)}
+.pr-vine.left.vine-enter{transform:translate3d(58%, -50%,0) rotate(0deg)}
+.pr-vine.right.vine-enter{transform:translate3d(-58%, -50%,0) scaleX(-1)}
+.pr-vine.left.vine-rest{transform:translate3d(38%, -50%,0)}
+.pr-vine.right.vine-rest{transform:translate3d(-38%, -50%,0) scaleX(-1)}
+
+@keyframes pr-breathe-left{0%,100%{margin-top:0}50%{margin-top:-5px}}
+@keyframes pr-breathe-right{0%,100%{margin-top:0}50%{margin-top:5px}}
+.pr-vine.left.vine-live{animation:pr-breathe-left 4.8s ease-in-out infinite}
+.pr-vine.right.vine-live{animation:pr-breathe-right 5.2s ease-in-out infinite}
+
+/* Artist cards: entire card moves as one piece */
+.artist-card,.artist,.artist-panel,.tattooer-card{
+  will-change:transform,opacity;
+  transform-origin:center center;
+}
+.pr-artist-motion-left{transform:translate3d(-12vw,0,0);opacity:.25}
+.pr-artist-motion-right{transform:translate3d(12vw,0,0);opacity:.25}
+.pr-artist-motion-left.pr-active,.pr-artist-motion-right.pr-active{transform:translate3d(0,0,0);opacity:1}
+
+/* Subtle gallery depth */
+.gallery img,.flash-card img,.tattoo-card img{
+  will-change:transform;
+  transition:transform .15s linear;
+}
+
+/* Interactive buttons */
+a,button{transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s ease}
+a:hover,button:hover{transform:translateY(-2px)}
+
+/* Never allow decorative layers to cover content */
+.pr-vine-zone{isolation:isolate}
+.pr-vine{z-index:0}
+.pr-vine-zone>*:not(.pr-vine){position:relative;z-index:2}
+</style></head>
 <body>
 <div class="scroll-progress" aria-hidden="true"><span></span></div>
 <header><div class="wrap nav">
@@ -662,6 +732,11 @@ section{padding:92px 0!important}
 </div>
 </div><div class="scrollhint">Faire défiler</div>
 </section>
+<div class="pr-vine-zone" aria-hidden="true" data-vine-zone>
+  <img class="pr-vine left" src="vine-new-01.png" alt="">
+  <img class="pr-vine right" src="vine-new-02.png" alt="">
+</div>
+
 
 <section id="artistes">
 <div class="wrap">
@@ -676,12 +751,22 @@ section{padding:92px 0!important}
 <div class="artist-copy"><div class="eyebrow">Tatoueur</div><h3 class="display">Looping</h3><div class="artist-years"><strong>9</strong><span>ANS D’EXPÉRIENCE</span></div><p>Son style de prédilection : le <strong>fineline</strong>. Il explore lui aussi différents univers et adapte son travail au projet, du détail délicat à des compositions plus affirmées.</p><div class="tags"><span class="tag">Fineline</span><span class="tag">Floral</span><span class="tag">Création</span><span class="tag">Illustratif</span></div></div>
 </article>
 </div></div></section>
+<div class="pr-vine-zone" aria-hidden="true" data-vine-zone>
+  <img class="pr-vine left" src="vine-new-03.png" alt="">
+  <img class="pr-vine right" src="vine-new-04.png" alt="">
+</div>
+
 
 <section>
 <div class="wrap story">
 <div class="reveal"><div class="eyebrow">L’expérience</div><h2 class="display">Pas juste<br>un tatouage.</h2></div>
 <div class="reveal"><p class="story-copy">Un projet commence par une idée. Une discussion, une inspiration, une envie de recouvrir, de transformer ou simplement de créer quelque chose qui te ressemble. Le studio accompagne chaque projet jusqu'à l'encre.</p></div>
 </div></section>
+<div class="pr-vine-zone" aria-hidden="true" data-vine-zone>
+  <img class="pr-vine left" src="vine-new-05.png" alt="">
+  <img class="pr-vine right" src="vine-new-06.png" alt="">
+</div>
+
 
 <section id="flashs">
 <div class="wrap flashes"><div class="section-head reveal"><div><div class="eyebrow">Flashs</div><h2 class="display">À prendre<br>à l’encre.</h2></div><p>Une sélection de flashs de Smik. Clique sur un flash pour l’agrandir.</p></div><div class="gallery reveal" id="flashGallery"><div class="card flash-card"><img src="48806.jpg" alt="Flash Smik" loading="lazy"></div>
@@ -709,6 +794,11 @@ section{padding:92px 0!important}
 <div class="card flash-card"><img src="49022.jpg" alt="Flash Smik" loading="lazy"></div>
 <div class="card flash-card"><img src="49025.jpg" alt="Flash Smik" loading="lazy"></div>
 <div class="card flash-card"><img src="49077.jpg" alt="Flash Smik" loading="lazy"></div></div></div></section>
+<div class="pr-vine-zone" aria-hidden="true" data-vine-zone>
+  <img class="pr-vine left" src="vine-new-07.png" alt="">
+  <img class="pr-vine right" src="vine-new-08.png" alt="">
+</div>
+
 
 <section id="realisations">
 <div class="wrap">
@@ -765,6 +855,11 @@ section{padding:92px 0!important}
 <div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48829.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
 <div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48859.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
 </div></div></section>
+<div class="pr-vine-zone" aria-hidden="true" data-vine-zone>
+  <img class="pr-vine left" src="vine-new-09.png" alt="">
+  <img class="pr-vine right" src="vine-new-01.png" alt="">
+</div>
+
 
 <section id="studio">
 <div class="wrap">
@@ -772,10 +867,20 @@ section{padding:92px 0!important}
 <div class="studio-grid reveal"><div class="studio-main"><img src="49082.jpg" alt="Vitrine de Purple Roses Tattoo"><div class="studio-label"><div class="eyebrow">3 rue des Sapeurs-Pompiers</div><h3 class="display">Saint-Léonard</h3></div></div><div class="studio-side"><img src="49083.jpg" alt="Machine et enseigne Tattoo du studio" loading="lazy"><img src="49084.jpg" alt="Intérieur de Purple Roses Tattoo" loading="lazy"></div></div>
 <div class="location"><div class="info reveal"><div class="info-row"><span class="info-label">Adresse</span>3 rue des Sapeurs-Pompiers<br>87400 Saint-Léonard-de-Noblat</div><div class="info-row"><span class="info-label">Téléphone</span><a href="tel:+33767971675">07 67 97 16 75</a></div><div class="info-row"><span class="info-label">E-mail</span><a href="mailto:purplerosestattoo@outlook.fr">purplerosestattoo@outlook.fr</a></div><div class="info-row"><span class="info-label">Réseaux</span><a href="https://instagram.com/purplerosestattoo" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.tiktok.com/@purplerosestattoo" target="_blank" rel="noopener">TikTok</a> · <a href="https://www.facebook.com/purplerosestattoo" target="_blank" rel="noopener">Facebook</a></div><div class="info-row"><span class="info-label">Horaires</span>Lundi : fermé · Mardi à vendredi : 09h–12h / 16h–19h · Samedi et dimanche : 08h–20h.</div><div class="info-row"><span class="info-label">Rendez-vous</span>Formulaire, e-mail, téléphone, Instagram ou Messenger.</div></div><div class="map reveal"><iframe title="Carte Google Maps — Purple Roses Tattoo" src="https://www.google.com/maps?q=Purple%20Roses%20Tattoo%2C%203%20Rue%20des%20Sapeurs%20Pompiers%2C%2087400%20Saint-L%C3%A9onard-de-Noblat&output=embed" loading="lazy"></iframe></div></div>
 </div></section>
+<div class="pr-vine-zone" aria-hidden="true" data-vine-zone>
+  <img class="pr-vine left" src="vine-new-02.png" alt="">
+  <img class="pr-vine right" src="vine-new-03.png" alt="">
+</div>
+
 
 <section id="reservation" class="booking"><div class="wrap booking-grid"><div class="reveal"><div class="eyebrow">Réservation</div><h2 class="display">On parle<br>du projet ?</h2><p class="muted">Décris-nous ton idée. Pour une création ou un cover-up, quelques photos et informations permettent de mieux comprendre le projet. Pour un cover-up, il faudra ensuite passer au shop afin de voir le tatouage directement.</p><p class="muted">Le piercing est réalisé par Smik.</p></div>
 <form class="form reveal" id="bookingForm"><div class="row"><input name="name" required placeholder="Nom / prénom"><input name="email" required type="email" placeholder="E-mail"></div><div class="row"><input name="phone" placeholder="Téléphone"><select name="type" required><option value="">Type de projet</option><option>Flash</option><option>Création personnalisée</option><option>Cover-up</option><option>Piercing</option><option>Autre</option></select></div><select name="artist"><option value="">Artiste (si besoin)</option><option>Smik</option><option>Looping</option><option>Je ne sais pas encore</option></select><textarea name="message" required placeholder="Parle-nous de ton projet… taille, emplacement, idée, références, contraintes, etc."></textarea><small>En envoyant, ton application e-mail s’ouvrira avec les informations de ta demande pré-remplies.</small><button class="btn primary" type="submit">ENVOYER LA DEMANDE</button></form>
 </div></section>
+<div class="pr-vine-zone" aria-hidden="true" data-vine-zone>
+  <img class="pr-vine left" src="vine-new-04.png" alt="">
+  <img class="pr-vine right" src="vine-new-05.png" alt="">
+</div>
+
 </main>
 <footer><div class="wrap footerline"><span>© 2026 Purple Roses Tattoo · Saint-Léonard-de-Noblat</span><div class="socials"><a href="https://instagram.com/purplerosestattoo" target="_blank" rel="noopener">Instagram</a><a href="https://www.tiktok.com/@purplerosestattoo" target="_blank" rel="noopener">TikTok</a><a href="https://www.facebook.com/purplerosestattoo" target="_blank" rel="noopener">Facebook</a></div></div></footer>
 
@@ -1454,6 +1559,66 @@ body{min-width:0}
   addEventListener('scroll',rafCards,{passive:true});
   addEventListener('resize',renderCards,{passive:true});
   renderCards();
+})();
+</script>
+
+<script id="pr-final-motion-js">
+(() => {
+  const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+  const zones=[...document.querySelectorAll('[data-vine-zone]')];
+  const cards=[...document.querySelectorAll('.artist-card,.artist,.artist-panel,.tattooer-card')];
+
+  // Artist cards: assign alternating directions and animate reversibly with scroll.
+  cards.forEach((el,i)=>{
+    el.classList.add(i%2===0?'pr-artist-motion-left':'pr-artist-motion-right');
+  });
+
+  let raf=0;
+  function update(){
+    raf=0;
+    const vh=innerHeight;
+    zones.forEach((z)=>{
+      const r=z.getBoundingClientRect();
+      // progress 0..1 as the zone travels through the middle 65% of viewport
+      const p=clamp((vh*.82-r.top)/(vh*.58),0,1);
+      const eased=p<.5 ? 2*p*p : 1-Math.pow(-2*p+2,2)/2;
+      const left=z.querySelector('.pr-vine.left');
+      const right=z.querySelector('.pr-vine.right');
+      if(left){
+        const x=58-(20*eased);
+        left.style.transform=`translate3d(${x}%, -50%, 0)`;
+        left.style.opacity=String(.82+.18*eased);
+      }
+      if(right){
+        const x=-(58-(20*eased));
+        right.style.transform=`translate3d(${x}%, -50%, 0) scaleX(-1)`;
+        right.style.opacity=String(.82+.18*eased);
+      }
+      z.style.setProperty('--vine-progress',eased.toFixed(3));
+    });
+
+    cards.forEach((el,i)=>{
+      const r=el.getBoundingClientRect();
+      const p=clamp((vh*.88-r.top)/(vh*.62),0,1);
+      const e=p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2;
+      const dir=i%2===0?-1:1;
+      el.style.transform=`translate3d(${(1-e)*dir*12}vw,0,0)`;
+      el.style.opacity=String(.35+.65*e);
+    });
+  }
+  function request(){ if(!raf) raf=requestAnimationFrame(update); }
+  addEventListener('scroll',request,{passive:true});
+  addEventListener('resize',request,{passive:true});
+  request();
+
+  // Gentle depth for gallery images based on pointer position.
+  document.addEventListener('pointermove',e=>{
+    document.querySelectorAll('.gallery img,.flash-card img,.tattoo-card img').forEach((img,i)=>{
+      const dx=(e.clientX-innerWidth/2)/innerWidth;
+      const dy=(e.clientY-innerHeight/2)/innerHeight;
+      img.style.transform=`translate3d(${dx*(i%2?3:-3)}px,${dy*2}px,0)`;
+    });
+  },{passive:true});
 })();
 </script>
 </body></html>
