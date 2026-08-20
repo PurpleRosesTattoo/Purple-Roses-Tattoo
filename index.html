@@ -1231,4 +1231,229 @@ body{min-width:0}
   sections.forEach(s=>io.observe(s));
 })();
 </script>
+
+<style id="V9-FINAL-REAL-SCROLL">
+/* V9 — scrubbed vine motion: the scroll position controls the whole entrance.
+   No one-shot IntersectionObserver animation. Going down = enter, going back up = reverse. */
+.hero,.site-section,section{overflow:hidden}
+.hero-grid{
+  width:min(100%,1080px)!important;
+  margin-inline:auto!important;
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  justify-items:center!important;
+  text-align:center!important;
+}
+.hero-grid>div:first-child{
+  order:2!important;width:100%!important;
+  display:flex!important;flex-direction:column!important;
+  align-items:center!important;
+}
+.hero-art{
+  order:1!important;width:100%!important;
+  height:clamp(320px,52vw,520px)!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  margin-inline:auto!important;
+}
+.hero-logo{
+  display:block!important;
+  width:min(430px,68vw)!important;
+  max-height:500px!important;
+  height:auto!important;
+  margin:0 auto!important;
+  position:relative!important;
+  left:0!important;
+  right:0!important;
+}
+.hero h1,.hero .eyebrow,.hero .hero-copy,.hero .hero-actions{
+  margin-left:auto!important;margin-right:auto!important;
+  text-align:center!important;
+}
+.hero h1{width:100%!important}
+.hero-copy{width:min(100%,720px)!important}
+.hero-actions{justify-content:center!important}
+
+/* Vines are never display:none. They are scrubbed by JS from outside -> inside. */
+.scroll-vine{
+  position:absolute!important;
+  width:300px!important;
+  height:180px!important;
+  z-index:2!important;
+  pointer-events:none!important;
+  overflow:visible!important;
+  opacity:0;
+  will-change:transform,opacity,clip-path,filter;
+}
+.scroll-vine img{
+  position:absolute!important;
+  top:0!important;
+  width:330px!important;
+  height:auto!important;
+  max-width:none!important;
+  opacity:1!important;
+  will-change:transform;
+  filter:drop-shadow(0 0 8px rgba(73,103,220,.32));
+}
+.scroll-vine.left{left:0!important}
+.scroll-vine.right{right:0!important}
+.scroll-vine.left img{left:-225px!important;transform-origin:left center!important}
+.scroll-vine.right img{right:-225px!important;transform-origin:right center!important;transform:scaleX(-1)!important}
+
+/* Slightly smaller, but still clearly visible, on phones. */
+@media(max-width:700px){
+  .hero-art{height:315px!important}
+  .hero-logo{width:min(88vw,390px)!important;max-height:330px!important}
+  .scroll-vine{width:175px!important;height:150px!important}
+  .scroll-vine img{width:255px!important}
+  .scroll-vine.left img{left:-125px!important}
+  .scroll-vine.right img{right:-125px!important}
+}
+</style>
+
+<script id="V9-FINAL-REAL-SCROLL-JS">
+(()=>{
+  /* Remove only the old generated vine wrappers. Keep the actual PNG assets. */
+  document.querySelectorAll('.edge-vine,.v4-vine,.decor-vine,.vine-layer,.botanical-vine,.v3-vine,.vine-hero,.artist-vine,.section-vines')
+    .forEach(el=>el.remove());
+
+  const assets=[
+    'vine-new-04.png','vine-new-07.png','vine-new-06.png',
+    'vine-new-05.png','vine-new-03.png','vine-new-01.png'
+  ];
+  const sections=[
+    document.querySelector('.hero'),
+    ...['artistes','flashs','realisations','studio','reservation']
+      .map(id=>document.getElementById(id)).filter(Boolean)
+  ];
+
+  /* Three pairs per section = visible decoration between categories, not one lonely vine. */
+  const positions=[12,48,82];
+  const vines=[];
+  sections.forEach((section,si)=>{
+    positions.forEach((top,pi)=>{
+      ['left','right'].forEach((side,di)=>{
+        const v=document.createElement('div');
+        v.className='scroll-vine '+side;
+        v.style.top=top+'%';
+        v.dataset.side=side;
+        v.dataset.index=pi;
+        const img=document.createElement('img');
+        img.src=assets[(si*3+pi+di)%assets.length];
+        img.alt='';
+        img.setAttribute('aria-hidden','true');
+        v.appendChild(img);
+        section.appendChild(v);
+        vines.push({el:v,img,section,side,pi});
+      });
+    });
+  });
+
+  /* Scroll-scrubbed boomerang:
+     section enters from the bottom -> vine travels from outside to inside.
+     Scroll back upward -> the exact same motion reverses.
+     Scroll down again -> it plays forward again.
+     No "play once", no unobserve(), no disappearing timer. */
+  let ticking=false;
+  const clamp=(n,a=0,b=1)=>Math.max(a,Math.min(b,n));
+  const ease=(t)=>t*t*(3-2*t);
+
+  function render(){
+    const vh=innerHeight||1;
+    vines.forEach(({el,img,section,side,pi})=>{
+      const r=section.getBoundingClientRect();
+      /* 0 while the section is below the viewport, 1 once its top reaches the top.
+         This naturally reverses when the user scrolls back upward. */
+      let p=clamp((vh-r.top)/(vh*.82));
+      p=ease(p);
+
+      /* Stagger the three vines so they don't all move together. */
+      const stagger=pi*.10;
+      const q=clamp((p-stagger)/(1-stagger));
+      const e=ease(q);
+
+      const dir=side==='left'?-1:1;
+      const travel=(1-e)*150;
+      const lift=(1-e)*18;
+      const rot=dir*(1-e)*7;
+      const scale=.94+.06*e;
+      const opacity=.05+.9*e;
+      const blur=(1-e)*2.5;
+      const sway=Math.sin((window.scrollY*.008)+pi*1.7+(siSeed(section)*.2))*3*e;
+
+      el.style.opacity=opacity.toFixed(3);
+      el.style.transform=`translate3d(${dir*travel}px,${lift+sway}px,0) rotate(${rot}deg)`;
+      el.style.clipPath=side==='left'
+        ? `inset(0 ${((1-e)*100).toFixed(1)}% 0 0)`
+        : `inset(0 0 0 ${((1-e)*100).toFixed(1)}%)`;
+
+      /* The artwork itself breathes while it is installed, but remains tied to scroll. */
+      const imgScale=scale + Math.sin(window.scrollY*.004+pi)*.012*e;
+      const imgRot=dir*.7*Math.sin(window.scrollY*.003+pi)*e;
+      img.style.transform=side==='left'
+        ? `scale(${imgScale}) rotate(${imgRot}deg)`
+        : `scaleX(-1) scale(${imgScale}) rotate(${imgRot}deg)`;
+      img.style.filter=`drop-shadow(0 0 ${8+10*e}px rgba(110,90,235,${.20+.18*e})) blur(${blur}px)`;
+    });
+
+    ticking=false;
+  }
+  function siSeed(section){
+    return sections.indexOf(section)+1;
+  }
+  function onScroll(){
+    if(!ticking){requestAnimationFrame(render);ticking=true;}
+  }
+  addEventListener('scroll',onScroll,{passive:true});
+  addEventListener('resize',render,{passive:true});
+  render();
+
+  /* Tattooer cards: replay in both directions instead of unobserving after the first play. */
+  const artists=[...document.querySelectorAll('.artist')];
+  artists.forEach((card,i)=>{
+    card.classList.add(i%2?'v9-from-right':'v9-from-left');
+  });
+  function renderArtists(){
+    const vh=innerHeight||1;
+    artists.forEach((card,i)=>{
+      const r=card.getBoundingClientRect();
+      let p=clamp((vh-r.top)/(vh*.72));
+      p=ease(p);
+      const dir=i%2?-1:1;
+      const x=(1-p)*70*dir;
+      const rot=(1-p)*3*dir;
+      card.style.opacity=(.18+.82*p).toFixed(3);
+      card.style.transform=`translate3d(${x}px,${(1-p)*35}px,0) rotateY(${rot}deg) scale(${.965+.035*p})`;
+      card.style.filter=`blur(${(1-p)*2}px)`;
+      const photo=card.querySelector('.artist-photo');
+      if(photo){
+        photo.style.transform=`scale(${1.06-.06*p}) translateX(${(1-p)*-18*dir}px)`;
+      }
+    });
+  }
+  let at=false;
+  function rafArtists(){if(!at){requestAnimationFrame(()=>{renderArtists();at=false});at=true}}
+  addEventListener('scroll',rafArtists,{passive:true});
+  addEventListener('resize',renderArtists,{passive:true});
+  renderArtists();
+
+  /* Cards/galleries also scrub rather than one-shot reveal. */
+  const cards=[...document.querySelectorAll('.gallery .card')];
+  function renderCards(){
+    const vh=innerHeight||1;
+    cards.forEach((card,i)=>{
+      const r=card.getBoundingClientRect();
+      let p=clamp((vh-r.top)/(vh*.78));
+      p=ease(p);
+      const dir=i%2?-1:1;
+      card.style.opacity=(.15+.85*p).toFixed(3);
+      card.style.transform=`translate3d(${dir*(1-p)*28}px,${(1-p)*28}px,0) scale(${.97+.03*p})`;
+    });
+  }
+  let ct=false;
+  function rafCards(){if(!ct){requestAnimationFrame(()=>{renderCards();ct=false});ct=true}}
+  addEventListener('scroll',rafCards,{passive:true});
+  addEventListener('resize',renderCards,{passive:true});
+  renderCards();
+})();
+</script>
 </body></html>
