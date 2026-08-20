@@ -1,13 +1,14 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
 <title>Purple Roses Tattoo — Du projet à l’encre</title>
-<meta name="description" content="Purple Roses Tattoo — tatouage & piercing à Saint-Léonard-de-Noblat. Smik & Looping. Du projet à l’encre.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+<meta content="Purple Roses Tattoo — tatouage &amp; piercing à Saint-Léonard-de-Noblat. Smik &amp; Looping. Du projet à l’encre." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Inter:wght@400;500;600;700&amp;family=UnifrakturCook:wght@700&amp;display=swap" rel="stylesheet"/>
 <style>
 :root{--black:#050610;--night:#0d1524;--blue:#2560a0;--cyan:#40abd9;--violet:#5140b0;--purple:#7c45d8;--pink:#b637c6;--white:#f5f2fb;--muted:#a9adbf;--line:rgba(255,255,255,.11)}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--black);color:var(--white);font-family:Inter,Arial,sans-serif;overflow-x:hidden}body:before{content:"";position:fixed;inset:0;z-index:-3;background:radial-gradient(circle at 15% 10%,rgba(81,64,176,.24),transparent 30%),radial-gradient(circle at 90% 65%,rgba(64,171,217,.12),transparent 28%),linear-gradient(180deg,#050610,#090b17 55%,#050610)}body:after{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;opacity:.08;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E")}
@@ -189,62 +190,92 @@ section > .wrap,.hero > .wrap{position:relative;z-index:3}
 }
 
 </style>
+<style id="PR-CLEAN-2026">
+/* =========================================================
+   PURPLE ROSES — CLEAN 2026 MOTION SYSTEM
+   One scroll controller. No legacy reveal engine.
+   ========================================================= */
+:root{--pr-white:#f5f2fb;--pr-purple:#9d55ff;--pr-pink:#d13be1;--pr-blue:#6daeff}
+html,body{overflow-x:hidden}
 
+/* HERO — one true center axis on every viewport */
+.hero{min-height:100svh!important;overflow:hidden!important;display:flex!important;align-items:center!important}
+.hero-grid{width:min(100%,1080px)!important;margin:0 auto!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:clamp(4px,1vw,14px)!important;text-align:center!important}
+.hero-grid>div:first-child{order:2!important;width:100%!important;max-width:900px!important;margin:0 auto!important;display:flex!important;flex-direction:column!important;align-items:center!important;text-align:center!important}
+.hero-art{order:1!important;width:100%!important;height:clamp(300px,48vw,540px)!important;display:flex!important;align-items:center!important;justify-content:center!important;margin:0 auto!important;position:relative!important;overflow:visible!important}
+.hero-logo{display:block!important;width:min(500px,82vw)!important;max-width:500px!important;height:auto!important;margin:0 auto!important;transform:none!important;animation:prHeroFloat 7s ease-in-out infinite!important}
+.hero h1,.hero h1 span,.hero-copy,.hero-actions,.hero .eyebrow{margin-left:auto!important;margin-right:auto!important;text-align:center!important}
+.hero h1{width:100%!important;max-width:900px!important}
+.hero-copy{width:min(720px,100%)!important;max-width:720px!important}
+.hero-actions{display:flex!important;justify-content:center!important;align-items:center!important;width:100%!important;flex-wrap:wrap!important}
+.hero .reveal,.hero-art.reveal{opacity:1!important;visibility:visible!important;transform:none!important;transition:none!important}
+@keyframes prHeroFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
 
+/* Remove every old decorative vine system. */
+.hero .vine,.hero .artist-vine,.hero .section-vines,.hero .botanical-vine,.hero .vine-layer,.hero .real-vine,.hero .edge-vine{display:none!important}
 
+/* VINES — only in the six gaps between the seven sections. */
+.pr-vine-zone{position:relative!important;width:100vw!important;height:clamp(150px,18vw,235px)!important;margin-left:calc(50% - 50vw)!important;margin-right:calc(50% - 50vw)!important;overflow:hidden!important;pointer-events:none!important;isolation:isolate!important;border:0!important;padding:0!important}
+.pr-vine{position:absolute!important;width:min(70vw,820px)!important;height:auto!important;max-width:none!important;display:block!important;opacity:0!important;visibility:visible!important;will-change:transform,opacity!important;z-index:1!important;filter:drop-shadow(0 0 10px rgba(73,103,220,.18))!important}
+/* Left: tail starts fully outside left; tip points toward center. */
+.pr-vine.left{left:50%!important;right:auto!important;transform:translate3d(-200%,0,0)!important}
+/* Right: mirrored; tail starts fully outside right; tip points toward center. */
+.pr-vine.right{left:50%!important;right:auto!important;transform:translate3d(100%,0,0) scaleX(-1)!important}
+.pr-vine.top{top:14%!important}.pr-vine.bottom{top:57%!important}
+.pr-vine.second{opacity:0!important}
 
+/* Artists — complete card is one moving object. No flicker. */
+.artist.reveal{opacity:1!important;visibility:visible!important;transition:none!important;will-change:transform!important;backface-visibility:hidden!important;transform:translate3d(var(--pr-card-x,0px),var(--pr-card-y,0px),0) rotate(var(--pr-card-r,0deg))!important}
+.artist-photo{will-change:transform!important;backface-visibility:hidden!important}
 
+/* Galleries — stable cards, tiny depth only. */
+.gallery.reveal{opacity:1!important;visibility:visible!important;transition:none!important}
+.gallery .card{opacity:1!important;will-change:transform!important;transition:none!important}
+.gallery .card img{will-change:transform!important}
 
+/* Section content is never hidden by the legacy .reveal class. */
+.reveal{opacity:1!important;visibility:visible!important}
+.reveal:not(.artist):not(.gallery){transform:none!important;transition:none!important}
 
+/* Titles — liquid ink-fill sweep, controlled directly by scroll. */
+.pr-ink-title{--ink-progress:0%;position:relative!important;color:transparent!important;background-image:linear-gradient(90deg,var(--pr-white) 0%,var(--pr-white) var(--ink-progress),rgba(245,242,251,.10) calc(var(--ink-progress) + 1%),rgba(245,242,251,.10) 100%)!important;background-clip:text!important;-webkit-background-clip:text!important;-webkit-text-fill-color:transparent!important;-webkit-text-stroke:1px rgba(245,242,251,.72)!important;will-change:background-image!important}
+/* Organic edge: a second soft color layer breaks the straight sweep. */
+.pr-ink-title::after{content:"";position:absolute;inset:-2px -1px;pointer-events:none;background:radial-gradient(ellipse at var(--ink-progress) 52%,rgba(157,85,255,.42) 0 7%,transparent 22%);mix-blend-mode:screen;opacity:.7;filter:blur(6px);}
+.hero h1{--ink-progress:100%!important;-webkit-text-stroke:0!important}
 
+/* No horizontal overflow from transitions. */
+section{overflow:visible!important}
 
-
-
-
-<style id="PR-FINAL-2026">
-:root{--pr-purple:#9b4de5;--pr-pink:#c54be0;--pr-blue:#4b86e8;--pr-white:#f5f2fb}
-html,body{width:100%;max-width:100%;overflow-x:hidden}html{scroll-behavior:smooth}body{min-width:0}
-.wrap{width:min(1240px,calc(100% - 42px));max-width:100%;margin-inline:auto}
-/* HERO — everything shares one physical center axis */
-.hero{min-height:100svh;display:flex;align-items:center;padding:110px 0 70px;position:relative;overflow:hidden}
-.hero-grid{width:min(100%,1080px)!important;margin-inline:auto!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:10px!important;text-align:center!important}
-.hero-grid>div:first-child{order:2!important;width:100%!important;display:flex!important;flex-direction:column!important;align-items:center!important;text-align:center!important}
-.hero-art{order:1!important;width:100%!important;height:clamp(330px,52vw,570px)!important;display:flex!important;align-items:center!important;justify-content:center!important;margin-inline:auto!important;position:relative!important}
-.hero-logo{display:block!important;width:min(500px,82vw)!important;max-height:540px!important;height:auto!important;margin:0 auto!important;position:relative!important;left:0!important;right:0!important;mix-blend-mode:normal!important;filter:drop-shadow(0 18px 45px rgba(124,69,216,.22))!important;animation:prHeroFloat 6s ease-in-out infinite}
-@keyframes prHeroFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-.hero h1{width:100%!important;margin:12px auto 24px!important;text-align:center!important;line-height:.82!important}.hero .eyebrow,.hero .hero-copy,.hero .hero-actions{margin-left:auto!important;margin-right:auto!important;text-align:center!important}
-.hero-copy{width:min(100%,720px)!important;max-width:720px!important;font-size:18px;line-height:1.7}.hero-actions{display:flex!important;justify-content:center!important;align-items:center!important;flex-wrap:wrap!important;gap:12px;margin-top:28px!important}
-.hero .orb,.hero .orn,.hero .decor-vine,.hero .botanical-vine,.hero .edge-vine,.hero .v3-vine,.hero .vine-layer,.hero .real-vine,.hero .section-vines{display:none!important}
-/* VINES — ONLY in the gaps between sections */
-.pr-vine-zone{position:relative!important;width:100vw!important;margin-left:calc(50% - 50vw)!important;margin-right:calc(50% - 50vw)!important;height:clamp(170px,19vw,260px)!important;overflow:hidden!important;pointer-events:none!important;isolation:isolate!important;border:0!important;padding:0!important}
-.pr-vine{position:absolute!important;width:min(76vw,1100px)!important;height:auto!important;max-width:none!important;opacity:0;visibility:visible;will-change:transform,opacity,filter;filter:drop-shadow(0 0 9px rgba(73,103,220,.20))!important;z-index:1!important}
-.pr-vine.left{left:50%!important;top:10%!important;transform:translate3d(-200%,0,0);transform-origin:left center!important}.pr-vine.right{left:50%!important;right:auto!important;top:52%!important;transform:translate3d(100%,0,0) scaleX(-1);transform-origin:center center!important}
-.pr-vine.left.second{top:52%!important}.pr-vine.right.second{top:10%!important}
-/* ARTISTS — whole card moves as one object */
-.artist{will-change:transform,opacity,filter!important;backface-visibility:hidden;transform-origin:center center}.artist-photo{will-change:transform!important}
-/* GALLERIES — no fade-in, only tiny depth */
-.gallery .card{opacity:1!important;will-change:transform!important;transition:transform .28s ease,filter .28s ease!important}.gallery .card img{will-change:transform!important;transition:transform .25s ease!important}.gallery .card:hover img{transform:scale(1.018)!important}
-#flashs .gallery .meta,#realisations .gallery .meta{display:none!important}#flashs .gallery .card,#realisations .gallery .card{border:0;background:transparent;box-shadow:none}
-/* TITLES — fill sweep, like the reference video, not opacity */
-.pr-ink-title{--ink-progress:0%;position:relative!important;color:transparent!important;background-image:linear-gradient(90deg,var(--pr-white) 0%,var(--pr-white) calc(var(--ink-progress) - 1%),rgba(245,242,251,.14) calc(var(--ink-progress) + 1%),rgba(245,242,251,.14) 100%)!important;background-clip:text!important;-webkit-background-clip:text!important;-webkit-text-fill-color:transparent!important;-webkit-text-stroke:1px rgba(245,242,251,.76)!important;will-change:background-image!important}
-.hero h1.pr-ink-title{--ink-progress:100%;-webkit-text-stroke:0!important}
-section{position:relative;overflow:visible}section>.wrap{position:relative;z-index:3}.section-head,.story,.artists,.gallery,.studio-grid,.location,.booking-grid{position:relative;z-index:3}
-.scroll-progress{position:fixed;left:0;top:0;width:100%;height:2px;z-index:1000;background:rgba(255,255,255,.05);pointer-events:none}.scroll-progress span{display:block;width:100%;height:100%;transform:scaleX(0);transform-origin:left;background:linear-gradient(90deg,var(--pr-purple),var(--pr-pink),var(--pr-blue));box-shadow:0 0 12px rgba(192,68,200,.55)}
-@media(max-width:900px){.wrap{width:calc(100% - 28px)}.hero{padding:88px 0 58px}.hero-art{height:350px!important}.hero-logo{width:min(390px,82vw)!important;max-height:350px!important}.hero h1{font-size:clamp(64px,16vw,105px)!important}.hero-copy{font-size:16px;line-height:1.65}.pr-vine-zone{height:145px!important}.pr-vine{width:min(82vw,760px)!important;max-height:240px!important;object-fit:contain;object-position:center}}
-@media(max-width:560px){section{padding:78px 0}.hero{padding:82px 0 55px}.hero-art{height:300px!important}.hero-logo{width:min(300px,78vw)!important;max-height:300px!important}.hero h1{font-size:17vw!important;line-height:.84!important}.hero-copy{width:100%!important;font-size:15px}.hero-actions{width:100%!important}.hero-actions .btn{flex:1 1 100%}.pr-vine-zone{height:120px!important}.pr-vine{width:92vw!important;max-height:150px!important}.pr-vine.left{top:7%!important}.pr-vine.right{top:53%!important}.pr-vine.left.second{top:53%!important}.pr-vine.right.second{top:7%!important}.section-head h2,.story h2,.booking h2{font-size:clamp(48px,14vw,70px)!important;line-height:.86!important}}
-@media(prefers-reduced-motion:reduce){.hero-logo{animation:none}.pr-ink-title{--ink-progress:100%!important}}
+@media(max-width:900px){
+ .hero{padding:88px 0 58px!important}
+ .hero-art{height:clamp(290px,52vw,420px)!important}
+ .hero-logo{width:min(390px,82vw)!important}
+ .pr-vine-zone{height:145px!important}
+ .pr-vine{width:88vw!important;max-height:150px!important}
+}
+@media(max-width:560px){
+ .hero{padding:78px 0 52px!important}
+ .hero-art{height:285px!important}
+ .hero-logo{width:min(300px,78vw)!important}
+ .hero h1{font-size:17vw!important;line-height:.84!important}
+ .hero-copy{font-size:15px!important}
+ .hero-actions .btn{flex:0 1 auto!important}
+ .pr-vine-zone{height:120px!important}
+ .pr-vine{width:105vw!important;max-height:105px!important}
+ .pr-vine.top{top:8%!important}.pr-vine.bottom{top:60%!important}
+ .section-head h2,.story h2,.booking h2{font-size:clamp(48px,14vw,70px)!important;line-height:.86!important}
+}
+@media(prefers-reduced-motion:reduce){.hero-logo{animation:none!important}.pr-vine{transition:none!important}.pr-ink-title{--ink-progress:100%!important}}
 </style></head>
 <body>
-<div class="scroll-progress" aria-hidden="true"><span></span></div>
+<div aria-hidden="true" class="scroll-progress"><span></span></div>
 <header><div class="wrap nav">
 <a class="brand" href="#top"><span class="brand-dot"></span>PURPLE ROSES TATTOO</a>
 <nav class="navlinks"><a href="#artistes">Artistes</a><a href="#flashs">Flashs</a><a href="#realisations">Réalisations</a><a href="#studio">Studio</a></nav>
 <a class="book" href="#reservation">RÉSERVER</a>
 </div></header>
-
 <main id="top">
 <section class="hero">
-
 <div class="wrap hero-grid">
 <div class="reveal">
 <div class="eyebrow">Tatouage · Piercing · Saint-Léonard-de-Noblat</div>
@@ -253,207 +284,227 @@ section{position:relative;overflow:visible}section>.wrap{position:relative;z-ind
 <div class="hero-actions"><a class="btn primary" href="#artistes">DÉCOUVRIR LES ARTISTES</a><a class="btn" href="#reservation">PARLER DE MON PROJET</a></div>
 </div>
 <div class="hero-art reveal" data-parallax=".08">
-<img class="hero-logo" src="logo-roses-clean.png" alt="Purple Roses Tattoo — roses violettes">
+<img alt="Purple Roses Tattoo — roses violettes" class="hero-logo" src="logo-roses-clean.png"/>
 </div>
 </div><div class="scrollhint">Faire défiler</div>
-</section>
-<div class="pr-vine-zone" aria-hidden="true" data-vine-zone>
-<img class="pr-vine left" src="vine-new-04.png" alt="">
-<img class="pr-vine right" src="vine-new-07.png" alt="">
-<img class="pr-vine left second" src="vine-new-07.png" alt="">
-<img class="pr-vine right second" src="vine-new-04.png" alt="">
-</div>
-
+</section><div aria-hidden="true" class="pr-vine-zone" data-vine-zone=""><img alt="" class="pr-vine left top" data-top="18%" src="vine-new-04.png"/><img alt="" class="pr-vine left bottom" data-top="62%" src="vine-new-07.png"/><img alt="" class="pr-vine right top" data-top="18%" src="vine-new-07.png"/><img alt="" class="pr-vine right bottom" data-top="62%" src="vine-new-04.png"/></div>
 <section id="artistes">
 <div class="wrap">
-<div class="section-head reveal"><div><div class="eyebrow">Le studio</div><h2 class="display">Deux univers.<br>Une même encre.</h2></div><p>Smik et Looping travaillent chacun leur univers, tout en restant ouverts à de nombreux styles. Découvre leurs approches et leurs réalisations.</p></div>
+<div class="section-head reveal"><div><div class="eyebrow">Le studio</div><h2 class="display">Deux univers.<br/>Une même encre.</h2></div><p>Smik et Looping travaillent chacun leur univers, tout en restant ouverts à de nombreux styles. Découvre leurs approches et leurs réalisations.</p></div>
 <div class="artists">
 <article class="artist smk reveal">
-<img class="artist-photo" src="49051.jpg" alt="Smik, tatoueur et perceur de Purple Roses Tattoo">
-<div class="artist-copy"><div class="eyebrow">Patron · tatouage & piercing</div><h3 class="display">Smik</h3><div class="artist-years"><strong>13</strong><span>ANS D’EXPÉRIENCE</span></div><p>Ses styles de prédilection : <strong>blackwork</strong> et <strong>japonais</strong>. Mais ses projets ne s’arrêtent pas là : il tatoue dans de nombreux univers et réalise également les piercings du studio.</p><div class="tags"><span class="tag">Blackwork</span><span class="tag">Japonais</span><span class="tag">Création</span><span class="tag">Cover</span><span class="tag">Piercing</span></div></div>
+<img alt="Smik, tatoueur et perceur de Purple Roses Tattoo" class="artist-photo" src="49051.jpg"/>
+<div class="artist-copy"><div class="eyebrow">Patron · tatouage &amp; piercing</div><h3 class="display">Smik</h3><div class="artist-years"><strong>13</strong><span>ANS D’EXPÉRIENCE</span></div><p>Ses styles de prédilection : <strong>blackwork</strong> et <strong>japonais</strong>. Mais ses projets ne s’arrêtent pas là : il tatoue dans de nombreux univers et réalise également les piercings du studio.</p><div class="tags"><span class="tag">Blackwork</span><span class="tag">Japonais</span><span class="tag">Création</span><span class="tag">Cover</span><span class="tag">Piercing</span></div></div>
 </article>
 <article class="artist looping reveal">
-<img class="artist-photo" src="49053.jpg" alt="Looping, tatoueur de Purple Roses Tattoo">
+<img alt="Looping, tatoueur de Purple Roses Tattoo" class="artist-photo" src="49053.jpg"/>
 <div class="artist-copy"><div class="eyebrow">Tatoueur</div><h3 class="display">Looping</h3><div class="artist-years"><strong>9</strong><span>ANS D’EXPÉRIENCE</span></div><p>Son style de prédilection : le <strong>fineline</strong>. Il explore lui aussi différents univers et adapte son travail au projet, du détail délicat à des compositions plus affirmées.</p><div class="tags"><span class="tag">Fineline</span><span class="tag">Floral</span><span class="tag">Création</span><span class="tag">Illustratif</span></div></div>
 </article>
-</div></div></section>
-<div class="pr-vine-zone" aria-hidden="true" data-vine-zone>
-<img class="pr-vine left" src="vine-new-07.png" alt="">
-<img class="pr-vine right" src="vine-new-04.png" alt="">
-<img class="pr-vine left second" src="vine-new-04.png" alt="">
-<img class="pr-vine right second" src="vine-new-07.png" alt="">
-</div>
-
+</div></div></section><div aria-hidden="true" class="pr-vine-zone" data-vine-zone=""><img alt="" class="pr-vine left top" data-top="18%" src="vine-new-07.png"/><img alt="" class="pr-vine left bottom" data-top="62%" src="vine-new-04.png"/><img alt="" class="pr-vine right top" data-top="18%" src="vine-new-04.png"/><img alt="" class="pr-vine right bottom" data-top="62%" src="vine-new-07.png"/></div>
 <section>
 <div class="wrap story">
-<div class="reveal"><div class="eyebrow">L’expérience</div><h2 class="display">Pas juste<br>un tatouage.</h2></div>
+<div class="reveal"><div class="eyebrow">L’expérience</div><h2 class="display">Pas juste<br/>un tatouage.</h2></div>
 <div class="reveal"><p class="story-copy">Un projet commence par une idée. Une discussion, une inspiration, une envie de recouvrir, de transformer ou simplement de créer quelque chose qui te ressemble. Le studio accompagne chaque projet jusqu'à l'encre.</p></div>
-</div></section>
-<div class="pr-vine-zone" aria-hidden="true" data-vine-zone>
-<img class="pr-vine left" src="vine-new-07.png" alt="">
-<img class="pr-vine right" src="vine-new-07.png" alt="">
-<img class="pr-vine left second" src="vine-new-07.png" alt="">
-<img class="pr-vine right second" src="vine-new-07.png" alt="">
-</div>
-
+</div></section><div aria-hidden="true" class="pr-vine-zone" data-vine-zone=""><img alt="" class="pr-vine left top" data-top="18%" src="vine-new-04.png"/><img alt="" class="pr-vine left bottom" data-top="62%" src="vine-new-04.png"/><img alt="" class="pr-vine right top" data-top="18%" src="vine-new-04.png"/><img alt="" class="pr-vine right bottom" data-top="62%" src="vine-new-04.png"/></div>
 <section id="flashs">
-<div class="wrap flashes"><div class="section-head reveal"><div><div class="eyebrow">Flashs</div><h2 class="display">À prendre<br>à l’encre.</h2></div><p>Une sélection de flashs de Smik. Clique sur un flash pour l’agrandir.</p></div><div class="gallery reveal" id="flashGallery"><div class="card flash-card"><img src="48806.jpg" alt="Flash Smik" loading="lazy"></div>
-<div class="card flash-card"><img src="48807.jpg" alt="Flash Smik" loading="lazy"></div>
-<div class="card flash-card"><img src="48814.jpg" alt="Flash Smik" loading="lazy"></div>
-<div class="card flash-card"><img src="48817.jpg" alt="Flash Smik" loading="lazy"></div>
-<div class="card flash-card"><img src="48820.jpg" alt="Flash Smik" loading="lazy"></div>
-<div class="card flash-card"><img src="48841.jpg" alt="Flash Smik" loading="lazy"></div>
-<div class="card flash-card"><img src="48844.jpg" alt="Flash Smik" loading="lazy"></div>
-<div class="card flash-card"><img src="48847.jpg" alt="Flash Smik" loading="lazy"></div>
-<div class="card flash-card"><img src="48850.jpg" alt="Flash Smik" loading="lazy"></div>
-<div class="card flash-card"><img src="48853.jpg" alt="Flash Smik" loading="lazy"></div>
-<div class="card flash-card"><img src="48856.jpg" alt="Flash Smik" loading="lazy"></div>
-<div class="card flash-card"><img src="48870.jpg" alt="Flash Smik" loading="lazy"></div>
-<div class="card flash-card"><img src="48873.jpg" alt="Flash Smik" loading="lazy"></div>
-<div class="card flash-card"><img src="48876.jpg" alt="Flash Smik" loading="lazy"></div>
-<div class="card flash-card"><img src="48879.jpg" alt="Flash Smik" loading="lazy"></div>
-<div class="card flash-card"><img src="48882.jpg" alt="Flash Smik" loading="lazy"></div>
-<div class="card flash-card"><img src="48885.jpg" alt="Flash Smik" loading="lazy"></div>
-<div class="card flash-card"><img src="48888.jpg" alt="Flash Smik" loading="lazy"></div>
-<div class="card flash-card"><img src="48891.jpg" alt="Flash Smik" loading="lazy"></div>
-<div class="card flash-card"><img src="48903.jpg" alt="Flash Smik" loading="lazy"></div>
-<div class="card flash-card"><img src="49016.jpg" alt="Flash Smik" loading="lazy"></div>
-<div class="card flash-card"><img src="49019.jpg" alt="Flash Smik" loading="lazy"></div>
-<div class="card flash-card"><img src="49022.jpg" alt="Flash Smik" loading="lazy"></div>
-<div class="card flash-card"><img src="49025.jpg" alt="Flash Smik" loading="lazy"></div>
-<div class="card flash-card"><img src="49077.jpg" alt="Flash Smik" loading="lazy"></div></div></div></section>
-<div class="pr-vine-zone" aria-hidden="true" data-vine-zone>
-<img class="pr-vine left" src="vine-new-04.png" alt="">
-<img class="pr-vine right" src="vine-new-07.png" alt="">
-<img class="pr-vine left second" src="vine-new-07.png" alt="">
-<img class="pr-vine right second" src="vine-new-04.png" alt="">
-</div>
-
+<div class="wrap flashes"><div class="section-head reveal"><div><div class="eyebrow">Flashs</div><h2 class="display">À prendre<br/>à l’encre.</h2></div><p>Une sélection de flashs de Smik. Clique sur un flash pour l’agrandir.</p></div><div class="gallery reveal" id="flashGallery"><div class="card flash-card"><img alt="Flash Smik" loading="lazy" src="48806.jpg"/></div>
+<div class="card flash-card"><img alt="Flash Smik" loading="lazy" src="48807.jpg"/></div>
+<div class="card flash-card"><img alt="Flash Smik" loading="lazy" src="48814.jpg"/></div>
+<div class="card flash-card"><img alt="Flash Smik" loading="lazy" src="48817.jpg"/></div>
+<div class="card flash-card"><img alt="Flash Smik" loading="lazy" src="48820.jpg"/></div>
+<div class="card flash-card"><img alt="Flash Smik" loading="lazy" src="48841.jpg"/></div>
+<div class="card flash-card"><img alt="Flash Smik" loading="lazy" src="48844.jpg"/></div>
+<div class="card flash-card"><img alt="Flash Smik" loading="lazy" src="48847.jpg"/></div>
+<div class="card flash-card"><img alt="Flash Smik" loading="lazy" src="48850.jpg"/></div>
+<div class="card flash-card"><img alt="Flash Smik" loading="lazy" src="48853.jpg"/></div>
+<div class="card flash-card"><img alt="Flash Smik" loading="lazy" src="48856.jpg"/></div>
+<div class="card flash-card"><img alt="Flash Smik" loading="lazy" src="48870.jpg"/></div>
+<div class="card flash-card"><img alt="Flash Smik" loading="lazy" src="48873.jpg"/></div>
+<div class="card flash-card"><img alt="Flash Smik" loading="lazy" src="48876.jpg"/></div>
+<div class="card flash-card"><img alt="Flash Smik" loading="lazy" src="48879.jpg"/></div>
+<div class="card flash-card"><img alt="Flash Smik" loading="lazy" src="48882.jpg"/></div>
+<div class="card flash-card"><img alt="Flash Smik" loading="lazy" src="48885.jpg"/></div>
+<div class="card flash-card"><img alt="Flash Smik" loading="lazy" src="48888.jpg"/></div>
+<div class="card flash-card"><img alt="Flash Smik" loading="lazy" src="48891.jpg"/></div>
+<div class="card flash-card"><img alt="Flash Smik" loading="lazy" src="48903.jpg"/></div>
+<div class="card flash-card"><img alt="Flash Smik" loading="lazy" src="49016.jpg"/></div>
+<div class="card flash-card"><img alt="Flash Smik" loading="lazy" src="49019.jpg"/></div>
+<div class="card flash-card"><img alt="Flash Smik" loading="lazy" src="49022.jpg"/></div>
+<div class="card flash-card"><img alt="Flash Smik" loading="lazy" src="49025.jpg"/></div>
+<div class="card flash-card"><img alt="Flash Smik" loading="lazy" src="49077.jpg"/></div></div></div></section><div aria-hidden="true" class="pr-vine-zone" data-vine-zone=""><img alt="" class="pr-vine left top" data-top="18%" src="vine-new-07.png"/><img alt="" class="pr-vine left bottom" data-top="62%" src="vine-new-04.png"/><img alt="" class="pr-vine right top" data-top="18%" src="vine-new-04.png"/><img alt="" class="pr-vine right bottom" data-top="62%" src="vine-new-07.png"/></div>
 <section id="realisations">
 <div class="wrap">
-<div class="section-head reveal"><div><div class="eyebrow">Galeries séparées</div><h2 class="display">L’encre<br>en images.</h2></div><p>Choisis un artiste pour découvrir son travail. Les galeries restent séparées pour ne jamais mélanger les univers.</p></div>
+<div class="section-head reveal"><div><div class="eyebrow">Galeries séparées</div><h2 class="display">L’encre<br/>en images.</h2></div><p>Choisis un artiste pour découvrir son travail. Les galeries restent séparées pour ne jamais mélanger les univers.</p></div>
 <div class="gallery-tools reveal"><button class="filter active" data-filter="all">Tous</button><button class="filter" data-filter="smik">Smik</button><button class="filter" data-filter="looping">Looping</button></div>
 <div class="gallery" id="gallery">
-<div class="card" data-artist="looping" data-caption="Looping · fineline"><img src="49065.jpg" alt="Tatouage fineline réalisé par Looping" loading="lazy"></div>
-<div class="card" data-artist="looping" data-caption="Looping · fineline"><img src="49066.jpg" alt="Tatouage fineline réalisé par Looping" loading="lazy"></div>
-<div class="card" data-artist="looping" data-caption="Looping · fineline"><img src="49067.jpg" alt="Tatouage fineline réalisé par Looping" loading="lazy"></div>
-<div class="card" data-artist="looping" data-caption="Looping · fineline"><img src="49068.jpg" alt="Tatouage fineline réalisé par Looping" loading="lazy"></div>
-<div class="card" data-artist="looping" data-caption="Looping · fineline"><img src="49070.jpg" alt="Tatouage fineline réalisé par Looping" loading="lazy"></div>
-<div class="card" data-artist="looping" data-caption="Looping · fineline"><img src="49071.jpg" alt="Tatouage fineline réalisé par Looping" loading="lazy"></div>
-<div class="card" data-artist="looping" data-caption="Looping · fineline"><img src="49063.jpg" alt="Tatouage fineline réalisé par Looping" loading="lazy"></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48920.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48914.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48975.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48947.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48944.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48897.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48932.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48926.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48935.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48984.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48929.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="49001.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48938.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48923.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48966.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48838.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48981.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48963.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48917.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48960.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48906.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48957.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48835.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48832.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
-
-
-
-
-
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="49007.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48909.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="49004.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
-
-
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48864.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
-
-
-
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48823.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48826.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48829.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48859.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
-</div></div></section>
-<div class="pr-vine-zone" aria-hidden="true" data-vine-zone>
-<img class="pr-vine left" src="vine-new-04.png" alt="">
-<img class="pr-vine right" src="vine-new-07.png" alt="">
-<img class="pr-vine left second" src="vine-new-07.png" alt="">
-<img class="pr-vine right second" src="vine-new-04.png" alt="">
-</div>
-
+<div class="card" data-artist="looping" data-caption="Looping · fineline"><img alt="Tatouage fineline réalisé par Looping" loading="lazy" src="49065.jpg"/></div>
+<div class="card" data-artist="looping" data-caption="Looping · fineline"><img alt="Tatouage fineline réalisé par Looping" loading="lazy" src="49066.jpg"/></div>
+<div class="card" data-artist="looping" data-caption="Looping · fineline"><img alt="Tatouage fineline réalisé par Looping" loading="lazy" src="49067.jpg"/></div>
+<div class="card" data-artist="looping" data-caption="Looping · fineline"><img alt="Tatouage fineline réalisé par Looping" loading="lazy" src="49068.jpg"/></div>
+<div class="card" data-artist="looping" data-caption="Looping · fineline"><img alt="Tatouage fineline réalisé par Looping" loading="lazy" src="49070.jpg"/></div>
+<div class="card" data-artist="looping" data-caption="Looping · fineline"><img alt="Tatouage fineline réalisé par Looping" loading="lazy" src="49071.jpg"/></div>
+<div class="card" data-artist="looping" data-caption="Looping · fineline"><img alt="Tatouage fineline réalisé par Looping" loading="lazy" src="49063.jpg"/></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img alt="Tatouage réalisé par Smik" loading="lazy" src="48920.jpg"/></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img alt="Tatouage réalisé par Smik" loading="lazy" src="48914.jpg"/></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img alt="Tatouage réalisé par Smik" loading="lazy" src="48975.jpg"/></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img alt="Tatouage réalisé par Smik" loading="lazy" src="48947.jpg"/></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img alt="Tatouage réalisé par Smik" loading="lazy" src="48944.jpg"/></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img alt="Tatouage réalisé par Smik" loading="lazy" src="48897.jpg"/></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img alt="Tatouage réalisé par Smik" loading="lazy" src="48932.jpg"/></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img alt="Tatouage réalisé par Smik" loading="lazy" src="48926.jpg"/></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img alt="Tatouage réalisé par Smik" loading="lazy" src="48935.jpg"/></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img alt="Tatouage réalisé par Smik" loading="lazy" src="48984.jpg"/></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img alt="Tatouage réalisé par Smik" loading="lazy" src="48929.jpg"/></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img alt="Tatouage réalisé par Smik" loading="lazy" src="49001.jpg"/></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img alt="Tatouage réalisé par Smik" loading="lazy" src="48938.jpg"/></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img alt="Tatouage réalisé par Smik" loading="lazy" src="48923.jpg"/></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img alt="Tatouage réalisé par Smik" loading="lazy" src="48966.jpg"/></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img alt="Tatouage réalisé par Smik" loading="lazy" src="48838.jpg"/></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img alt="Tatouage réalisé par Smik" loading="lazy" src="48981.jpg"/></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img alt="Tatouage réalisé par Smik" loading="lazy" src="48963.jpg"/></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img alt="Tatouage réalisé par Smik" loading="lazy" src="48917.jpg"/></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img alt="Tatouage réalisé par Smik" loading="lazy" src="48960.jpg"/></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img alt="Tatouage réalisé par Smik" loading="lazy" src="48906.jpg"/></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img alt="Tatouage réalisé par Smik" loading="lazy" src="48957.jpg"/></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img alt="Tatouage réalisé par Smik" loading="lazy" src="48835.jpg"/></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img alt="Tatouage réalisé par Smik" loading="lazy" src="48832.jpg"/></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img alt="Tatouage réalisé par Smik" loading="lazy" src="49007.jpg"/></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img alt="Tatouage réalisé par Smik" loading="lazy" src="48909.jpg"/></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img alt="Tatouage réalisé par Smik" loading="lazy" src="49004.jpg"/></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img alt="Tatouage réalisé par Smik" loading="lazy" src="48864.jpg"/></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img alt="Tatouage réalisé par Smik" loading="lazy" src="48823.jpg"/></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img alt="Tatouage réalisé par Smik" loading="lazy" src="48826.jpg"/></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img alt="Tatouage réalisé par Smik" loading="lazy" src="48829.jpg"/></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img alt="Tatouage réalisé par Smik" loading="lazy" src="48859.jpg"/></div>
+</div></div></section><div aria-hidden="true" class="pr-vine-zone" data-vine-zone=""><img alt="" class="pr-vine left top" data-top="18%" src="vine-new-04.png"/><img alt="" class="pr-vine left bottom" data-top="62%" src="vine-new-07.png"/><img alt="" class="pr-vine right top" data-top="18%" src="vine-new-07.png"/><img alt="" class="pr-vine right bottom" data-top="62%" src="vine-new-04.png"/></div>
 <section id="studio">
 <div class="wrap">
 <div class="section-head reveal"><div><div class="eyebrow">Purple Roses Tattoo</div><h2 class="display">Le shop.</h2></div><p>Retrouve-nous au cœur de Saint-Léonard-de-Noblat. Un lieu avec sa propre identité, pensé autour du tatouage, du piercing et de la culture du studio.</p></div>
-<div class="studio-grid reveal"><div class="studio-main"><img src="49082.jpg" alt="Vitrine de Purple Roses Tattoo"><div class="studio-label"><div class="eyebrow">3 rue des Sapeurs-Pompiers</div><h3 class="display">Saint-Léonard</h3></div></div><div class="studio-side"><img src="49083.jpg" alt="Machine et enseigne Tattoo du studio" loading="lazy"><img src="49084.jpg" alt="Intérieur de Purple Roses Tattoo" loading="lazy"></div></div>
-<div class="location"><div class="info reveal"><div class="info-row"><span class="info-label">Adresse</span>3 rue des Sapeurs-Pompiers<br>87400 Saint-Léonard-de-Noblat</div><div class="info-row"><span class="info-label">Téléphone</span><a href="tel:+33767971675">07 67 97 16 75</a></div><div class="info-row"><span class="info-label">E-mail</span><a href="mailto:purplerosestattoo@outlook.fr">purplerosestattoo@outlook.fr</a></div><div class="info-row"><span class="info-label">Réseaux</span><a href="https://instagram.com/purplerosestattoo" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.tiktok.com/@purplerosestattoo" target="_blank" rel="noopener">TikTok</a> · <a href="https://www.facebook.com/purplerosestattoo" target="_blank" rel="noopener">Facebook</a></div><div class="info-row"><span class="info-label">Horaires</span>Lundi : fermé · Mardi à vendredi : 09h–12h / 16h–19h · Samedi et dimanche : 08h–20h.</div><div class="info-row"><span class="info-label">Rendez-vous</span>Formulaire, e-mail, téléphone, Instagram ou Messenger.</div></div><div class="map reveal"><iframe title="Carte Google Maps — Purple Roses Tattoo" src="https://www.google.com/maps?q=Purple%20Roses%20Tattoo%2C%203%20Rue%20des%20Sapeurs%20Pompiers%2C%2087400%20Saint-L%C3%A9onard-de-Noblat&output=embed" loading="lazy"></iframe></div></div>
-</div></section>
-<div class="pr-vine-zone" aria-hidden="true" data-vine-zone>
-<img class="pr-vine left" src="vine-new-07.png" alt="">
-<img class="pr-vine right" src="vine-new-04.png" alt="">
-<img class="pr-vine left second" src="vine-new-04.png" alt="">
-<img class="pr-vine right second" src="vine-new-07.png" alt="">
-</div>
-
-<section id="reservation" class="booking"><div class="wrap booking-grid"><div class="reveal"><div class="eyebrow">Réservation</div><h2 class="display">On parle<br>du projet ?</h2><p class="muted">Décris-nous ton idée. Pour une création ou un cover-up, quelques photos et informations permettent de mieux comprendre le projet. Pour un cover-up, il faudra ensuite passer au shop afin de voir le tatouage directement.</p><p class="muted">Le piercing est réalisé par Smik.</p></div>
-<form class="form reveal" id="bookingForm"><div class="row"><input name="name" required placeholder="Nom / prénom"><input name="email" required type="email" placeholder="E-mail"></div><div class="row"><input name="phone" placeholder="Téléphone"><select name="type" required><option value="">Type de projet</option><option>Flash</option><option>Création personnalisée</option><option>Cover-up</option><option>Piercing</option><option>Autre</option></select></div><select name="artist"><option value="">Artiste (si besoin)</option><option>Smik</option><option>Looping</option><option>Je ne sais pas encore</option></select><textarea name="message" required placeholder="Parle-nous de ton projet… taille, emplacement, idée, références, contraintes, etc."></textarea><small>En envoyant, ton application e-mail s’ouvrira avec les informations de ta demande pré-remplies.</small><button class="btn primary" type="submit">ENVOYER LA DEMANDE</button></form>
+<div class="studio-grid reveal"><div class="studio-main"><img alt="Vitrine de Purple Roses Tattoo" src="49082.jpg"/><div class="studio-label"><div class="eyebrow">3 rue des Sapeurs-Pompiers</div><h3 class="display">Saint-Léonard</h3></div></div><div class="studio-side"><img alt="Machine et enseigne Tattoo du studio" loading="lazy" src="49083.jpg"/><img alt="Intérieur de Purple Roses Tattoo" loading="lazy" src="49084.jpg"/></div></div>
+<div class="location"><div class="info reveal"><div class="info-row"><span class="info-label">Adresse</span>3 rue des Sapeurs-Pompiers<br/>87400 Saint-Léonard-de-Noblat</div><div class="info-row"><span class="info-label">Téléphone</span><a href="tel:+33767971675">07 67 97 16 75</a></div><div class="info-row"><span class="info-label">E-mail</span><a href="mailto:purplerosestattoo@outlook.fr">purplerosestattoo@outlook.fr</a></div><div class="info-row"><span class="info-label">Réseaux</span><a href="https://instagram.com/purplerosestattoo" rel="noopener" target="_blank">Instagram</a> · <a href="https://www.tiktok.com/@purplerosestattoo" rel="noopener" target="_blank">TikTok</a> · <a href="https://www.facebook.com/purplerosestattoo" rel="noopener" target="_blank">Facebook</a></div><div class="info-row"><span class="info-label">Horaires</span>Lundi : fermé · Mardi à vendredi : 09h–12h / 16h–19h · Samedi et dimanche : 08h–20h.</div><div class="info-row"><span class="info-label">Rendez-vous</span>Formulaire, e-mail, téléphone, Instagram ou Messenger.</div></div><div class="map reveal"><iframe loading="lazy" src="https://www.google.com/maps?q=Purple%20Roses%20Tattoo%2C%203%20Rue%20des%20Sapeurs%20Pompiers%2C%2087400%20Saint-L%C3%A9onard-de-Noblat&amp;output=embed" title="Carte Google Maps — Purple Roses Tattoo"></iframe></div></div>
+</div></section><div aria-hidden="true" class="pr-vine-zone" data-vine-zone=""><img alt="" class="pr-vine left top" data-top="18%" src="vine-new-07.png"/><img alt="" class="pr-vine left bottom" data-top="62%" src="vine-new-04.png"/><img alt="" class="pr-vine right top" data-top="18%" src="vine-new-04.png"/><img alt="" class="pr-vine right bottom" data-top="62%" src="vine-new-07.png"/></div>
+<section class="booking" id="reservation"><div class="wrap booking-grid"><div class="reveal"><div class="eyebrow">Réservation</div><h2 class="display">On parle<br/>du projet ?</h2><p class="muted">Décris-nous ton idée. Pour une création ou un cover-up, quelques photos et informations permettent de mieux comprendre le projet. Pour un cover-up, il faudra ensuite passer au shop afin de voir le tatouage directement.</p><p class="muted">Le piercing est réalisé par Smik.</p></div>
+<form class="form reveal" id="bookingForm"><div class="row"><input name="name" placeholder="Nom / prénom" required=""/><input name="email" placeholder="E-mail" required="" type="email"/></div><div class="row"><input name="phone" placeholder="Téléphone"/><select name="type" required=""><option value="">Type de projet</option><option>Flash</option><option>Création personnalisée</option><option>Cover-up</option><option>Piercing</option><option>Autre</option></select></div><select name="artist"><option value="">Artiste (si besoin)</option><option>Smik</option><option>Looping</option><option>Je ne sais pas encore</option></select><textarea name="message" placeholder="Parle-nous de ton projet… taille, emplacement, idée, références, contraintes, etc." required=""></textarea><small>En envoyant, ton application e-mail s’ouvrira avec les informations de ta demande pré-remplies.</small><button class="btn primary" type="submit">ENVOYER LA DEMANDE</button></form>
 </div></section>
 </main>
-<footer><div class="wrap footerline"><span>© 2026 Purple Roses Tattoo · Saint-Léonard-de-Noblat</span><div class="socials"><a href="https://instagram.com/purplerosestattoo" target="_blank" rel="noopener">Instagram</a><a href="https://www.tiktok.com/@purplerosestattoo" target="_blank" rel="noopener">TikTok</a><a href="https://www.facebook.com/purplerosestattoo" target="_blank" rel="noopener">Facebook</a></div></div></footer>
-
-<div class="lightbox" id="lightbox"><button class="close" aria-label="Fermer">×</button><img id="lightboxImg" alt=""><div class="lightbox-caption" id="lightboxCaption"></div></div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<script id="PR-FUNCTIONAL">
+<footer><div class="wrap footerline"><span>© 2026 Purple Roses Tattoo · Saint-Léonard-de-Noblat</span><div class="socials"><a href="https://instagram.com/purplerosestattoo" rel="noopener" target="_blank">Instagram</a><a href="https://www.tiktok.com/@purplerosestattoo" rel="noopener" target="_blank">TikTok</a><a href="https://www.facebook.com/purplerosestattoo" rel="noopener" target="_blank">Facebook</a></div></div></footer>
+<div class="lightbox" id="lightbox"><button aria-label="Fermer" class="close">×</button><img alt="" id="lightboxImg"/><div class="lightbox-caption" id="lightboxCaption"></div></div>
+<script id="PR-CLEAN-MOTION">
 (()=>{
- const progress=document.querySelector('.scroll-progress span');
- const filters=[...document.querySelectorAll('.filter')], cards=[...document.querySelectorAll('.gallery .card')];
- const lb=document.getElementById('lightbox'), lbImg=document.getElementById('lightboxImg'), lbCap=document.getElementById('lightboxCaption');
- filters.forEach(btn=>btn.addEventListener('click',()=>{filters.forEach(b=>b.classList.remove('active'));btn.classList.add('active');const f=btn.dataset.filter;cards.forEach(c=>c.dataset.hidden=(f!=='all'&&c.dataset.artist!==f)?'true':'false')}));
- cards.forEach(card=>card.addEventListener('click',()=>{const img=card.querySelector('img');if(!img||!lb)return;lbImg.src=img.currentSrc||img.src;lbImg.alt=img.alt||'';lbCap.textContent=card.dataset.caption||'';lb.classList.add('open');document.body.style.overflow='hidden'}));
- const close=()=>{lb?.classList.remove('open');document.body.style.overflow=''};document.querySelector('.close')?.addEventListener('click',close);lb?.addEventListener('click',e=>{if(e.target===lb)close()});document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
- document.getElementById('bookingForm')?.addEventListener('submit',e=>{e.preventDefault();const d=new FormData(e.currentTarget);const subject=encodeURIComponent('Demande de rendez-vous — Purple Roses Tattoo');const body=encodeURIComponent(`Nom / prénom : ${d.get('name')}\nE-mail : ${d.get('email')}\nTéléphone : ${d.get('phone')}\nType de projet : ${d.get('type')}\nArtiste : ${d.get('artist')}\n\nProjet :\n${d.get('message')}`);location.href=`mailto:purplerosestattoo@outlook.fr?subject=${subject}&body=${body}`});
- const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v)),ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
- const zones=[...document.querySelectorAll('.pr-vine-zone')], artists=[...document.querySelectorAll('.artist')], gallery=[...document.querySelectorAll('#flashs .gallery .card,#realisations .gallery .card')], titles=[...document.querySelectorAll('.section-head h2,.story h2,.flash-note h3,.studio-label h3,.booking h2')];
- titles.forEach(t=>t.classList.add('pr-ink-title'));
- const artistDocTop=artists.map(e=>e.getBoundingClientRect().top+scrollY), galleryDocTop=gallery.map(e=>e.getBoundingClientRect().top+scrollY);
- let raf=0;
- function render(){
-  raf=0;const vh=innerHeight||1;
-  if(progress){const max=document.documentElement.scrollHeight-vh;progress.style.transform=`scaleX(${max>0?scrollY/max:0})`}
-  zones.forEach(z=>{const r=z.getBoundingClientRect();const p=clamp((vh*.80-r.top)/(vh*.50));const e=ease(p);z.querySelectorAll('.pr-vine').forEach((v,vi)=>{const right=v.classList.contains('right'),travel=(1-e)*100,y=(vi%2?1:-1)*(1-e)*6,rot=(right?1:-1)*(1-e)*2;v.style.opacity=(.98*e).toFixed(3);v.style.transform=right?`translate3d(${travel}%,${y}px,0) scaleX(-1) rotate(${rot}deg)`:`translate3d(${-100-travel}%,${y}px,0) rotate(${rot}deg)`;v.style.filter=`drop-shadow(0 0 ${6+7*e}px rgba(73,103,220,${.14+.18*e}))`})});
-  artists.forEach((c,i)=>{const rTop=artistDocTop[i]-scrollY,p=clamp((vh*.90-rTop)/(vh*.64)),e=ease(p),dir=i===0?-1:1;c.style.opacity='1';c.style.filter='none';c.style.transform=`translate3d(${(1-e)*dir*115}%,${(1-e)*18}px,0) rotate(${(1-e)*dir*2}deg)`;const photo=c.querySelector('.artist-photo');if(photo)photo.style.transform=`scale(${1.035-.035*e}) translate3d(${(1-e)*-8*dir}px,0,0)`});
-  gallery.forEach((c,i)=>{const rTop=galleryDocTop[i]-scrollY,p=clamp((vh*.95-rTop)/(vh*.78)),e=ease(p),dir=i%2?-1:1;c.style.transform=`translate3d(${dir*(1-e)*7}px,${(1-e)*7}px,0)`});
-  titles.forEach(t=>{const r=t.getBoundingClientRect(),p=clamp((vh*.88-r.top)/(vh*.58)),e=ease(p);t.style.setProperty('--ink-progress',`${(e*100).toFixed(2)}%`)});
- }
- function req(){if(!raf)raf=requestAnimationFrame(render)} addEventListener('scroll',req,{passive:true});addEventListener('resize',req,{passive:true});render();
+'use strict';
+const $=s=>[...document.querySelectorAll(s)];
+const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
+const ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+const progress=document.querySelector('.scroll-progress span');
+const zones=$('.pr-vine-zone');
+const artists=$('.artist');
+const gallery=$('#flashs .gallery .card,#realisations .gallery .card');
+const titles=$('.section-head h2,.story h2,.studio-label h3,.booking h2');
+const heroTitle=document.querySelector('.hero h1');
+if(heroTitle) heroTitle.classList.add('pr-ink-title');
+titles.forEach(t=>{
+ t.classList.add('pr-ink-title');
+ // Split each title into visual lines so the ink edge can reveal organically without opacity fades.
+ [...t.childNodes].forEach((node)=>{
+   if(node.nodeType===3 && node.textContent.trim()){
+     const span=document.createElement('span'); span.className='pr-ink-line'; span.textContent=node.textContent; node.replaceWith(span);
+   }
+ });
+ t.querySelectorAll(':scope > br').forEach(br=>{br.dataset.inkBreak='1'});
+ t.querySelectorAll(':scope > span:not(.pr-ink-line)').forEach(span=>{
+   if(span.textContent.trim() && !span.classList.contains('pr-ink-line')) span.classList.add('pr-ink-line');
+ });
+ t.querySelectorAll('.pr-ink-line').forEach((line,i)=>line.style.setProperty('--ink-line-index',i));
+ t.querySelectorAll('.pr-ink-line').forEach(line=>line.setAttribute('data-ink',line.textContent));
+});
+
+// Existing functional interactions stay intact.
+const filters=$('.filter'), cards=$('.gallery .card');
+filters.forEach(btn=>btn.addEventListener('click',()=>{
+  filters.forEach(b=>b.classList.remove('active'));btn.classList.add('active');
+  const f=btn.dataset.filter;
+  cards.forEach(c=>c.dataset.hidden=(f!=='all'&&c.dataset.artist!==f)?'true':'false');
+}));
+const lb=document.getElementById('lightbox'),lbImg=document.getElementById('lightboxImg'),lbCap=document.getElementById('lightboxCaption');
+cards.forEach(card=>card.addEventListener('click',()=>{
+  const img=card.querySelector('img'); if(!img||!lb)return;
+  lbImg.src=img.currentSrc||img.src;lbImg.alt=img.alt||'';lbCap.textContent=card.dataset.caption||'';
+  lb.classList.add('open');document.body.style.overflow='hidden';
+}));
+const close=()=>{lb?.classList.remove('open');document.body.style.overflow=''};
+document.querySelector('.close')?.addEventListener('click',close);
+lb?.addEventListener('click',e=>{if(e.target===lb)close()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
+document.getElementById('bookingForm')?.addEventListener('submit',e=>{
+ e.preventDefault();const d=new FormData(e.currentTarget);
+ const subject=encodeURIComponent('Demande de rendez-vous — Purple Roses Tattoo');
+ const body=encodeURIComponent(`Nom / prénom : ${d.get('name')}\nE-mail : ${d.get('email')}\nTéléphone : ${d.get('phone')}\nType de projet : ${d.get('type')}\nArtiste : ${d.get('artist')}\n\nProjet :\n${d.get('message')}`);
+ location.href=`mailto:purplerosestattoo@outlook.fr?subject=${subject}&body=${body}`;
+});
+
+let raf=0;
+function render(){
+ raf=0;
+ const vh=innerHeight||1;
+ const max=document.documentElement.scrollHeight-vh;
+ if(progress) progress.style.transform=`scaleX(${max>0?scrollY/max:0})`;
+
+ // VINES: horizontal only. Descending = outside -> inside. Ascending reverses automatically.
+ zones.forEach(z=>{
+   const r=z.getBoundingClientRect();
+   const p=clamp((vh*.92-r.top)/(vh*.70));
+   const e=ease(p);
+   z.querySelectorAll('.pr-vine').forEach((v,i)=>{
+     const left=v.classList.contains('left');
+     const offset=(1-e)*100;
+     const y=(i%2===0?-2:2)*(1-e);
+     if(left){
+       v.style.transform=`translate3d(${-100-offset}%,${y}px,0)${i%2?' rotate(.7deg)':' rotate(-.7deg)'}`;
+     }else{
+       v.style.transform=`translate3d(${100+offset}%,${y}px,0) scaleX(-1)${i%2?' rotate(-.7deg)':' rotate(.7deg)'}`;
+     }
+     v.style.opacity=(e<.015?0:Math.min(1,.94*e)).toFixed(3);
+   });
+ });
+
+ // ARTISTS: complete card enters from its side with a diagonal vector.
+ artists.forEach((card,i)=>{
+   const r=card.getBoundingClientRect();
+   const p=clamp((vh*.96-r.top)/(vh*.72));
+   const e=ease(p);
+   const dir=i%2===0?-1:1;
+   card.style.setProperty('--pr-card-x',`${dir*(1-e)*115}%`);
+   card.style.setProperty('--pr-card-y',`${(1-e)*28}px`);
+   card.style.setProperty('--pr-card-r',`${dir*(1-e)*2.2}deg`);
+ });
+
+ // GALLERIES: tiny depth only; no opacity choreography.
+ gallery.forEach((card,i)=>{
+   const r=card.getBoundingClientRect();
+   const p=clamp((vh*.98-r.top)/(vh*.90));
+   const e=ease(p);
+   const dir=i%2===0?-1:1;
+   card.style.transform=`translate3d(${dir*(1-e)*4}px,${(1-e)*3}px,0)`;
+ });
+
+ // TITLES: liquid fill progress. It reverses perfectly when scrolling back up.
+ titles.forEach(t=>{
+   const r=t.getBoundingClientRect();
+   const p=clamp((vh*.90-r.top)/(vh*.72));
+   const e=ease(p);
+   t.querySelectorAll('.pr-ink-line').forEach((line,i)=>{
+     // Slightly stagger the ink front by line while remaining fully scroll-reversible.
+     const stagger=Math.min(.16,i*.055);
+     const q=clamp((e-stagger)/(1-stagger));
+     line.style.setProperty('--ink-x',`${(q*100).toFixed(2)}%`);
+   });
+ });
+}
+function request(){if(!raf)raf=requestAnimationFrame(render)}
+addEventListener('scroll',request,{passive:true});
+addEventListener('resize',request,{passive:true});
+addEventListener('load',request,{once:true});
+render();
 })();
-</script></body></html>
+</script>
+</body></html>
