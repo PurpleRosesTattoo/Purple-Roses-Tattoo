@@ -653,107 +653,208 @@ ${d.get('message')}`);
 })();
 </script>
 
-<!-- FINAL PATCH: real transparent PNG vines, no SVG vines, no right black rail -->
-<style id="final-patch">
+<style id="site-final-correction">
 html,body{width:100%;max-width:100%;overflow-x:hidden}
-body{position:relative}
-/* The supplied logo is an asset: do not alter, crop, recolor or blend it. */
-.hero-logo{display:block;width:min(430px,78%);max-height:560px;object-fit:contain;mix-blend-mode:normal!important;background:transparent!important;filter:drop-shadow(0 18px 45px rgba(124,69,216,.20));position:relative;z-index:6}
-.orb,.orn{display:none!important}
-/* Vines are real transparent PNG assets. Each one starts outside the viewport and enters inward. */
-.edge-vine{position:absolute;z-index:1;pointer-events:none;width:230px;height:430px;overflow:visible;opacity:0;will-change:transform,opacity;}
-.edge-vine img{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 7px rgba(50,120,240,.16));will-change:transform;}
-.edge-vine.left{left:-150px;transform:translate3d(-130px,0,0)}
-.edge-vine.right{right:-150px;transform:translate3d(130px,0,0)}
-.edge-vine.left img{transform:scaleX(-1)}
-.edge-vine.entered{opacity:.82}
-.edge-vine.left.entered{animation:vineEnterLeft 1.65s cubic-bezier(.16,1,.3,1) both}
-.edge-vine.right.entered{animation:vineEnterRight 1.65s cubic-bezier(.16,1,.3,1) both}
-.edge-vine.entered img{animation:vineSway 6.5s 1.65s ease-in-out infinite}
-.edge-vine.left.entered img{animation:vineSwayLeft 6.5s 1.65s ease-in-out infinite}
-@keyframes vineEnterLeft{0%{opacity:0;transform:translate3d(-130px,0,0);clip-path:inset(0 100% 0 0)}45%{opacity:.82;clip-path:inset(0 55% 0 0)}100%{opacity:.82;transform:translate3d(0,0,0);clip-path:inset(0 0 0 0)}}
-@keyframes vineEnterRight{0%{opacity:0;transform:translate3d(130px,0,0);clip-path:inset(0 0 0 100%)}45%{opacity:.82;clip-path:inset(0 0 0 55%)}100%{opacity:.82;transform:translate3d(0,0,0);clip-path:inset(0 0 0 0)}}
-@keyframes vineSway{0%,100%{transform:scaleX(1) translate3d(0,0,0) rotate(0deg)}50%{transform:scaleX(1) translate3d(3px,-5px,0) rotate(.7deg)}}
-@keyframes vineSwayLeft{0%,100%{transform:scaleX(-1) translate3d(0,0,0) rotate(0deg)}50%{transform:scaleX(-1) translate3d(-3px,-5px,0) rotate(-.7deg)}}
-/* Content always wins over decoration. */
-.hero-grid,.section-head,.story,.artists,.gallery,.studio-grid,.location,.booking-grid{position:relative;z-index:4}
-.section-head h2,.story h2,.hero h1{position:relative;z-index:5;word-break:normal;overflow-wrap:normal;white-space:normal}
-/* Full-width mobile layout: no artificial empty rail on the right. */
-section,.hero{width:100%;max-width:100%;overflow:hidden}
-.wrap{width:min(1240px,calc(100% - 28px));max-width:100%;}
-/* Flashes: small thumbnails, click to enlarge, no black labels. */
-#flashs .gallery{columns:3 130px;column-gap:12px}
+body{min-width:0}
+.wrap{width:min(1240px,calc(100% - 36px));max-width:100%}
+/* Keep the supplied rose artwork centered and visually clean. */
+.hero{min-height:auto;padding:115px 0 70px;overflow:hidden}
+.hero-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:40px}
+.hero-art{height:560px;display:grid;place-items:center;overflow:visible}
+.hero-logo{display:block;width:min(470px,100%);height:auto;max-height:560px;object-fit:contain;mix-blend-mode:normal!important;background:transparent!important;filter:drop-shadow(0 18px 45px rgba(124,69,216,.2));}
+.orb,.orn,.decor-vine,.edge-vine{display:none!important}
+.hero-copy{max-width:none}
+/* Headings never get trapped by decorative elements. */
+.section-head,.story,.artists,.gallery,.studio-grid,.location,.booking-grid{position:relative;z-index:5}
+.section-head h2,.story h2,.booking h2,.hero h1{overflow:visible;word-break:normal;overflow-wrap:normal}
+.story{align-items:start;gap:55px}
+.story-copy{margin:10px 0 0}
+.booking-grid{align-items:start}
+.booking-grid>.reveal{transform:none!important;opacity:1}
+.booking .form{margin-top:0}
+/* Flash and tattoo galleries: small, clean, clickable images only. */
+#flashs .gallery{columns:3 150px;column-gap:14px}
 #flashs .gallery .card,#realisations .gallery .card{border:0;background:transparent;box-shadow:none}
-#flashs .gallery .card .meta,#realisations .gallery .card .meta{display:none!important}
+#flashs .gallery .meta,#realisations .gallery .meta{display:none!important}
 #flashs .gallery .card img,#realisations .gallery .card img{cursor:zoom-in}
-#flashs .gallery .card img{transition:transform .35s ease,filter .35s ease}
-#flashs .gallery .card:hover img{transform:scale(1.025);filter:brightness(1.06)}
-/* Experience number is its own line; don't repeat it in body copy. */
-.artist-copy p{margin-top:12px}
-@media(max-width:700px){
-  .wrap{width:calc(100% - 28px)}
-  .hero{padding-top:105px}
-  .hero-grid{width:100%;grid-template-columns:1fr;gap:8px}
-  .hero-art{order:-1;width:100%;height:330px;overflow:visible}
-  .hero-logo{width:min(320px,78vw);max-height:320px}
-  .hero h1{font-size:clamp(62px,17vw,82px);line-height:.82;letter-spacing:0}
-  .hero h1 span{white-space:nowrap}
-  .edge-vine{width:155px;height:300px}
-  .edge-vine.left{left:-112px}.edge-vine.right{right:-112px}
-  #flashs .gallery{columns:3 90px!important;column-gap:8px}
+/* Real side-entry motion. */
+.motion-left,.motion-right{opacity:0;will-change:transform,opacity}
+.motion-left{transform:translate3d(-80px,18px,0)}
+.motion-right{transform:translate3d(80px,18px,0)}
+.motion-left.show,.motion-right.show{opacity:1;transform:none;transition:opacity .8s ease,transform 1s cubic-bezier(.16,1,.3,1)}
+.motion-left:nth-child(2){transition-delay:.08s}.motion-right:nth-child(2){transition-delay:.14s}
+/* Botanical PNGs: outside -> inside, subtle and never covering text. */
+.vine-layer{position:absolute;top:0;bottom:0;width:245px;pointer-events:none;z-index:1;overflow:visible}
+.vine-layer.left{left:0}.vine-layer.right{right:0}
+.vine-layer img{position:absolute;width:330px;height:auto;max-width:none;opacity:0;will-change:transform,clip-path,opacity;filter:drop-shadow(0 0 7px rgba(55,120,245,.16))}
+.vine-layer.left img{right:0;transform:translate3d(-170px,0,0)}
+.vine-layer.right img{left:0;transform:translate3d(170px,0,0) scaleX(-1)}
+.vine-layer.entered img{opacity:.9;clip-path:inset(0 0 0 0);animation:vineInLeft 1.55s cubic-bezier(.16,1,.3,1) both}
+.vine-layer.right.entered img{animation-name:vineInRight}
+.vine-layer.left img{clip-path:inset(0 100% 0 0)}
+.vine-layer.right img{clip-path:inset(0 0 0 100%)}
+@keyframes vineInLeft{0%{opacity:0;transform:translate3d(-170px,0,0);clip-path:inset(0 100% 0 0)}55%{opacity:.9;clip-path:inset(0 35% 0 0)}100%{opacity:.9;transform:translate3d(0,0,0);clip-path:inset(0 0 0 0)}}
+@keyframes vineInRight{0%{opacity:0;transform:translate3d(170px,0,0) scaleX(-1);clip-path:inset(0 0 0 100%)}55%{opacity:.9;clip-path:inset(0 0 0 35%)}100%{opacity:.9;transform:translate3d(0,0,0) scaleX(-1);clip-path:inset(0 0 0 0)}}
+.vine-layer.entered img{animation-duration:1.55s,6s;animation-delay:0s,1.55s;animation-iteration-count:1,infinite}
+.vine-layer.left.entered img{animation-name:vineInLeft,vineFloatLeft}
+.vine-layer.right.entered img{animation-name:vineInRight,vineFloatRight}
+@keyframes vineFloatLeft{0%,100%{margin-top:0}50%{margin-top:-7px}}
+@keyframes vineFloatRight{0%,100%{margin-top:0}50%{margin-top:7px}}
+@media(max-width:900px){
+ .wrap{width:calc(100% - 28px)}
+ .hero{padding:88px 0 60px}
+ .hero-grid{grid-template-columns:1fr;gap:12px}
+ .hero-art{order:-1;height:340px;width:100%}
+ .hero-logo{width:min(330px,78vw);max-height:330px}
+ .hero h1{font-size:clamp(62px,16vw,105px);line-height:.82}
+ .hero-copy{font-size:16px;line-height:1.65}
+ .story{gap:28px;align-items:start}
+ .booking-grid{gap:35px}
+ .vine-layer{width:125px}
+ .vine-layer img{width:230px}
+ .vine-layer.left img{right:-20px}.vine-layer.right img{left:-20px}
 }
-@media(max-width:430px){
-  .hero h1{font-size:18vw}
-  .hero-art{height:300px}
-  .edge-vine{width:130px;height:270px}
-  .edge-vine.left{left:-95px}.edge-vine.right{right:-95px}
+@media(max-width:560px){
+ section{padding:78px 0}
+ .hero{padding:82px 0 56px}
+ .hero-art{height:300px}
+ .hero-logo{width:min(300px,78vw)}
+ .hero h1{font-size:17vw;letter-spacing:0;white-space:normal}
+ .hero h1 span{white-space:nowrap}
+ .hero-copy{width:100%;max-width:none}
+ .hero-actions{width:100%}.hero-actions .btn{flex:1 1 100%}
+ .section-head h2,.story h2,.booking h2{font-size:clamp(48px,14vw,70px);line-height:.86}
+ #flashs .gallery{columns:3 95px!important;column-gap:8px}
+ .vine-layer{width:92px}.vine-layer img{width:185px}
+ .vine-layer.left img{right:-30px}.vine-layer.right img{left:-30px}
 }
-@media(prefers-reduced-motion:reduce){.edge-vine,.edge-vine img{animation:none!important;transform:none!important;clip-path:none!important;opacity:.8!important}}
+@media(prefers-reduced-motion:reduce){.motion-left,.motion-right{opacity:1;transform:none}.vine-layer img{animation:none!important;opacity:.8;clip-path:none!important;transform:none!important}}
 </style>
-<script id="final-patch-js">
+<script id="site-final-correction-js">
 (() => {
-  const placements = [
-    ['hero','left','7%', 'vine-left-1.png'],
-    ['hero','right','48%','vine-right-1.png'],
-    ['artistes','left','16%','vine-left-2.png'],
-    ['artistes','right','58%','vine-right-2.png'],
-    ['flashs','left','8%','vine-left-3.png'],
-    ['flashs','right','56%','vine-right-3.png'],
-    ['realisations','left','24%','vine-left-1.png'],
-    ['realisations','right','67%','vine-right-1.png'],
-    ['studio','left','10%','vine-left-2.png'],
-    ['studio','right','52%','vine-right-2.png']
-  ];
-  placements.forEach(([id,side,top,src])=>{
+  // Build real transparent PNG vine layers. They enter from the outside edge toward the content.
+  const placements={
+    hero:[['left','8%','botanical-left-1.png'],['right','46%','botanical-right-2.png']],
+    artistes:[['left','12%','botanical-left-3.png'],['right','54%','botanical-right-4.png']],
+    flashs:[['left','8%','botanical-left-2.png'],['right','57%','botanical-right-1.png']],
+    realisations:[['left','18%','botanical-left-4.png'],['right','62%','botanical-right-3.png']],
+    studio:[['left','10%','botanical-left-1.png'],['right','55%','botanical-right-2.png']],
+    reservation:[['left','22%','botanical-left-3.png'],['right','66%','botanical-right-4.png']]
+  };
+  Object.entries(placements).forEach(([id,items])=>{
     const section=document.getElementById(id)||document.querySelector('.hero');
     if(!section) return;
-    const vine=document.createElement('div');
-    vine.className=`edge-vine ${side}`;
-    vine.style.top=top;
-    const img=document.createElement('img');
-    img.src=src; img.alt=''; img.setAttribute('aria-hidden','true');
-    vine.appendChild(img); section.appendChild(vine);
-  });
-  const vines=[...document.querySelectorAll('.edge-vine')];
-  const io=new IntersectionObserver(entries=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting){
-        entry.target.classList.remove('entered');
-        void entry.target.offsetWidth;
-        entry.target.classList.add('entered');
-      }else entry.target.classList.remove('entered');
+    section.querySelectorAll(':scope>.vine-layer').forEach(v=>v.remove());
+    items.forEach(([side,top,src])=>{
+      const layer=document.createElement('div'); layer.className='vine-layer '+side; layer.style.top=top;
+      const img=document.createElement('img'); img.src=src; img.alt=''; img.setAttribute('aria-hidden','true');
+      layer.appendChild(img); section.appendChild(layer);
     });
-  },{threshold:.02,rootMargin:'0px 0px -12% 0px'});
-  vines.forEach(v=>io.observe(v));
-  // Remove any accidental flash image from the tattoo gallery.
-  const flashFiles=new Set(['48806.jpg','48807.jpg','48814.jpg','48817.jpg','48820.jpg','48841.jpg','48844.jpg','48847.jpg','48850.jpg','48853.jpg','48856.jpg','48870.jpg','48873.jpg','48876.jpg','48879.jpg','48882.jpg','48885.jpg','48888.jpg','48891.jpg','48903.jpg','49016.jpg','49019.jpg','49022.jpg','49025.jpg','49077.jpg','48867.jpg']);
-  document.querySelectorAll('#realisations .card').forEach(card=>{
-    const src=(card.querySelector('img')?.getAttribute('src')||'').split('/').pop();
-    if(flashFiles.has(src)) card.remove();
   });
-  document.querySelectorAll('.artist-copy p').forEach(p=>{
-    p.innerHTML=p.innerHTML.replace(/\s*\b\d+\s+ans?\s+d['’]expérience\.?/gi,'');
+  const vines=[...document.querySelectorAll('.vine-layer')];
+  const vineIO=new IntersectionObserver(entries=>entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.remove('entered');void e.target.offsetWidth;e.target.classList.add('entered');}
+    else e.target.classList.remove('entered');
+  }),{threshold:.05,rootMargin:'0px 0px -10% 0px'});
+  vines.forEach(v=>vineIO.observe(v));
+
+  // Alternate side motion across the galleries/cards so scrolling has visible movement.
+  document.querySelectorAll('.artist,.gallery .card,.studio-main,.studio-side img,.location .info,.location .map').forEach((el,i)=>{
+    el.classList.add(i%2?'motion-right':'motion-left');
   });
+  const motionIO=new IntersectionObserver(entries=>entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('show');motionIO.unobserve(e.target);}
+  }),{threshold:.06,rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.motion-left,.motion-right').forEach(el=>motionIO.observe(el));
+
+  // No flash images inside tattoo realisations.
+  const flashFiles=new Set(['48806.jpg','48807.jpg','48814.jpg','48817.jpg','48820.jpg','48841.jpg','48844.jpg','48847.jpg','48850.jpg','48853.jpg','48856.jpg','48870.jpg','48873.jpg','48876.jpg','48879.jpg','48882.jpg','48885.jpg','48888.jpg','48891.jpg','48903.jpg','49016.jpg','49019.jpg','49022.jpg','49025.jpg','49077.jpg','48867.jpg','48823.jpg']);
+  document.querySelectorAll('#realisations .card').forEach(card=>{const src=(card.querySelector('img')?.getAttribute('src')||'').split('/').pop();if(flashFiles.has(src))card.remove();});
+
+  // Keep experience only in the dedicated badge.
+  document.querySelectorAll('.artist-copy p').forEach(p=>p.innerHTML=p.innerHTML.replace(/\s*\d+\s+ans?\s+d['’]expérience\.?/gi,''));
+})();
+</script>
+
+<style id="final-vine-system">
+/* FINAL: real PNG vines, outside -> inside. No SVG vines, no circles, no black panels. */
+.orb,.orn,.botanical-vine,.vine-layer{display:none!important}
+.hero-art{overflow:visible!important;display:grid;place-items:center;min-width:0}
+.hero-logo{width:min(430px,88%);max-width:430px;height:auto;margin:auto;mix-blend-mode:normal!important;background:transparent!important;filter:drop-shadow(0 16px 38px rgba(124,69,216,.22))!important;animation:heroFloat 6s ease-in-out infinite}
+@keyframes heroFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.hero-grid{position:relative;z-index:2}.hero-copy{max-width:680px}.hero h1{max-width:760px}
+.section-head,.story,.artists,.gallery,.studio-grid,.location,.booking-grid{position:relative;z-index:4}
+.section-head h2,.story h2,.booking h2,.hero h1{overflow:visible;word-break:normal;overflow-wrap:normal}
+.story{align-items:start;gap:48px}.story-copy{margin:4px 0 0;max-width:760px}
+.booking-grid{align-items:start;gap:45px}.booking-grid>.reveal{transform:none!important}.booking .form{margin-top:0}
+/* Small, clickable galleries. */
+#flashs .gallery{columns:3 150px;column-gap:14px}
+#flashs .gallery .card,#realisations .gallery .card{border:0;background:transparent;box-shadow:none}
+#flashs .gallery .card img,#realisations .gallery .card img{cursor:zoom-in}
+#flashs .gallery .card{transition:transform .45s cubic-bezier(.16,1,.3,1),opacity .7s ease}
+#flashs .gallery .card:hover{transform:translateY(-5px) scale(1.012)}
+/* Real PNG vine layers */
+.real-vine{position:absolute;top:0;width:260px;height:100%;z-index:1;pointer-events:none;overflow:visible}
+.real-vine.left{left:-225px}.real-vine.right{right:-225px}
+.real-vine img{position:absolute;width:330px;max-width:none;height:auto;opacity:0;filter:drop-shadow(0 0 8px rgba(69,111,255,.18));will-change:transform,opacity}
+.real-vine.left img{right:0;transform:translateX(-160px)}
+.real-vine.right img{left:0;transform:translateX(160px) scaleX(-1)}
+.real-vine.in.left img{animation:vineEnterL 1.65s cubic-bezier(.16,1,.3,1) both,vineBreathL 7s 1.65s ease-in-out infinite}
+.real-vine.in.right img{animation:vineEnterR 1.65s cubic-bezier(.16,1,.3,1) both,vineBreathR 7s 1.65s ease-in-out infinite}
+@keyframes vineEnterL{0%{opacity:0;transform:translateX(-160px)}45%{opacity:.95}100%{opacity:.9;transform:translateX(0)}}
+@keyframes vineEnterR{0%{opacity:0;transform:translateX(160px) scaleX(-1)}45%{opacity:.95}100%{opacity:.9;transform:translateX(0) scaleX(-1)}}
+@keyframes vineBreathL{0%,100%{margin-top:0}50%{margin-top:-9px}}
+@keyframes vineBreathR{0%,100%{margin-top:0}50%{margin-top:9px}}
+.hero .real-vine{height:78%;top:15%}.hero .real-vine img{width:300px}
+section>.real-vine{height:92%;top:4%}
+.real-vine.v2{top:52%!important;height:45%!important}
+.real-vine.v3{top:18%!important;height:60%!important}
+/* More visible section motion: content slides from alternating sides, not only fades. */
+.real-motion-left,.real-motion-right{opacity:0;will-change:transform,opacity}
+.real-motion-left{transform:translate3d(-55px,20px,0)}.real-motion-right{transform:translate3d(55px,20px,0)}
+.real-motion-left.show,.real-motion-right.show{opacity:1;transform:none;transition:opacity .75s ease,transform 1s cubic-bezier(.16,1,.3,1)}
+@media(max-width:900px){
+ .hero-art{height:330px;order:-1}.hero-logo{width:min(330px,82vw)}
+ .real-vine{width:145px}.real-vine.left{left:-125px}.real-vine.right{right:-125px}
+ .real-vine img{width:235px}.hero .real-vine img{width:220px}
+ .story{gap:24px}.story-copy{margin-top:0}
+}
+@media(max-width:560px){
+ section{padding:70px 0}.hero{padding:88px 0 55px}.hero-art{height:285px}.hero-logo{width:min(300px,80vw)}
+ .real-vine{width:105px}.real-vine.left{left:-92px}.real-vine.right{right:-92px}.real-vine img{width:175px}.hero .real-vine img{width:175px}
+ #flashs .gallery{columns:3 95px!important;column-gap:8px}
+ .story{gap:20px}.story-copy{font-size:17px;line-height:1.7}
+}
+</style>
+<script id="final-vine-system-js">
+(()=>{
+  // Remove every previous generated vine implementation.
+  document.querySelectorAll('.botanical-vine,.vine-layer').forEach(e=>e.remove());
+  const sections=[
+    ['top','left','lianes_final/left_tall.png','hero'],['top','right','lianes_final/right_tall.png','hero'],
+    ['artistes','left','lianes_final/left_tall_alt.png','v3'],['artistes','right','lianes_final/right_tall_alt.png','v3'],
+    ['flashs','left','lianes_final/horizontal_alt.png','v2'],['flashs','right','lianes_final/horizontal.png','v2'],
+    ['realisations','left','lianes_final/left_tall.png','v3'],['realisations','right','lianes_final/right_tall.png','v3'],
+    ['reservation','left','lianes_final/left_tall_alt.png','v2'],['reservation','right','lianes_final/right_tall_alt.png','v2']
+  ];
+  for(const [id,side,src,variant] of sections){
+    const sec=id==='top'?document.querySelector('.hero'):document.getElementById(id);
+    if(!sec) continue;
+    const v=document.createElement('div');v.className=`real-vine ${side} ${variant}`;
+    const img=document.createElement('img');img.src=src;img.alt='';img.setAttribute('aria-hidden','true');v.appendChild(img);sec.appendChild(v);
+  }
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.08,rootMargin:'0px 0px -12% 0px'});
+  document.querySelectorAll('.real-vine').forEach(v=>io.observe(v));
+
+  // Make gallery/cards and important text visibly move into place as the user scrolls.
+  const targets=[...document.querySelectorAll('.artist,.story>div,.section-head,.gallery .card,.booking-grid>*,.studio-grid>*')];
+  targets.forEach((el,i)=>{el.classList.add(i%2?'real-motion-right':'real-motion-left')});
+  const mo=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');mo.unobserve(e.target)}}),{threshold:.08,rootMargin:'0px 0px -10% 0px'});
+  targets.forEach(t=>mo.observe(t));
+
+  // Ensure no flash sheet/image accidentally remains in the tattoo gallery.
+  const flashSet=new Set([...document.querySelectorAll('#flashGallery img')].map(i=>i.getAttribute('src')));
+  document.querySelectorAll('#realisations .card').forEach(card=>{const img=card.querySelector('img');if(img && flashSet.has(img.getAttribute('src')))card.remove()});
 })();
 </script>
 </body></html>
