@@ -110,6 +110,84 @@ section > .wrap,.hero > .wrap{position:relative;z-index:3}
  .reveal{transition:none!important}
 }
 
+
+/* FINAL CLEANUP — no vines, compact clickable galleries, clean mobile typography */
+
+
+.hero-art{min-width:0;overflow:hidden}
+.hero-logo{
+  display:block;
+  width:min(430px,78%);
+  max-height:560px;
+  object-fit:contain;
+  mix-blend-mode:normal;
+  filter:drop-shadow(0 18px 45px rgba(124,69,216,.20));
+}
+.orb{pointer-events:none}
+.section-head h2,
+.story h2,
+.booking h2{
+  position:relative;
+  z-index:2;
+  word-break:normal;
+  overflow-wrap:normal;
+  white-space:normal;
+}
+#artistes .section-head h2{
+  font-size:clamp(52px,6vw,86px);
+  line-height:.86;
+}
+.artist-copy p{margin-top:12px}
+.artist-years{margin-bottom:12px}
+.artist-years + p strong{font-weight:600}
+
+.gallery{
+  columns:4 180px!important;
+  column-gap:12px!important;
+}
+.gallery .card{
+  margin:0 0 12px!important;
+  border-radius:2px;
+}
+.gallery .card img{
+  width:100%;
+  height:auto;
+  display:block;
+}
+.gallery .card .meta{display:none!important}
+.gallery .card:hover{
+  transform:translateY(-3px)!important;
+  box-shadow:0 12px 30px rgba(0,0,0,.25)!important;
+}
+#flashs .gallery{
+  columns:4 170px!important;
+}
+#flashs .gallery .card{
+  border:0;
+  background:transparent;
+}
+#flashs .section-head{margin-bottom:30px}
+
+@media(max-width:900px){
+  .gallery{columns:3 120px!important;column-gap:10px!important}
+  #flashs .gallery{columns:3 110px!important}
+}
+@media(max-width:560px){
+  .hero-art{height:330px}
+  .hero-logo{width:min(330px,88%);max-height:330px}
+  #artistes .section-head h2{
+    font-size:56px;
+    line-height:.9;
+    letter-spacing:.01em;
+  }
+  .artist-copy h3{font-size:58px;line-height:.85}
+  .artist-years strong{font-size:32px}
+  .artist-years span{font-size:8px}
+  .gallery{columns:3 100px!important;column-gap:8px!important}
+  #flashs .gallery{columns:3 95px!important}
+  .gallery .card{margin-bottom:8px!important}
+}
+
 </style>
 <style id="final-fix">
 /* FINAL POLISH — layout, visibility and real motion */
@@ -224,6 +302,48 @@ section > .wrap,.hero > .wrap{position:relative;z-index:3}
 <style>
 body:before{transform:translateY(var(--bg-shift,0px));transition:transform .08s linear}
 .image-missing{min-height:120px;background:linear-gradient(135deg,#111427,#251c3d);object-fit:contain}
+
+/* FINAL BOTANICAL VINES — purple roses + blue stems/leaves, entering from the sides */
+.decor-vine{position:absolute;top:0;bottom:0;width:220px;z-index:1;pointer-events:none;overflow:visible;opacity:0}
+.decor-vine.left{left:-225px}.decor-vine.right{right:-225px}
+.decor-vine svg{width:100%;height:100%;overflow:visible}
+.vine-art{transform-origin:center;transform-box:fill-box}
+.vine-path,.vine-branch{fill:none;stroke:#557bd0;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.vine-path{stroke-width:4.2;stroke-dasharray:1300;stroke-dashoffset:1300;filter:drop-shadow(0 0 6px rgba(85,123,208,.3))}
+.vine-branch{stroke-width:2.2;stroke-dasharray:280;stroke-dashoffset:280;opacity:.9}
+.leaf{fill:#5f84d8;stroke:#9bb5ff;stroke-width:1.1;opacity:0;transform-box:fill-box;transform-origin:center}
+.leaf path:last-child{fill:none;stroke:#334f9e;stroke-width:1.2}
+.rose{fill:#7b45d8;stroke:#c45be2;stroke-width:1.2;opacity:0;transform-box:fill-box;transform-origin:center;filter:drop-shadow(0 0 10px rgba(123,69,216,.5))}
+.rose-inner{fill:#35135e;stroke:#d98bf0;stroke-width:1}
+.decor-vine.show{opacity:1}
+.decor-vine.left.show{animation:vineEnterLeft 1.15s cubic-bezier(.16,1,.3,1) both}
+.decor-vine.right.show{animation:vineEnterRight 1.15s cubic-bezier(.16,1,.3,1) both}
+.decor-vine.show .vine-path{animation:vineDraw 1.8s .15s cubic-bezier(.2,.75,.2,1) both}
+.decor-vine.show .vine-branch{animation:vineBranch 1s .75s cubic-bezier(.2,.75,.2,1) both}
+.decor-vine.show .rose{animation:roseBloom .7s 1s cubic-bezier(.16,1,.3,1) both}
+.decor-vine.show .rose.r2{animation-delay:1.18s}.decor-vine.show .rose.r3{animation-delay:1.36s}
+.decor-vine.show .leaf{animation:leafBloom .55s 1.15s cubic-bezier(.16,1,.3,1) both}
+.decor-vine.show .leaf.l2{animation-delay:1.3s}.decor-vine.show .leaf.l3{animation-delay:1.45s}.decor-vine.show .leaf.l4{animation-delay:1.6s}
+@keyframes vineEnterLeft{from{transform:translateX(-150px)}to{transform:translateX(0)}}
+@keyframes vineEnterRight{from{transform:translateX(150px)}to{transform:translateX(0)}}
+@keyframes vineDraw{to{stroke-dashoffset:0}}
+@keyframes vineBranch{to{stroke-dashoffset:0}}
+@keyframes roseBloom{0%{opacity:0;transform:scale(.35) rotate(-15deg)}70%{opacity:1;transform:scale(1.08) rotate(2deg)}100%{opacity:1;transform:scale(1) rotate(0)}}
+@keyframes leafBloom{0%{opacity:0;transform:scale(.2) rotate(-25deg)}100%{opacity:.92;transform:scale(1) rotate(0)}}
+.decor-vine.show .vine-art{animation:vineSway 6s 2.2s ease-in-out infinite}
+@keyframes vineSway{0%,100%{transform:translateX(0) rotate(-.6deg)}50%{transform:translateX(5px) rotate(.8deg)}}
+/* Decorative vines always stay behind copy/cards, so they can never cross or tangle the typography. */
+.hero .decor-vine,.hero .hero-grid,.hero .scrollhint{position:relative}
+.hero .decor-vine{position:absolute;top:7%;bottom:4%;height:auto}
+.hero .decor-vine.left{left:-225px}.hero .decor-vine.right{right:-225px}
+.hero-grid{z-index:3}.hero .decor-vine{z-index:1}
+section > .decor-vine{z-index:1}section > .wrap{position:relative;z-index:3}
+.section-head h2{position:relative;z-index:4}
+@media(max-width:700px){
+  .decor-vine{width:150px}.decor-vine.left{left:-155px}.decor-vine.right{right:-155px}
+  .hero .decor-vine{width:145px}.hero .decor-vine.left{left:-150px}.hero .decor-vine.right{right:-150px}
+}
+@media(prefers-reduced-motion:reduce){.decor-vine.left.show,.decor-vine.right.show,.decor-vine.show .vine-art,.decor-vine.show .vine-path,.decor-vine.show .vine-branch,.decor-vine.show .rose,.decor-vine.show .leaf{animation:none!important}.decor-vine{opacity:.85;transform:none!important}.vine-path,.vine-branch{stroke-dashoffset:0}.rose,.leaf{opacity:1}}
 </style>
 </head>
 <body>
@@ -235,67 +355,34 @@ body:before{transform:translateY(var(--bg-shift,0px));transition:transform .08s 
 </div></header>
 
 <main id="top">
-<section class="hero">
-<div class="botanical-vine left vine-v0" aria-hidden="true">
-<svg viewBox="0 0 180 720" role="presentation">
-<defs>
- <linearGradient id="vgleft0" x1="0" y1="0" x2="1" y2="1">
-  <stop offset="0" stop-color="#3b236f"/><stop offset=".48" stop-color="#7b45d8"/><stop offset="1" stop-color="#c044c8"/>
- </linearGradient>
- <filter id="glleft0" x="-40%" y="-20%" width="180%" height="140%"><feGaussianBlur stdDeviation="1.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-</defs>
-<g class="vine-drawing" filter="url(#glleft0)">
- <path class="vine-main" d="M154 -30 C45 70 168 145 72 230 C8 287 132 348 48 438 C4 486 66 555 26 750"/>
- <path class="vine-branch" d="M89 176 C44 154 26 120 12 88"/>
- <path class="vine-branch" d="M72 230 C118 214 146 182 168 150"/>
- <path class="vine-branch" d="M48 438 C101 420 136 390 160 350"/>
- <path class="vine-branch" d="M40 535 C87 520 125 492 154 454"/>
- <g class="rose r1" transform="translate(71 228) scale(1.05)">
-   <circle class="rose-core" r="17"/><path d="M-16 1 C-15-16 -2-22 5-12 C17-18 23-2 12 6 C10 19-8 19-16 1Z"/>
-   <path d="M-9-1 C-3-12 9-10 10-1 C11 8-3 12-9 4Z"/>
- </g>
- <g class="rose r2" transform="translate(154 150) scale(.72)">
-   <circle class="rose-core" r="16"/><path d="M-15 1 C-14-15-2-21 5-11 C16-17 21-1 11 7 C9 17-8 18-15 1Z"/><path d="M-8-1 C-2-11 8-9 9-1 C10 7-2 11-8 4Z"/>
- </g>
- <g class="rose r3" transform="translate(48 438) scale(.82)">
-   <circle class="rose-core" r="16"/><path d="M-15 1 C-14-15-2-21 5-11 C16-17 21-1 11 7 C9 17-8 18-15 1Z"/><path d="M-8-1 C-2-11 8-9 9-1 C10 7-2 11-8 4Z"/>
- </g>
- <g class="leaf l1" transform="translate(35 92) rotate(-25)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
- <g class="leaf l2" transform="translate(120 185) rotate(35)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
- <g class="leaf l3" transform="translate(78 350) rotate(-28)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
- <g class="leaf l4" transform="translate(120 500) rotate(30)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
- <g class="leaf l5" transform="translate(25 590) rotate(-20)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
-</g></svg></div>
-<div class="botanical-vine right vine-v1" aria-hidden="true">
-<svg viewBox="0 0 180 720" role="presentation" transform="translate(180 0) scale(-1 1)">
-<defs>
- <linearGradient id="vgright1" x1="0" y1="0" x2="1" y2="1">
-  <stop offset="0" stop-color="#3b236f"/><stop offset=".48" stop-color="#7b45d8"/><stop offset="1" stop-color="#c044c8"/>
- </linearGradient>
- <filter id="glright1" x="-40%" y="-20%" width="180%" height="140%"><feGaussianBlur stdDeviation="1.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-</defs>
-<g class="vine-drawing" filter="url(#glright1)">
- <path class="vine-main" d="M154 -30 C45 70 168 145 72 230 C8 287 132 348 48 438 C4 486 66 555 26 750"/>
- <path class="vine-branch" d="M89 176 C44 154 26 120 12 88"/>
- <path class="vine-branch" d="M72 230 C118 214 146 182 168 150"/>
- <path class="vine-branch" d="M48 438 C101 420 136 390 160 350"/>
- <path class="vine-branch" d="M40 535 C87 520 125 492 154 454"/>
- <g class="rose r1" transform="translate(71 228) scale(1.05)">
-   <circle class="rose-core" r="17"/><path d="M-16 1 C-15-16 -2-22 5-12 C17-18 23-2 12 6 C10 19-8 19-16 1Z"/>
-   <path d="M-9-1 C-3-12 9-10 10-1 C11 8-3 12-9 4Z"/>
- </g>
- <g class="rose r2" transform="translate(154 150) scale(.72)">
-   <circle class="rose-core" r="16"/><path d="M-15 1 C-14-15-2-21 5-11 C16-17 21-1 11 7 C9 17-8 18-15 1Z"/><path d="M-8-1 C-2-11 8-9 9-1 C10 7-2 11-8 4Z"/>
- </g>
- <g class="rose r3" transform="translate(48 438) scale(.82)">
-   <circle class="rose-core" r="16"/><path d="M-15 1 C-14-15-2-21 5-11 C16-17 21-1 11 7 C9 17-8 18-15 1Z"/><path d="M-8-1 C-2-11 8-9 9-1 C10 7-2 11-8 4Z"/>
- </g>
- <g class="leaf l1" transform="translate(35 92) rotate(-25)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
- <g class="leaf l2" transform="translate(120 185) rotate(35)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
- <g class="leaf l3" transform="translate(78 350) rotate(-28)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
- <g class="leaf l4" transform="translate(120 500) rotate(30)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
- <g class="leaf l5" transform="translate(25 590) rotate(-20)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
-</g></svg></div>
+<section class="hero"><div class="decor-vine left" aria-hidden="true">
+<svg viewBox="0 0 220 760" preserveAspectRatio="none">
+  <g class="vine-art">
+    <path class="vine-path" d="M205 -30 C145 45 35 80 85 170 C130 250 38 300 72 385 C105 470 22 535 58 620 C78 665 45 715 12 790"/>
+    <path class="vine-branch" d="M88 168 C58 151 33 123 18 94 M87 169 C128 155 158 128 176 96 M72 384 C38 368 17 344 5 317 M72 384 C109 365 139 338 158 306 M58 620 C29 603 11 578 2 552"/>
+    <g class="rose r1" transform="translate(63 176)"><path d="M0 17 C-25 9 -23 -17 -5 -22 C-15 -38 9 -49 20 -30 C35 -44 53 -24 41 -8 C58 0 44 24 24 18 C17 36 -6 35 0 17Z"/><path class="rose-inner" d="M-8 -5 C-2 -22 18 -24 26 -9 C18 -14 8 -7 11 3 C3 -1 -3 1 -8 -5Z"/></g>
+    <g class="rose r2" transform="translate(71 391)"><path d="M0 17 C-25 9 -23 -17 -5 -22 C-15 -38 9 -49 20 -30 C35 -44 53 -24 41 -8 C58 0 44 24 24 18 C17 36 -6 35 0 17Z"/><path class="rose-inner" d="M-8 -5 C-2 -22 18 -24 26 -9 C18 -14 8 -7 11 3 C3 -1 -3 1 -8 -5Z"/></g>
+    <g class="rose r3" transform="translate(55 626)"><path d="M0 17 C-25 9 -23 -17 -5 -22 C-15 -38 9 -49 20 -30 C35 -44 53 -24 41 -8 C58 0 44 24 24 18 C17 36 -6 35 0 17Z"/><path class="rose-inner" d="M-8 -5 C-2 -22 18 -24 26 -9 C18 -14 8 -7 11 3 C3 -1 -3 1 -8 -5Z"/></g>
+    <g class="leaf l1"><path d="M0 0 C18 -18 37 -18 48 -4 C30 11 14 13 0 0Z"/><path d="M4 -1 L41 -5"/></g>
+    <g class="leaf l2"><path d="M0 0 C-18 -18 -37 -18 -48 -4 C-30 11 -14 13 0 0Z"/><path d="M-4 -1 L-41 -5"/></g>
+    <g class="leaf l3"><path d="M0 0 C18 -18 37 -18 48 -4 C30 11 14 13 0 0Z"/><path d="M4 -1 L41 -5"/></g>
+    <g class="leaf l4"><path d="M0 0 C-18 -18 -37 -18 -48 -4 C-30 11 -14 13 0 0Z"/><path d="M-4 -1 L-41 -5"/></g>
+  </g>
+</svg></div>
+<div class="decor-vine right" aria-hidden="true">
+<svg viewBox="0 0 220 760" preserveAspectRatio="none">
+  <g class="vine-art">
+    <path class="vine-path" d="M15 -30 C75 45 185 80 135 170 C90 250 182 300 148 385 C115 470 198 535 162 620 C142 665 175 715 208 790"/>
+    <path class="vine-branch" d="M132 168 C162 151 187 123 202 94 M133 169 C92 155 62 128 44 96 M148 384 C182 368 203 344 215 317 M148 384 C111 365 81 338 62 306 M162 620 C191 603 209 578 218 552"/>
+    <g class="rose r1" transform="translate(157 176)"><path d="M0 17 C-25 9 -23 -17 -5 -22 C-15 -38 9 -49 20 -30 C35 -44 53 -24 41 -8 C58 0 44 24 24 18 C17 36 -6 35 0 17Z"/><path class="rose-inner" d="M-8 -5 C-2 -22 18 -24 26 -9 C18 -14 8 -7 11 3 C3 -1 -3 1 -8 -5Z"/></g>
+    <g class="rose r2" transform="translate(149 391)"><path d="M0 17 C-25 9 -23 -17 -5 -22 C-15 -38 9 -49 20 -30 C35 -44 53 -24 41 -8 C58 0 44 24 24 18 C17 36 -6 35 0 17Z"/><path class="rose-inner" d="M-8 -5 C-2 -22 18 -24 26 -9 C18 -14 8 -7 11 3 C3 -1 -3 1 -8 -5Z"/></g>
+    <g class="rose r3" transform="translate(165 626)"><path d="M0 17 C-25 9 -23 -17 -5 -22 C-15 -38 9 -49 20 -30 C35 -44 53 -24 41 -8 C58 0 44 24 24 18 C17 36 -6 35 0 17Z"/><path class="rose-inner" d="M-8 -5 C-2 -22 18 -24 26 -9 C18 -14 8 -7 11 3 C3 -1 -3 1 -8 -5Z"/></g>
+    <g class="leaf l1"><path d="M0 0 C18 -18 37 -18 48 -4 C30 11 14 13 0 0Z"/><path d="M4 -1 L41 -5"/></g>
+    <g class="leaf l2"><path d="M0 0 C-18 -18 -37 -18 -48 -4 C-30 11 -14 13 0 0Z"/><path d="M-4 -1 L-41 -5"/></g>
+    <g class="leaf l3"><path d="M0 0 C18 -18 37 -18 48 -4 C30 11 14 13 0 0Z"/><path d="M4 -1 L41 -5"/></g>
+    <g class="leaf l4"><path d="M0 0 C-18 -18 -37 -18 -48 -4 C-30 11 -14 13 0 0Z"/><path d="M-4 -1 L-41 -5"/></g>
+  </g>
+</svg></div>
 <div class="wrap hero-grid">
 <div class="reveal">
 <div class="eyebrow">Tatouage · Piercing · Saint-Léonard-de-Noblat</div>
@@ -304,397 +391,253 @@ body:before{transform:translateY(var(--bg-shift,0px));transition:transform .08s 
 <div class="hero-actions"><a class="btn primary" href="#artistes">DÉCOUVRIR LES ARTISTES</a><a class="btn" href="#reservation">PARLER DE MON PROJET</a></div>
 </div>
 <div class="hero-art reveal" data-parallax=".08">
-<div class="orb"></div><div class="orb two"></div><img class="hero-logo" src="logo-roses.png" alt="Purple Roses Tattoo — roses violettes">
-<div class="vine vine-hero reveal" aria-hidden="true"><svg viewBox="0 0 360 720" role="presentation"><path class="vine-stroke" d="M284 12 C190 95 298 170 178 242 C66 310 245 355 122 432 C45 480 112 558 48 700"/><path class="twig" d="M190 95 C145 76 122 49 111 22 M245 175 C282 153 310 128 323 94 M178 242 C136 231 100 208 80 180 M185 367 C227 347 257 318 272 285 M122 432 C84 416 54 389 40 358 M90 535 C130 520 163 493 180 461"/><g class="vine-rose" transform="translate(92 18)"><circle r="20"/><path d="M-18 0 C-5-24 5-24 18 0 C8 18-8 18-18 0Z M-12-7 C0-17 12-7 12 6 C0 14-12 9-12-7Z"/></g><g class="vine-skull" transform="translate(316 96)"><path d="M-18-8 C-18-28 18-28 18-8 V12 C10 25-10 25-18 12Z"/><circle cx="-7" cy="-3" r="4"/><circle cx="7" cy="-3" r="4"/><path d="M-7 13h14 M-4 12v8 M4 12v8"/></g><path class="snake-line" d="M75 570 C25 545 55 505 94 524 C135 544 105 584 68 569 C33 554 51 516 88 506"/><g class="vine-rose small" transform="translate(250 318) scale(.8)"><circle r="20"/><path d="M-18 0 C-5-24 5-24 18 0 C8 18-8 18-18 0Z M-12-7 C0-17 12-7 12 6 C0 14-12 9-12-7Z"/></g></svg></div>
+<div class="orb"></div><div class="orb two"></div><img class="hero-logo" src="logo-roses-clean.png" alt="Purple Roses Tattoo — roses violettes">
 </div>
 </div><div class="scrollhint">Faire défiler</div>
 </section>
 
-<section id="artistes">
-<div class="botanical-vine left vine-v2" aria-hidden="true">
-<svg viewBox="0 0 180 720" role="presentation">
-<defs>
- <linearGradient id="vgleft2" x1="0" y1="0" x2="1" y2="1">
-  <stop offset="0" stop-color="#3b236f"/><stop offset=".48" stop-color="#7b45d8"/><stop offset="1" stop-color="#c044c8"/>
- </linearGradient>
- <filter id="glleft2" x="-40%" y="-20%" width="180%" height="140%"><feGaussianBlur stdDeviation="1.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-</defs>
-<g class="vine-drawing" filter="url(#glleft2)">
- <path class="vine-main" d="M154 -30 C45 70 168 145 72 230 C8 287 132 348 48 438 C4 486 66 555 26 750"/>
- <path class="vine-branch" d="M89 176 C44 154 26 120 12 88"/>
- <path class="vine-branch" d="M72 230 C118 214 146 182 168 150"/>
- <path class="vine-branch" d="M48 438 C101 420 136 390 160 350"/>
- <path class="vine-branch" d="M40 535 C87 520 125 492 154 454"/>
- <g class="rose r1" transform="translate(71 228) scale(1.05)">
-   <circle class="rose-core" r="17"/><path d="M-16 1 C-15-16 -2-22 5-12 C17-18 23-2 12 6 C10 19-8 19-16 1Z"/>
-   <path d="M-9-1 C-3-12 9-10 10-1 C11 8-3 12-9 4Z"/>
- </g>
- <g class="rose r2" transform="translate(154 150) scale(.72)">
-   <circle class="rose-core" r="16"/><path d="M-15 1 C-14-15-2-21 5-11 C16-17 21-1 11 7 C9 17-8 18-15 1Z"/><path d="M-8-1 C-2-11 8-9 9-1 C10 7-2 11-8 4Z"/>
- </g>
- <g class="rose r3" transform="translate(48 438) scale(.82)">
-   <circle class="rose-core" r="16"/><path d="M-15 1 C-14-15-2-21 5-11 C16-17 21-1 11 7 C9 17-8 18-15 1Z"/><path d="M-8-1 C-2-11 8-9 9-1 C10 7-2 11-8 4Z"/>
- </g>
- <g class="leaf l1" transform="translate(35 92) rotate(-25)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
- <g class="leaf l2" transform="translate(120 185) rotate(35)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
- <g class="leaf l3" transform="translate(78 350) rotate(-28)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
- <g class="leaf l4" transform="translate(120 500) rotate(30)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
- <g class="leaf l5" transform="translate(25 590) rotate(-20)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
-</g></svg></div>
-<div class="botanical-vine right vine-v3" aria-hidden="true">
-<svg viewBox="0 0 180 720" role="presentation" transform="translate(180 0) scale(-1 1)">
-<defs>
- <linearGradient id="vgright3" x1="0" y1="0" x2="1" y2="1">
-  <stop offset="0" stop-color="#3b236f"/><stop offset=".48" stop-color="#7b45d8"/><stop offset="1" stop-color="#c044c8"/>
- </linearGradient>
- <filter id="glright3" x="-40%" y="-20%" width="180%" height="140%"><feGaussianBlur stdDeviation="1.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-</defs>
-<g class="vine-drawing" filter="url(#glright3)">
- <path class="vine-main" d="M154 -30 C45 70 168 145 72 230 C8 287 132 348 48 438 C4 486 66 555 26 750"/>
- <path class="vine-branch" d="M89 176 C44 154 26 120 12 88"/>
- <path class="vine-branch" d="M72 230 C118 214 146 182 168 150"/>
- <path class="vine-branch" d="M48 438 C101 420 136 390 160 350"/>
- <path class="vine-branch" d="M40 535 C87 520 125 492 154 454"/>
- <g class="rose r1" transform="translate(71 228) scale(1.05)">
-   <circle class="rose-core" r="17"/><path d="M-16 1 C-15-16 -2-22 5-12 C17-18 23-2 12 6 C10 19-8 19-16 1Z"/>
-   <path d="M-9-1 C-3-12 9-10 10-1 C11 8-3 12-9 4Z"/>
- </g>
- <g class="rose r2" transform="translate(154 150) scale(.72)">
-   <circle class="rose-core" r="16"/><path d="M-15 1 C-14-15-2-21 5-11 C16-17 21-1 11 7 C9 17-8 18-15 1Z"/><path d="M-8-1 C-2-11 8-9 9-1 C10 7-2 11-8 4Z"/>
- </g>
- <g class="rose r3" transform="translate(48 438) scale(.82)">
-   <circle class="rose-core" r="16"/><path d="M-15 1 C-14-15-2-21 5-11 C16-17 21-1 11 7 C9 17-8 18-15 1Z"/><path d="M-8-1 C-2-11 8-9 9-1 C10 7-2 11-8 4Z"/>
- </g>
- <g class="leaf l1" transform="translate(35 92) rotate(-25)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
- <g class="leaf l2" transform="translate(120 185) rotate(35)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
- <g class="leaf l3" transform="translate(78 350) rotate(-28)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
- <g class="leaf l4" transform="translate(120 500) rotate(30)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
- <g class="leaf l5" transform="translate(25 590) rotate(-20)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
-</g></svg></div><div class="wrap">
+<section id="artistes"><div class="decor-vine left" aria-hidden="true">
+<svg viewBox="0 0 220 760" preserveAspectRatio="none">
+  <g class="vine-art">
+    <path class="vine-path" d="M205 -30 C145 45 35 80 85 170 C130 250 38 300 72 385 C105 470 22 535 58 620 C78 665 45 715 12 790"/>
+    <path class="vine-branch" d="M88 168 C58 151 33 123 18 94 M87 169 C128 155 158 128 176 96 M72 384 C38 368 17 344 5 317 M72 384 C109 365 139 338 158 306 M58 620 C29 603 11 578 2 552"/>
+    <g class="rose r1" transform="translate(63 176)"><path d="M0 17 C-25 9 -23 -17 -5 -22 C-15 -38 9 -49 20 -30 C35 -44 53 -24 41 -8 C58 0 44 24 24 18 C17 36 -6 35 0 17Z"/><path class="rose-inner" d="M-8 -5 C-2 -22 18 -24 26 -9 C18 -14 8 -7 11 3 C3 -1 -3 1 -8 -5Z"/></g>
+    <g class="rose r2" transform="translate(71 391)"><path d="M0 17 C-25 9 -23 -17 -5 -22 C-15 -38 9 -49 20 -30 C35 -44 53 -24 41 -8 C58 0 44 24 24 18 C17 36 -6 35 0 17Z"/><path class="rose-inner" d="M-8 -5 C-2 -22 18 -24 26 -9 C18 -14 8 -7 11 3 C3 -1 -3 1 -8 -5Z"/></g>
+    <g class="rose r3" transform="translate(55 626)"><path d="M0 17 C-25 9 -23 -17 -5 -22 C-15 -38 9 -49 20 -30 C35 -44 53 -24 41 -8 C58 0 44 24 24 18 C17 36 -6 35 0 17Z"/><path class="rose-inner" d="M-8 -5 C-2 -22 18 -24 26 -9 C18 -14 8 -7 11 3 C3 -1 -3 1 -8 -5Z"/></g>
+    <g class="leaf l1"><path d="M0 0 C18 -18 37 -18 48 -4 C30 11 14 13 0 0Z"/><path d="M4 -1 L41 -5"/></g>
+    <g class="leaf l2"><path d="M0 0 C-18 -18 -37 -18 -48 -4 C-30 11 -14 13 0 0Z"/><path d="M-4 -1 L-41 -5"/></g>
+    <g class="leaf l3"><path d="M0 0 C18 -18 37 -18 48 -4 C30 11 14 13 0 0Z"/><path d="M4 -1 L41 -5"/></g>
+    <g class="leaf l4"><path d="M0 0 C-18 -18 -37 -18 -48 -4 C-30 11 -14 13 0 0Z"/><path d="M-4 -1 L-41 -5"/></g>
+  </g>
+</svg></div>
+<div class="decor-vine right" aria-hidden="true">
+<svg viewBox="0 0 220 760" preserveAspectRatio="none">
+  <g class="vine-art">
+    <path class="vine-path" d="M15 -30 C75 45 185 80 135 170 C90 250 182 300 148 385 C115 470 198 535 162 620 C142 665 175 715 208 790"/>
+    <path class="vine-branch" d="M132 168 C162 151 187 123 202 94 M133 169 C92 155 62 128 44 96 M148 384 C182 368 203 344 215 317 M148 384 C111 365 81 338 62 306 M162 620 C191 603 209 578 218 552"/>
+    <g class="rose r1" transform="translate(157 176)"><path d="M0 17 C-25 9 -23 -17 -5 -22 C-15 -38 9 -49 20 -30 C35 -44 53 -24 41 -8 C58 0 44 24 24 18 C17 36 -6 35 0 17Z"/><path class="rose-inner" d="M-8 -5 C-2 -22 18 -24 26 -9 C18 -14 8 -7 11 3 C3 -1 -3 1 -8 -5Z"/></g>
+    <g class="rose r2" transform="translate(149 391)"><path d="M0 17 C-25 9 -23 -17 -5 -22 C-15 -38 9 -49 20 -30 C35 -44 53 -24 41 -8 C58 0 44 24 24 18 C17 36 -6 35 0 17Z"/><path class="rose-inner" d="M-8 -5 C-2 -22 18 -24 26 -9 C18 -14 8 -7 11 3 C3 -1 -3 1 -8 -5Z"/></g>
+    <g class="rose r3" transform="translate(165 626)"><path d="M0 17 C-25 9 -23 -17 -5 -22 C-15 -38 9 -49 20 -30 C35 -44 53 -24 41 -8 C58 0 44 24 24 18 C17 36 -6 35 0 17Z"/><path class="rose-inner" d="M-8 -5 C-2 -22 18 -24 26 -9 C18 -14 8 -7 11 3 C3 -1 -3 1 -8 -5Z"/></g>
+    <g class="leaf l1"><path d="M0 0 C18 -18 37 -18 48 -4 C30 11 14 13 0 0Z"/><path d="M4 -1 L41 -5"/></g>
+    <g class="leaf l2"><path d="M0 0 C-18 -18 -37 -18 -48 -4 C-30 11 -14 13 0 0Z"/><path d="M-4 -1 L-41 -5"/></g>
+    <g class="leaf l3"><path d="M0 0 C18 -18 37 -18 48 -4 C30 11 14 13 0 0Z"/><path d="M4 -1 L41 -5"/></g>
+    <g class="leaf l4"><path d="M0 0 C-18 -18 -37 -18 -48 -4 C-30 11 -14 13 0 0Z"/><path d="M-4 -1 L-41 -5"/></g>
+  </g>
+</svg></div><div class="wrap">
 <div class="section-head reveal"><div><div class="eyebrow">Le studio</div><h2 class="display">Deux univers.<br>Une même encre.</h2></div><p>Smik et Looping travaillent chacun leur univers, tout en restant ouverts à de nombreux styles. Découvre leurs approches et leurs réalisations.</p></div>
 <div class="artists">
 <article class="artist smk reveal">
-<img class="artist-photo" src="smik.jpg" alt="Smik, tatoueur et perceur de Purple Roses Tattoo">
-<div class="artist-vine" aria-hidden="true"><svg viewBox="0 0 240 430"><path class="vine-stroke" d="M200 10 C120 80 205 132 125 190 C52 244 168 285 82 350 C48 375 46 402 28 425"/><path class="twig" d="M126 190 C95 178 71 157 60 133 M82 350 C118 333 140 310 150 284"/><g class="vine-rose" transform="translate(61 133)"><circle r="17"/><path d="M-15 0 C-4-19 4-19 15 0 C7 14-7 14-15 0Z M-10-5 C0-13 10-5 10 5 C0 11-10 7-10-5Z"/></g><g class="vine-skull" transform="translate(150 284) scale(.72)"><path d="M-18-8 C-18-28 18-28 18-8 V12 C10 25-10 25-18 12Z"/><circle cx="-7" cy="-3" r="4"/><circle cx="7" cy="-3" r="4"/><path d="M-7 13h14 M-4 12v8 M4 12v8"/></g></svg></div>
-<div class="artist-copy"><div class="eyebrow">Patron · tatouage & piercing</div><h3 class="display">Smik</h3><div class="artist-years"><strong>13</strong><span>ANS D’EXPÉRIENCE</span></div><p><strong>13 ans d’expérience.</strong> Ses styles de prédilection : <strong>blackwork</strong> et <strong>japonais</strong>. Mais ses projets ne s’arrêtent pas là : il tatoue dans de nombreux univers et réalise également les piercings du studio.</p><div class="tags"><span class="tag">Blackwork</span><span class="tag">Japonais</span><span class="tag">Création</span><span class="tag">Cover</span><span class="tag">Piercing</span></div></div>
+<img class="artist-photo" src="49051.jpg" alt="Smik, tatoueur et perceur de Purple Roses Tattoo">
+<div class="artist-copy"><div class="eyebrow">Patron · tatouage & piercing</div><h3 class="display">Smik</h3><div class="artist-years"><strong>13</strong><span>ANS D’EXPÉRIENCE</span></div><p>Ses styles de prédilection : <strong>blackwork</strong> et <strong>japonais</strong>. Mais ses projets ne s’arrêtent pas là : il tatoue dans de nombreux univers et réalise également les piercings du studio.</p><div class="tags"><span class="tag">Blackwork</span><span class="tag">Japonais</span><span class="tag">Création</span><span class="tag">Cover</span><span class="tag">Piercing</span></div></div>
 </article>
 <article class="artist looping reveal">
-<img class="artist-photo" src="looping.jpg" alt="Looping, tatoueur de Purple Roses Tattoo">
-<div class="artist-vine artist-vine-alt" aria-hidden="true"><svg viewBox="0 0 240 430"><path class="vine-stroke" d="M35 12 C125 75 38 142 120 205 C195 261 70 306 160 362 C185 378 190 402 210 425"/><path class="twig" d="M119 205 C150 190 172 165 182 137 M160 362 C126 346 105 322 94 296"/><g class="vine-rose" transform="translate(182 137)"><circle r="17"/><path d="M-15 0 C-4-19 4-19 15 0 C7 14-7 14-15 0Z M-10-5 C0-13 10-5 10 5 C0 11-10 7-10-5Z"/></g><g class="vine-skull" transform="translate(94 296) scale(.72)"><path d="M-18-8 C-18-28 18-28 18-8 V12 C10 25-10 25-18 12Z"/><circle cx="-7" cy="-3" r="4"/><circle cx="7" cy="-3" r="4"/><path d="M-7 13h14 M-4 12v8 M4 12v8"/></g></svg></div>
-<div class="artist-copy"><div class="eyebrow">Tatoueur</div><h3 class="display">Looping</h3><div class="artist-years"><strong>9</strong><span>ANS D’EXPÉRIENCE</span></div><p><strong>9 ans d’expérience.</strong> Son style de prédilection : le <strong>fineline</strong>. Il explore lui aussi différents univers et adapte son travail au projet, du détail délicat à des compositions plus affirmées.</p><div class="tags"><span class="tag">Fineline</span><span class="tag">Floral</span><span class="tag">Création</span><span class="tag">Illustratif</span></div></div>
+<img class="artist-photo" src="49053.jpg" alt="Looping, tatoueur de Purple Roses Tattoo">
+<div class="artist-copy"><div class="eyebrow">Tatoueur</div><h3 class="display">Looping</h3><div class="artist-years"><strong>9</strong><span>ANS D’EXPÉRIENCE</span></div><p>Son style de prédilection : le <strong>fineline</strong>. Il explore lui aussi différents univers et adapte son travail au projet, du détail délicat à des compositions plus affirmées.</p><div class="tags"><span class="tag">Fineline</span><span class="tag">Floral</span><span class="tag">Création</span><span class="tag">Illustratif</span></div></div>
 </article>
 </div></div></section>
 
-<section>
-<div class="botanical-vine right vine-v4" aria-hidden="true">
-<svg viewBox="0 0 180 720" role="presentation" transform="translate(180 0) scale(-1 1)">
-<defs>
- <linearGradient id="vgright4" x1="0" y1="0" x2="1" y2="1">
-  <stop offset="0" stop-color="#3b236f"/><stop offset=".48" stop-color="#7b45d8"/><stop offset="1" stop-color="#c044c8"/>
- </linearGradient>
- <filter id="glright4" x="-40%" y="-20%" width="180%" height="140%"><feGaussianBlur stdDeviation="1.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-</defs>
-<g class="vine-drawing" filter="url(#glright4)">
- <path class="vine-main" d="M154 -30 C45 70 168 145 72 230 C8 287 132 348 48 438 C4 486 66 555 26 750"/>
- <path class="vine-branch" d="M89 176 C44 154 26 120 12 88"/>
- <path class="vine-branch" d="M72 230 C118 214 146 182 168 150"/>
- <path class="vine-branch" d="M48 438 C101 420 136 390 160 350"/>
- <path class="vine-branch" d="M40 535 C87 520 125 492 154 454"/>
- <g class="rose r1" transform="translate(71 228) scale(1.05)">
-   <circle class="rose-core" r="17"/><path d="M-16 1 C-15-16 -2-22 5-12 C17-18 23-2 12 6 C10 19-8 19-16 1Z"/>
-   <path d="M-9-1 C-3-12 9-10 10-1 C11 8-3 12-9 4Z"/>
- </g>
- <g class="rose r2" transform="translate(154 150) scale(.72)">
-   <circle class="rose-core" r="16"/><path d="M-15 1 C-14-15-2-21 5-11 C16-17 21-1 11 7 C9 17-8 18-15 1Z"/><path d="M-8-1 C-2-11 8-9 9-1 C10 7-2 11-8 4Z"/>
- </g>
- <g class="rose r3" transform="translate(48 438) scale(.82)">
-   <circle class="rose-core" r="16"/><path d="M-15 1 C-14-15-2-21 5-11 C16-17 21-1 11 7 C9 17-8 18-15 1Z"/><path d="M-8-1 C-2-11 8-9 9-1 C10 7-2 11-8 4Z"/>
- </g>
- <g class="leaf l1" transform="translate(35 92) rotate(-25)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
- <g class="leaf l2" transform="translate(120 185) rotate(35)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
- <g class="leaf l3" transform="translate(78 350) rotate(-28)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
- <g class="leaf l4" transform="translate(120 500) rotate(30)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
- <g class="leaf l5" transform="translate(25 590) rotate(-20)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
-</g></svg></div><div class="wrap story">
+<section><div class="decor-vine left" aria-hidden="true">
+<svg viewBox="0 0 220 760" preserveAspectRatio="none">
+  <g class="vine-art">
+    <path class="vine-path" d="M205 -30 C145 45 35 80 85 170 C130 250 38 300 72 385 C105 470 22 535 58 620 C78 665 45 715 12 790"/>
+    <path class="vine-branch" d="M88 168 C58 151 33 123 18 94 M87 169 C128 155 158 128 176 96 M72 384 C38 368 17 344 5 317 M72 384 C109 365 139 338 158 306 M58 620 C29 603 11 578 2 552"/>
+    <g class="rose r1" transform="translate(63 176)"><path d="M0 17 C-25 9 -23 -17 -5 -22 C-15 -38 9 -49 20 -30 C35 -44 53 -24 41 -8 C58 0 44 24 24 18 C17 36 -6 35 0 17Z"/><path class="rose-inner" d="M-8 -5 C-2 -22 18 -24 26 -9 C18 -14 8 -7 11 3 C3 -1 -3 1 -8 -5Z"/></g>
+    <g class="rose r2" transform="translate(71 391)"><path d="M0 17 C-25 9 -23 -17 -5 -22 C-15 -38 9 -49 20 -30 C35 -44 53 -24 41 -8 C58 0 44 24 24 18 C17 36 -6 35 0 17Z"/><path class="rose-inner" d="M-8 -5 C-2 -22 18 -24 26 -9 C18 -14 8 -7 11 3 C3 -1 -3 1 -8 -5Z"/></g>
+    <g class="rose r3" transform="translate(55 626)"><path d="M0 17 C-25 9 -23 -17 -5 -22 C-15 -38 9 -49 20 -30 C35 -44 53 -24 41 -8 C58 0 44 24 24 18 C17 36 -6 35 0 17Z"/><path class="rose-inner" d="M-8 -5 C-2 -22 18 -24 26 -9 C18 -14 8 -7 11 3 C3 -1 -3 1 -8 -5Z"/></g>
+    <g class="leaf l1"><path d="M0 0 C18 -18 37 -18 48 -4 C30 11 14 13 0 0Z"/><path d="M4 -1 L41 -5"/></g>
+    <g class="leaf l2"><path d="M0 0 C-18 -18 -37 -18 -48 -4 C-30 11 -14 13 0 0Z"/><path d="M-4 -1 L-41 -5"/></g>
+    <g class="leaf l3"><path d="M0 0 C18 -18 37 -18 48 -4 C30 11 14 13 0 0Z"/><path d="M4 -1 L41 -5"/></g>
+    <g class="leaf l4"><path d="M0 0 C-18 -18 -37 -18 -48 -4 C-30 11 -14 13 0 0Z"/><path d="M-4 -1 L-41 -5"/></g>
+  </g>
+</svg></div>
+<div class="decor-vine right" aria-hidden="true">
+<svg viewBox="0 0 220 760" preserveAspectRatio="none">
+  <g class="vine-art">
+    <path class="vine-path" d="M15 -30 C75 45 185 80 135 170 C90 250 182 300 148 385 C115 470 198 535 162 620 C142 665 175 715 208 790"/>
+    <path class="vine-branch" d="M132 168 C162 151 187 123 202 94 M133 169 C92 155 62 128 44 96 M148 384 C182 368 203 344 215 317 M148 384 C111 365 81 338 62 306 M162 620 C191 603 209 578 218 552"/>
+    <g class="rose r1" transform="translate(157 176)"><path d="M0 17 C-25 9 -23 -17 -5 -22 C-15 -38 9 -49 20 -30 C35 -44 53 -24 41 -8 C58 0 44 24 24 18 C17 36 -6 35 0 17Z"/><path class="rose-inner" d="M-8 -5 C-2 -22 18 -24 26 -9 C18 -14 8 -7 11 3 C3 -1 -3 1 -8 -5Z"/></g>
+    <g class="rose r2" transform="translate(149 391)"><path d="M0 17 C-25 9 -23 -17 -5 -22 C-15 -38 9 -49 20 -30 C35 -44 53 -24 41 -8 C58 0 44 24 24 18 C17 36 -6 35 0 17Z"/><path class="rose-inner" d="M-8 -5 C-2 -22 18 -24 26 -9 C18 -14 8 -7 11 3 C3 -1 -3 1 -8 -5Z"/></g>
+    <g class="rose r3" transform="translate(165 626)"><path d="M0 17 C-25 9 -23 -17 -5 -22 C-15 -38 9 -49 20 -30 C35 -44 53 -24 41 -8 C58 0 44 24 24 18 C17 36 -6 35 0 17Z"/><path class="rose-inner" d="M-8 -5 C-2 -22 18 -24 26 -9 C18 -14 8 -7 11 3 C3 -1 -3 1 -8 -5Z"/></g>
+    <g class="leaf l1"><path d="M0 0 C18 -18 37 -18 48 -4 C30 11 14 13 0 0Z"/><path d="M4 -1 L41 -5"/></g>
+    <g class="leaf l2"><path d="M0 0 C-18 -18 -37 -18 -48 -4 C-30 11 -14 13 0 0Z"/><path d="M-4 -1 L-41 -5"/></g>
+    <g class="leaf l3"><path d="M0 0 C18 -18 37 -18 48 -4 C30 11 14 13 0 0Z"/><path d="M4 -1 L41 -5"/></g>
+    <g class="leaf l4"><path d="M0 0 C-18 -18 -37 -18 -48 -4 C-30 11 -14 13 0 0Z"/><path d="M-4 -1 L-41 -5"/></g>
+  </g>
+</svg></div><div class="wrap story">
 <div class="reveal"><div class="eyebrow">L’expérience</div><h2 class="display">Pas juste<br>un tatouage.</h2></div>
-<div class="reveal"><p class="story-copy">Un projet commence par une idée. Une discussion, une inspiration, une envie de recouvrir, de transformer ou simplement de créer quelque chose qui te ressemble. Le studio accompagne chaque projet jusqu'à l'encre.</p><div class="experience"><div class="stat"><strong>∞</strong><span>possibilités de création</span></div></div></div>
+<div class="reveal"><p class="story-copy">Un projet commence par une idée. Une discussion, une inspiration, une envie de recouvrir, de transformer ou simplement de créer quelque chose qui te ressemble. Le studio accompagne chaque projet jusqu'à l'encre.</p></div>
 </div></section>
 
-<section id="flashs">
-<div class="botanical-vine left vine-v5" aria-hidden="true">
-<svg viewBox="0 0 180 720" role="presentation">
-<defs>
- <linearGradient id="vgleft5" x1="0" y1="0" x2="1" y2="1">
-  <stop offset="0" stop-color="#3b236f"/><stop offset=".48" stop-color="#7b45d8"/><stop offset="1" stop-color="#c044c8"/>
- </linearGradient>
- <filter id="glleft5" x="-40%" y="-20%" width="180%" height="140%"><feGaussianBlur stdDeviation="1.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-</defs>
-<g class="vine-drawing" filter="url(#glleft5)">
- <path class="vine-main" d="M154 -30 C45 70 168 145 72 230 C8 287 132 348 48 438 C4 486 66 555 26 750"/>
- <path class="vine-branch" d="M89 176 C44 154 26 120 12 88"/>
- <path class="vine-branch" d="M72 230 C118 214 146 182 168 150"/>
- <path class="vine-branch" d="M48 438 C101 420 136 390 160 350"/>
- <path class="vine-branch" d="M40 535 C87 520 125 492 154 454"/>
- <g class="rose r1" transform="translate(71 228) scale(1.05)">
-   <circle class="rose-core" r="17"/><path d="M-16 1 C-15-16 -2-22 5-12 C17-18 23-2 12 6 C10 19-8 19-16 1Z"/>
-   <path d="M-9-1 C-3-12 9-10 10-1 C11 8-3 12-9 4Z"/>
- </g>
- <g class="rose r2" transform="translate(154 150) scale(.72)">
-   <circle class="rose-core" r="16"/><path d="M-15 1 C-14-15-2-21 5-11 C16-17 21-1 11 7 C9 17-8 18-15 1Z"/><path d="M-8-1 C-2-11 8-9 9-1 C10 7-2 11-8 4Z"/>
- </g>
- <g class="rose r3" transform="translate(48 438) scale(.82)">
-   <circle class="rose-core" r="16"/><path d="M-15 1 C-14-15-2-21 5-11 C16-17 21-1 11 7 C9 17-8 18-15 1Z"/><path d="M-8-1 C-2-11 8-9 9-1 C10 7-2 11-8 4Z"/>
- </g>
- <g class="leaf l1" transform="translate(35 92) rotate(-25)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
- <g class="leaf l2" transform="translate(120 185) rotate(35)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
- <g class="leaf l3" transform="translate(78 350) rotate(-28)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
- <g class="leaf l4" transform="translate(120 500) rotate(30)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
- <g class="leaf l5" transform="translate(25 590) rotate(-20)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
-</g></svg></div>
-<div class="botanical-vine right vine-v6" aria-hidden="true">
-<svg viewBox="0 0 180 720" role="presentation" transform="translate(180 0) scale(-1 1)">
-<defs>
- <linearGradient id="vgright6" x1="0" y1="0" x2="1" y2="1">
-  <stop offset="0" stop-color="#3b236f"/><stop offset=".48" stop-color="#7b45d8"/><stop offset="1" stop-color="#c044c8"/>
- </linearGradient>
- <filter id="glright6" x="-40%" y="-20%" width="180%" height="140%"><feGaussianBlur stdDeviation="1.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-</defs>
-<g class="vine-drawing" filter="url(#glright6)">
- <path class="vine-main" d="M154 -30 C45 70 168 145 72 230 C8 287 132 348 48 438 C4 486 66 555 26 750"/>
- <path class="vine-branch" d="M89 176 C44 154 26 120 12 88"/>
- <path class="vine-branch" d="M72 230 C118 214 146 182 168 150"/>
- <path class="vine-branch" d="M48 438 C101 420 136 390 160 350"/>
- <path class="vine-branch" d="M40 535 C87 520 125 492 154 454"/>
- <g class="rose r1" transform="translate(71 228) scale(1.05)">
-   <circle class="rose-core" r="17"/><path d="M-16 1 C-15-16 -2-22 5-12 C17-18 23-2 12 6 C10 19-8 19-16 1Z"/>
-   <path d="M-9-1 C-3-12 9-10 10-1 C11 8-3 12-9 4Z"/>
- </g>
- <g class="rose r2" transform="translate(154 150) scale(.72)">
-   <circle class="rose-core" r="16"/><path d="M-15 1 C-14-15-2-21 5-11 C16-17 21-1 11 7 C9 17-8 18-15 1Z"/><path d="M-8-1 C-2-11 8-9 9-1 C10 7-2 11-8 4Z"/>
- </g>
- <g class="rose r3" transform="translate(48 438) scale(.82)">
-   <circle class="rose-core" r="16"/><path d="M-15 1 C-14-15-2-21 5-11 C16-17 21-1 11 7 C9 17-8 18-15 1Z"/><path d="M-8-1 C-2-11 8-9 9-1 C10 7-2 11-8 4Z"/>
- </g>
- <g class="leaf l1" transform="translate(35 92) rotate(-25)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
- <g class="leaf l2" transform="translate(120 185) rotate(35)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
- <g class="leaf l3" transform="translate(78 350) rotate(-28)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
- <g class="leaf l4" transform="translate(120 500) rotate(30)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
- <g class="leaf l5" transform="translate(25 590) rotate(-20)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
-</g></svg></div><div class="wrap flashes">
-<div class="section-head reveal"><div><div class="eyebrow">Flashs</div><h2 class="display">À prendre<br>à l’encre.</h2></div><p>Une sélection de flashs de Smik. Les flashs de Looping sont présentés séparément dans sa galerie et pourront être complétés au fil du temps.</p></div>
-<div class="gallery reveal" style="columns:3 240px"><div class="card" style="break-inside:avoid"><img src="smik-flash-48841.jpg" alt="Flash Smik" loading="lazy"><div class="meta">Smik · flash</div></div>
-<div class="card" style="break-inside:avoid"><img src="smik-flash-48844.jpg" alt="Flash Smik" loading="lazy"><div class="meta">Smik · flash</div></div>
-<div class="card" style="break-inside:avoid"><img src="smik-flash-48853.jpg" alt="Flash Smik" loading="lazy"><div class="meta">Smik · flash</div></div>
-<div class="card" style="break-inside:avoid"><img src="smik-flash-48856.jpg" alt="Flash Smik" loading="lazy"><div class="meta">Smik · flash</div></div>
-<div class="card" style="break-inside:avoid"><img src="smik-flash-48870.jpg" alt="Flash Smik" loading="lazy"><div class="meta">Smik · flash</div></div>
-<div class="card" style="break-inside:avoid"><img src="smik-flash-48876.jpg" alt="Flash Smik" loading="lazy"><div class="meta">Smik · flash</div></div>
-<div class="card" style="break-inside:avoid"><img src="smik-flash-48879.jpg" alt="Flash Smik" loading="lazy"><div class="meta">Smik · flash</div></div>
-<div class="card" style="break-inside:avoid"><img src="smik-flash-48882.jpg" alt="Flash Smik" loading="lazy"><div class="meta">Smik · flash</div></div>
-<div class="card" style="break-inside:avoid"><img src="smik-flash-48885.jpg" alt="Flash Smik" loading="lazy"><div class="meta">Smik · flash</div></div>
-<div class="card" style="break-inside:avoid"><img src="smik-flash-48888.jpg" alt="Flash Smik" loading="lazy"><div class="meta">Smik · flash</div></div>
-<div class="card" style="break-inside:avoid"><img src="smik-flash-48903.jpg" alt="Flash Smik" loading="lazy"><div class="meta">Smik · flash</div></div>
-<div class="card" style="break-inside:avoid"><img src="smik-flash-49016.jpg" alt="Flash Smik" loading="lazy"><div class="meta">Smik · flash</div></div>
-<div class="card" style="break-inside:avoid"><img src="smik-flash-49022.jpg" alt="Flash Smik" loading="lazy"><div class="meta">Smik · flash</div></div>
-<div class="card" style="break-inside:avoid"><img src="smik-flash-49025.jpg" alt="Flash Smik" loading="lazy"><div class="meta">Smik · flash</div></div>
-<div class="card" style="break-inside:avoid"><img src="smik-flash-48807.jpg" alt="Flash Smik" loading="lazy"><div class="meta">Smik · flash</div></div>
-<div class="card" style="break-inside:avoid"><img src="smik-flash-48814.jpg" alt="Flash Smik" loading="lazy"><div class="meta">Smik · flash</div></div>
-<div class="card" style="break-inside:avoid"><img src="smik-flash-48817.jpg" alt="Flash Smik" loading="lazy"><div class="meta">Smik · flash</div></div>
-<div class="card" style="break-inside:avoid"><img src="smik-flash-48847.jpg" alt="Flash Smik" loading="lazy"><div class="meta">Smik · flash</div></div>
-<div class="card" style="break-inside:avoid"><img src="smik-flash-48850.jpg" alt="Flash Smik" loading="lazy"><div class="meta">Smik · flash</div></div>
-</div>
-</div></section>
+<section id="flashs"><div class="decor-vine left" aria-hidden="true">
+<svg viewBox="0 0 220 760" preserveAspectRatio="none">
+  <g class="vine-art">
+    <path class="vine-path" d="M205 -30 C145 45 35 80 85 170 C130 250 38 300 72 385 C105 470 22 535 58 620 C78 665 45 715 12 790"/>
+    <path class="vine-branch" d="M88 168 C58 151 33 123 18 94 M87 169 C128 155 158 128 176 96 M72 384 C38 368 17 344 5 317 M72 384 C109 365 139 338 158 306 M58 620 C29 603 11 578 2 552"/>
+    <g class="rose r1" transform="translate(63 176)"><path d="M0 17 C-25 9 -23 -17 -5 -22 C-15 -38 9 -49 20 -30 C35 -44 53 -24 41 -8 C58 0 44 24 24 18 C17 36 -6 35 0 17Z"/><path class="rose-inner" d="M-8 -5 C-2 -22 18 -24 26 -9 C18 -14 8 -7 11 3 C3 -1 -3 1 -8 -5Z"/></g>
+    <g class="rose r2" transform="translate(71 391)"><path d="M0 17 C-25 9 -23 -17 -5 -22 C-15 -38 9 -49 20 -30 C35 -44 53 -24 41 -8 C58 0 44 24 24 18 C17 36 -6 35 0 17Z"/><path class="rose-inner" d="M-8 -5 C-2 -22 18 -24 26 -9 C18 -14 8 -7 11 3 C3 -1 -3 1 -8 -5Z"/></g>
+    <g class="rose r3" transform="translate(55 626)"><path d="M0 17 C-25 9 -23 -17 -5 -22 C-15 -38 9 -49 20 -30 C35 -44 53 -24 41 -8 C58 0 44 24 24 18 C17 36 -6 35 0 17Z"/><path class="rose-inner" d="M-8 -5 C-2 -22 18 -24 26 -9 C18 -14 8 -7 11 3 C3 -1 -3 1 -8 -5Z"/></g>
+    <g class="leaf l1"><path d="M0 0 C18 -18 37 -18 48 -4 C30 11 14 13 0 0Z"/><path d="M4 -1 L41 -5"/></g>
+    <g class="leaf l2"><path d="M0 0 C-18 -18 -37 -18 -48 -4 C-30 11 -14 13 0 0Z"/><path d="M-4 -1 L-41 -5"/></g>
+    <g class="leaf l3"><path d="M0 0 C18 -18 37 -18 48 -4 C30 11 14 13 0 0Z"/><path d="M4 -1 L41 -5"/></g>
+    <g class="leaf l4"><path d="M0 0 C-18 -18 -37 -18 -48 -4 C-30 11 -14 13 0 0Z"/><path d="M-4 -1 L-41 -5"/></g>
+  </g>
+</svg></div>
+<div class="decor-vine right" aria-hidden="true">
+<svg viewBox="0 0 220 760" preserveAspectRatio="none">
+  <g class="vine-art">
+    <path class="vine-path" d="M15 -30 C75 45 185 80 135 170 C90 250 182 300 148 385 C115 470 198 535 162 620 C142 665 175 715 208 790"/>
+    <path class="vine-branch" d="M132 168 C162 151 187 123 202 94 M133 169 C92 155 62 128 44 96 M148 384 C182 368 203 344 215 317 M148 384 C111 365 81 338 62 306 M162 620 C191 603 209 578 218 552"/>
+    <g class="rose r1" transform="translate(157 176)"><path d="M0 17 C-25 9 -23 -17 -5 -22 C-15 -38 9 -49 20 -30 C35 -44 53 -24 41 -8 C58 0 44 24 24 18 C17 36 -6 35 0 17Z"/><path class="rose-inner" d="M-8 -5 C-2 -22 18 -24 26 -9 C18 -14 8 -7 11 3 C3 -1 -3 1 -8 -5Z"/></g>
+    <g class="rose r2" transform="translate(149 391)"><path d="M0 17 C-25 9 -23 -17 -5 -22 C-15 -38 9 -49 20 -30 C35 -44 53 -24 41 -8 C58 0 44 24 24 18 C17 36 -6 35 0 17Z"/><path class="rose-inner" d="M-8 -5 C-2 -22 18 -24 26 -9 C18 -14 8 -7 11 3 C3 -1 -3 1 -8 -5Z"/></g>
+    <g class="rose r3" transform="translate(165 626)"><path d="M0 17 C-25 9 -23 -17 -5 -22 C-15 -38 9 -49 20 -30 C35 -44 53 -24 41 -8 C58 0 44 24 24 18 C17 36 -6 35 0 17Z"/><path class="rose-inner" d="M-8 -5 C-2 -22 18 -24 26 -9 C18 -14 8 -7 11 3 C3 -1 -3 1 -8 -5Z"/></g>
+    <g class="leaf l1"><path d="M0 0 C18 -18 37 -18 48 -4 C30 11 14 13 0 0Z"/><path d="M4 -1 L41 -5"/></g>
+    <g class="leaf l2"><path d="M0 0 C-18 -18 -37 -18 -48 -4 C-30 11 -14 13 0 0Z"/><path d="M-4 -1 L-41 -5"/></g>
+    <g class="leaf l3"><path d="M0 0 C18 -18 37 -18 48 -4 C30 11 14 13 0 0Z"/><path d="M4 -1 L41 -5"/></g>
+    <g class="leaf l4"><path d="M0 0 C-18 -18 -37 -18 -48 -4 C-30 11 -14 13 0 0Z"/><path d="M-4 -1 L-41 -5"/></g>
+  </g>
+</svg></div><div class="wrap flashes"><div class="section-head reveal"><div><div class="eyebrow">Flashs</div><h2 class="display">À prendre<br>à l’encre.</h2></div><p>Une sélection de flashs de Smik. Clique sur un flash pour l’agrandir.</p></div><div class="gallery reveal" id="flashGallery"><div class="card flash-card"><img src="48806.jpg" alt="Flash Smik" loading="lazy"></div>
+<div class="card flash-card"><img src="48807.jpg" alt="Flash Smik" loading="lazy"></div>
+<div class="card flash-card"><img src="48814.jpg" alt="Flash Smik" loading="lazy"></div>
+<div class="card flash-card"><img src="48817.jpg" alt="Flash Smik" loading="lazy"></div>
+<div class="card flash-card"><img src="48820.jpg" alt="Flash Smik" loading="lazy"></div>
+<div class="card flash-card"><img src="48841.jpg" alt="Flash Smik" loading="lazy"></div>
+<div class="card flash-card"><img src="48844.jpg" alt="Flash Smik" loading="lazy"></div>
+<div class="card flash-card"><img src="48847.jpg" alt="Flash Smik" loading="lazy"></div>
+<div class="card flash-card"><img src="48850.jpg" alt="Flash Smik" loading="lazy"></div>
+<div class="card flash-card"><img src="48853.jpg" alt="Flash Smik" loading="lazy"></div>
+<div class="card flash-card"><img src="48856.jpg" alt="Flash Smik" loading="lazy"></div>
+<div class="card flash-card"><img src="48870.jpg" alt="Flash Smik" loading="lazy"></div>
+<div class="card flash-card"><img src="48873.jpg" alt="Flash Smik" loading="lazy"></div>
+<div class="card flash-card"><img src="48876.jpg" alt="Flash Smik" loading="lazy"></div>
+<div class="card flash-card"><img src="48879.jpg" alt="Flash Smik" loading="lazy"></div>
+<div class="card flash-card"><img src="48882.jpg" alt="Flash Smik" loading="lazy"></div>
+<div class="card flash-card"><img src="48885.jpg" alt="Flash Smik" loading="lazy"></div>
+<div class="card flash-card"><img src="48888.jpg" alt="Flash Smik" loading="lazy"></div>
+<div class="card flash-card"><img src="48891.jpg" alt="Flash Smik" loading="lazy"></div>
+<div class="card flash-card"><img src="48903.jpg" alt="Flash Smik" loading="lazy"></div>
+<div class="card flash-card"><img src="49016.jpg" alt="Flash Smik" loading="lazy"></div>
+<div class="card flash-card"><img src="49019.jpg" alt="Flash Smik" loading="lazy"></div>
+<div class="card flash-card"><img src="49022.jpg" alt="Flash Smik" loading="lazy"></div>
+<div class="card flash-card"><img src="49025.jpg" alt="Flash Smik" loading="lazy"></div>
+<div class="card flash-card"><img src="49077.jpg" alt="Flash Smik" loading="lazy"></div></div></div></section>
 
-<section id="realisations">
-<div class="botanical-vine left vine-v7" aria-hidden="true">
-<svg viewBox="0 0 180 720" role="presentation">
-<defs>
- <linearGradient id="vgleft7" x1="0" y1="0" x2="1" y2="1">
-  <stop offset="0" stop-color="#3b236f"/><stop offset=".48" stop-color="#7b45d8"/><stop offset="1" stop-color="#c044c8"/>
- </linearGradient>
- <filter id="glleft7" x="-40%" y="-20%" width="180%" height="140%"><feGaussianBlur stdDeviation="1.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-</defs>
-<g class="vine-drawing" filter="url(#glleft7)">
- <path class="vine-main" d="M154 -30 C45 70 168 145 72 230 C8 287 132 348 48 438 C4 486 66 555 26 750"/>
- <path class="vine-branch" d="M89 176 C44 154 26 120 12 88"/>
- <path class="vine-branch" d="M72 230 C118 214 146 182 168 150"/>
- <path class="vine-branch" d="M48 438 C101 420 136 390 160 350"/>
- <path class="vine-branch" d="M40 535 C87 520 125 492 154 454"/>
- <g class="rose r1" transform="translate(71 228) scale(1.05)">
-   <circle class="rose-core" r="17"/><path d="M-16 1 C-15-16 -2-22 5-12 C17-18 23-2 12 6 C10 19-8 19-16 1Z"/>
-   <path d="M-9-1 C-3-12 9-10 10-1 C11 8-3 12-9 4Z"/>
- </g>
- <g class="rose r2" transform="translate(154 150) scale(.72)">
-   <circle class="rose-core" r="16"/><path d="M-15 1 C-14-15-2-21 5-11 C16-17 21-1 11 7 C9 17-8 18-15 1Z"/><path d="M-8-1 C-2-11 8-9 9-1 C10 7-2 11-8 4Z"/>
- </g>
- <g class="rose r3" transform="translate(48 438) scale(.82)">
-   <circle class="rose-core" r="16"/><path d="M-15 1 C-14-15-2-21 5-11 C16-17 21-1 11 7 C9 17-8 18-15 1Z"/><path d="M-8-1 C-2-11 8-9 9-1 C10 7-2 11-8 4Z"/>
- </g>
- <g class="leaf l1" transform="translate(35 92) rotate(-25)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
- <g class="leaf l2" transform="translate(120 185) rotate(35)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
- <g class="leaf l3" transform="translate(78 350) rotate(-28)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
- <g class="leaf l4" transform="translate(120 500) rotate(30)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
- <g class="leaf l5" transform="translate(25 590) rotate(-20)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
-</g></svg></div>
-<div class="botanical-vine right vine-v8" aria-hidden="true">
-<svg viewBox="0 0 180 720" role="presentation" transform="translate(180 0) scale(-1 1)">
-<defs>
- <linearGradient id="vgright8" x1="0" y1="0" x2="1" y2="1">
-  <stop offset="0" stop-color="#3b236f"/><stop offset=".48" stop-color="#7b45d8"/><stop offset="1" stop-color="#c044c8"/>
- </linearGradient>
- <filter id="glright8" x="-40%" y="-20%" width="180%" height="140%"><feGaussianBlur stdDeviation="1.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-</defs>
-<g class="vine-drawing" filter="url(#glright8)">
- <path class="vine-main" d="M154 -30 C45 70 168 145 72 230 C8 287 132 348 48 438 C4 486 66 555 26 750"/>
- <path class="vine-branch" d="M89 176 C44 154 26 120 12 88"/>
- <path class="vine-branch" d="M72 230 C118 214 146 182 168 150"/>
- <path class="vine-branch" d="M48 438 C101 420 136 390 160 350"/>
- <path class="vine-branch" d="M40 535 C87 520 125 492 154 454"/>
- <g class="rose r1" transform="translate(71 228) scale(1.05)">
-   <circle class="rose-core" r="17"/><path d="M-16 1 C-15-16 -2-22 5-12 C17-18 23-2 12 6 C10 19-8 19-16 1Z"/>
-   <path d="M-9-1 C-3-12 9-10 10-1 C11 8-3 12-9 4Z"/>
- </g>
- <g class="rose r2" transform="translate(154 150) scale(.72)">
-   <circle class="rose-core" r="16"/><path d="M-15 1 C-14-15-2-21 5-11 C16-17 21-1 11 7 C9 17-8 18-15 1Z"/><path d="M-8-1 C-2-11 8-9 9-1 C10 7-2 11-8 4Z"/>
- </g>
- <g class="rose r3" transform="translate(48 438) scale(.82)">
-   <circle class="rose-core" r="16"/><path d="M-15 1 C-14-15-2-21 5-11 C16-17 21-1 11 7 C9 17-8 18-15 1Z"/><path d="M-8-1 C-2-11 8-9 9-1 C10 7-2 11-8 4Z"/>
- </g>
- <g class="leaf l1" transform="translate(35 92) rotate(-25)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
- <g class="leaf l2" transform="translate(120 185) rotate(35)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
- <g class="leaf l3" transform="translate(78 350) rotate(-28)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
- <g class="leaf l4" transform="translate(120 500) rotate(30)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
- <g class="leaf l5" transform="translate(25 590) rotate(-20)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
-</g></svg></div><div class="wrap">
+<section id="realisations"><div class="decor-vine left" aria-hidden="true">
+<svg viewBox="0 0 220 760" preserveAspectRatio="none">
+  <g class="vine-art">
+    <path class="vine-path" d="M205 -30 C145 45 35 80 85 170 C130 250 38 300 72 385 C105 470 22 535 58 620 C78 665 45 715 12 790"/>
+    <path class="vine-branch" d="M88 168 C58 151 33 123 18 94 M87 169 C128 155 158 128 176 96 M72 384 C38 368 17 344 5 317 M72 384 C109 365 139 338 158 306 M58 620 C29 603 11 578 2 552"/>
+    <g class="rose r1" transform="translate(63 176)"><path d="M0 17 C-25 9 -23 -17 -5 -22 C-15 -38 9 -49 20 -30 C35 -44 53 -24 41 -8 C58 0 44 24 24 18 C17 36 -6 35 0 17Z"/><path class="rose-inner" d="M-8 -5 C-2 -22 18 -24 26 -9 C18 -14 8 -7 11 3 C3 -1 -3 1 -8 -5Z"/></g>
+    <g class="rose r2" transform="translate(71 391)"><path d="M0 17 C-25 9 -23 -17 -5 -22 C-15 -38 9 -49 20 -30 C35 -44 53 -24 41 -8 C58 0 44 24 24 18 C17 36 -6 35 0 17Z"/><path class="rose-inner" d="M-8 -5 C-2 -22 18 -24 26 -9 C18 -14 8 -7 11 3 C3 -1 -3 1 -8 -5Z"/></g>
+    <g class="rose r3" transform="translate(55 626)"><path d="M0 17 C-25 9 -23 -17 -5 -22 C-15 -38 9 -49 20 -30 C35 -44 53 -24 41 -8 C58 0 44 24 24 18 C17 36 -6 35 0 17Z"/><path class="rose-inner" d="M-8 -5 C-2 -22 18 -24 26 -9 C18 -14 8 -7 11 3 C3 -1 -3 1 -8 -5Z"/></g>
+    <g class="leaf l1"><path d="M0 0 C18 -18 37 -18 48 -4 C30 11 14 13 0 0Z"/><path d="M4 -1 L41 -5"/></g>
+    <g class="leaf l2"><path d="M0 0 C-18 -18 -37 -18 -48 -4 C-30 11 -14 13 0 0Z"/><path d="M-4 -1 L-41 -5"/></g>
+    <g class="leaf l3"><path d="M0 0 C18 -18 37 -18 48 -4 C30 11 14 13 0 0Z"/><path d="M4 -1 L41 -5"/></g>
+    <g class="leaf l4"><path d="M0 0 C-18 -18 -37 -18 -48 -4 C-30 11 -14 13 0 0Z"/><path d="M-4 -1 L-41 -5"/></g>
+  </g>
+</svg></div>
+<div class="decor-vine right" aria-hidden="true">
+<svg viewBox="0 0 220 760" preserveAspectRatio="none">
+  <g class="vine-art">
+    <path class="vine-path" d="M15 -30 C75 45 185 80 135 170 C90 250 182 300 148 385 C115 470 198 535 162 620 C142 665 175 715 208 790"/>
+    <path class="vine-branch" d="M132 168 C162 151 187 123 202 94 M133 169 C92 155 62 128 44 96 M148 384 C182 368 203 344 215 317 M148 384 C111 365 81 338 62 306 M162 620 C191 603 209 578 218 552"/>
+    <g class="rose r1" transform="translate(157 176)"><path d="M0 17 C-25 9 -23 -17 -5 -22 C-15 -38 9 -49 20 -30 C35 -44 53 -24 41 -8 C58 0 44 24 24 18 C17 36 -6 35 0 17Z"/><path class="rose-inner" d="M-8 -5 C-2 -22 18 -24 26 -9 C18 -14 8 -7 11 3 C3 -1 -3 1 -8 -5Z"/></g>
+    <g class="rose r2" transform="translate(149 391)"><path d="M0 17 C-25 9 -23 -17 -5 -22 C-15 -38 9 -49 20 -30 C35 -44 53 -24 41 -8 C58 0 44 24 24 18 C17 36 -6 35 0 17Z"/><path class="rose-inner" d="M-8 -5 C-2 -22 18 -24 26 -9 C18 -14 8 -7 11 3 C3 -1 -3 1 -8 -5Z"/></g>
+    <g class="rose r3" transform="translate(165 626)"><path d="M0 17 C-25 9 -23 -17 -5 -22 C-15 -38 9 -49 20 -30 C35 -44 53 -24 41 -8 C58 0 44 24 24 18 C17 36 -6 35 0 17Z"/><path class="rose-inner" d="M-8 -5 C-2 -22 18 -24 26 -9 C18 -14 8 -7 11 3 C3 -1 -3 1 -8 -5Z"/></g>
+    <g class="leaf l1"><path d="M0 0 C18 -18 37 -18 48 -4 C30 11 14 13 0 0Z"/><path d="M4 -1 L41 -5"/></g>
+    <g class="leaf l2"><path d="M0 0 C-18 -18 -37 -18 -48 -4 C-30 11 -14 13 0 0Z"/><path d="M-4 -1 L-41 -5"/></g>
+    <g class="leaf l3"><path d="M0 0 C18 -18 37 -18 48 -4 C30 11 14 13 0 0Z"/><path d="M4 -1 L41 -5"/></g>
+    <g class="leaf l4"><path d="M0 0 C-18 -18 -37 -18 -48 -4 C-30 11 -14 13 0 0Z"/><path d="M-4 -1 L-41 -5"/></g>
+  </g>
+</svg></div><div class="wrap">
 <div class="section-head reveal"><div><div class="eyebrow">Galeries séparées</div><h2 class="display">L’encre<br>en images.</h2></div><p>Choisis un artiste pour découvrir son travail. Les galeries restent séparées pour ne jamais mélanger les univers.</p></div>
 <div class="gallery-tools reveal"><button class="filter active" data-filter="all">Tous</button><button class="filter" data-filter="smik">Smik</button><button class="filter" data-filter="looping">Looping</button></div>
 <div class="gallery" id="gallery">
-<div class="card" data-artist="looping" data-caption="Looping · fineline"><img src="looping-01.jpg" alt="Tatouage fineline réalisé par Looping" loading="lazy"><div class="meta">Looping · fineline</div></div>
-<div class="card" data-artist="looping" data-caption="Looping · fineline"><img src="looping-02.jpg" alt="Tatouage fineline réalisé par Looping" loading="lazy"><div class="meta">Looping · fineline</div></div>
-<div class="card" data-artist="looping" data-caption="Looping · fineline"><img src="looping-03.jpg" alt="Tatouage fineline réalisé par Looping" loading="lazy"><div class="meta">Looping · fineline</div></div>
-<div class="card" data-artist="looping" data-caption="Looping · fineline"><img src="looping-04.jpg" alt="Tatouage fineline réalisé par Looping" loading="lazy"><div class="meta">Looping · fineline</div></div>
-<div class="card" data-artist="looping" data-caption="Looping · fineline"><img src="looping-05.jpg" alt="Tatouage fineline réalisé par Looping" loading="lazy"><div class="meta">Looping · fineline</div></div>
-<div class="card" data-artist="looping" data-caption="Looping · fineline"><img src="looping-06.jpg" alt="Tatouage fineline réalisé par Looping" loading="lazy"><div class="meta">Looping · fineline</div></div>
-<div class="card" data-artist="looping" data-caption="Looping · fineline"><img src="looping-07.jpg" alt="Tatouage fineline réalisé par Looping" loading="lazy"><div class="meta">Looping · fineline</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-48920.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-48914.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-48975.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-48947.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-48944.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-48897.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-48932.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-48926.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-48935.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-48984.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-48929.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-49001.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-48938.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-48923.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-48966.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-48838.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-48981.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-48963.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-48917.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-48960.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-48906.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-48957.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-48835.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-48832.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-48807.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-48814.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-48817.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-48847.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-48850.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-49007.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-48909.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-48891.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-49004.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-48856.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-48853.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-48864.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-49016.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-49022.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-49025.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-48820.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-48879.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-48888.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-48885.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-48882.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-48876.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-48870.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-48867.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-48823.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-48826.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-48829.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
-<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="smik-48859.jpg" alt="Tatouage réalisé par Smik" loading="lazy"><div class="meta">Smik · réalisation</div></div>
+<div class="card" data-artist="looping" data-caption="Looping · fineline"><img src="49065.jpg" alt="Tatouage fineline réalisé par Looping" loading="lazy"></div>
+<div class="card" data-artist="looping" data-caption="Looping · fineline"><img src="49066.jpg" alt="Tatouage fineline réalisé par Looping" loading="lazy"></div>
+<div class="card" data-artist="looping" data-caption="Looping · fineline"><img src="49067.jpg" alt="Tatouage fineline réalisé par Looping" loading="lazy"></div>
+<div class="card" data-artist="looping" data-caption="Looping · fineline"><img src="49068.jpg" alt="Tatouage fineline réalisé par Looping" loading="lazy"></div>
+<div class="card" data-artist="looping" data-caption="Looping · fineline"><img src="49070.jpg" alt="Tatouage fineline réalisé par Looping" loading="lazy"></div>
+<div class="card" data-artist="looping" data-caption="Looping · fineline"><img src="49071.jpg" alt="Tatouage fineline réalisé par Looping" loading="lazy"></div>
+<div class="card" data-artist="looping" data-caption="Looping · fineline"><img src="49063.jpg" alt="Tatouage fineline réalisé par Looping" loading="lazy"></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48920.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48914.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48975.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48947.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48944.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48897.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48932.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48926.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48935.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48984.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48929.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="49001.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48938.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48923.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48966.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48838.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48981.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48963.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48917.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48960.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48906.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48957.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48835.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48832.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
+
+
+
+
+
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="49007.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48909.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="49004.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
+
+
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48864.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
+
+
+
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48867.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48823.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48826.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48829.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
+<div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48859.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
 </div></div></section>
 
-<section id="studio">
-<div class="botanical-vine right vine-v9" aria-hidden="true">
-<svg viewBox="0 0 180 720" role="presentation" transform="translate(180 0) scale(-1 1)">
-<defs>
- <linearGradient id="vgright9" x1="0" y1="0" x2="1" y2="1">
-  <stop offset="0" stop-color="#3b236f"/><stop offset=".48" stop-color="#7b45d8"/><stop offset="1" stop-color="#c044c8"/>
- </linearGradient>
- <filter id="glright9" x="-40%" y="-20%" width="180%" height="140%"><feGaussianBlur stdDeviation="1.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-</defs>
-<g class="vine-drawing" filter="url(#glright9)">
- <path class="vine-main" d="M154 -30 C45 70 168 145 72 230 C8 287 132 348 48 438 C4 486 66 555 26 750"/>
- <path class="vine-branch" d="M89 176 C44 154 26 120 12 88"/>
- <path class="vine-branch" d="M72 230 C118 214 146 182 168 150"/>
- <path class="vine-branch" d="M48 438 C101 420 136 390 160 350"/>
- <path class="vine-branch" d="M40 535 C87 520 125 492 154 454"/>
- <g class="rose r1" transform="translate(71 228) scale(1.05)">
-   <circle class="rose-core" r="17"/><path d="M-16 1 C-15-16 -2-22 5-12 C17-18 23-2 12 6 C10 19-8 19-16 1Z"/>
-   <path d="M-9-1 C-3-12 9-10 10-1 C11 8-3 12-9 4Z"/>
- </g>
- <g class="rose r2" transform="translate(154 150) scale(.72)">
-   <circle class="rose-core" r="16"/><path d="M-15 1 C-14-15-2-21 5-11 C16-17 21-1 11 7 C9 17-8 18-15 1Z"/><path d="M-8-1 C-2-11 8-9 9-1 C10 7-2 11-8 4Z"/>
- </g>
- <g class="rose r3" transform="translate(48 438) scale(.82)">
-   <circle class="rose-core" r="16"/><path d="M-15 1 C-14-15-2-21 5-11 C16-17 21-1 11 7 C9 17-8 18-15 1Z"/><path d="M-8-1 C-2-11 8-9 9-1 C10 7-2 11-8 4Z"/>
- </g>
- <g class="leaf l1" transform="translate(35 92) rotate(-25)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
- <g class="leaf l2" transform="translate(120 185) rotate(35)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
- <g class="leaf l3" transform="translate(78 350) rotate(-28)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
- <g class="leaf l4" transform="translate(120 500) rotate(30)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
- <g class="leaf l5" transform="translate(25 590) rotate(-20)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
-</g></svg></div><div class="wrap">
+<section id="studio"><div class="decor-vine left" aria-hidden="true">
+<svg viewBox="0 0 220 760" preserveAspectRatio="none">
+  <g class="vine-art">
+    <path class="vine-path" d="M205 -30 C145 45 35 80 85 170 C130 250 38 300 72 385 C105 470 22 535 58 620 C78 665 45 715 12 790"/>
+    <path class="vine-branch" d="M88 168 C58 151 33 123 18 94 M87 169 C128 155 158 128 176 96 M72 384 C38 368 17 344 5 317 M72 384 C109 365 139 338 158 306 M58 620 C29 603 11 578 2 552"/>
+    <g class="rose r1" transform="translate(63 176)"><path d="M0 17 C-25 9 -23 -17 -5 -22 C-15 -38 9 -49 20 -30 C35 -44 53 -24 41 -8 C58 0 44 24 24 18 C17 36 -6 35 0 17Z"/><path class="rose-inner" d="M-8 -5 C-2 -22 18 -24 26 -9 C18 -14 8 -7 11 3 C3 -1 -3 1 -8 -5Z"/></g>
+    <g class="rose r2" transform="translate(71 391)"><path d="M0 17 C-25 9 -23 -17 -5 -22 C-15 -38 9 -49 20 -30 C35 -44 53 -24 41 -8 C58 0 44 24 24 18 C17 36 -6 35 0 17Z"/><path class="rose-inner" d="M-8 -5 C-2 -22 18 -24 26 -9 C18 -14 8 -7 11 3 C3 -1 -3 1 -8 -5Z"/></g>
+    <g class="rose r3" transform="translate(55 626)"><path d="M0 17 C-25 9 -23 -17 -5 -22 C-15 -38 9 -49 20 -30 C35 -44 53 -24 41 -8 C58 0 44 24 24 18 C17 36 -6 35 0 17Z"/><path class="rose-inner" d="M-8 -5 C-2 -22 18 -24 26 -9 C18 -14 8 -7 11 3 C3 -1 -3 1 -8 -5Z"/></g>
+    <g class="leaf l1"><path d="M0 0 C18 -18 37 -18 48 -4 C30 11 14 13 0 0Z"/><path d="M4 -1 L41 -5"/></g>
+    <g class="leaf l2"><path d="M0 0 C-18 -18 -37 -18 -48 -4 C-30 11 -14 13 0 0Z"/><path d="M-4 -1 L-41 -5"/></g>
+    <g class="leaf l3"><path d="M0 0 C18 -18 37 -18 48 -4 C30 11 14 13 0 0Z"/><path d="M4 -1 L41 -5"/></g>
+    <g class="leaf l4"><path d="M0 0 C-18 -18 -37 -18 -48 -4 C-30 11 -14 13 0 0Z"/><path d="M-4 -1 L-41 -5"/></g>
+  </g>
+</svg></div>
+<div class="decor-vine right" aria-hidden="true">
+<svg viewBox="0 0 220 760" preserveAspectRatio="none">
+  <g class="vine-art">
+    <path class="vine-path" d="M15 -30 C75 45 185 80 135 170 C90 250 182 300 148 385 C115 470 198 535 162 620 C142 665 175 715 208 790"/>
+    <path class="vine-branch" d="M132 168 C162 151 187 123 202 94 M133 169 C92 155 62 128 44 96 M148 384 C182 368 203 344 215 317 M148 384 C111 365 81 338 62 306 M162 620 C191 603 209 578 218 552"/>
+    <g class="rose r1" transform="translate(157 176)"><path d="M0 17 C-25 9 -23 -17 -5 -22 C-15 -38 9 -49 20 -30 C35 -44 53 -24 41 -8 C58 0 44 24 24 18 C17 36 -6 35 0 17Z"/><path class="rose-inner" d="M-8 -5 C-2 -22 18 -24 26 -9 C18 -14 8 -7 11 3 C3 -1 -3 1 -8 -5Z"/></g>
+    <g class="rose r2" transform="translate(149 391)"><path d="M0 17 C-25 9 -23 -17 -5 -22 C-15 -38 9 -49 20 -30 C35 -44 53 -24 41 -8 C58 0 44 24 24 18 C17 36 -6 35 0 17Z"/><path class="rose-inner" d="M-8 -5 C-2 -22 18 -24 26 -9 C18 -14 8 -7 11 3 C3 -1 -3 1 -8 -5Z"/></g>
+    <g class="rose r3" transform="translate(165 626)"><path d="M0 17 C-25 9 -23 -17 -5 -22 C-15 -38 9 -49 20 -30 C35 -44 53 -24 41 -8 C58 0 44 24 24 18 C17 36 -6 35 0 17Z"/><path class="rose-inner" d="M-8 -5 C-2 -22 18 -24 26 -9 C18 -14 8 -7 11 3 C3 -1 -3 1 -8 -5Z"/></g>
+    <g class="leaf l1"><path d="M0 0 C18 -18 37 -18 48 -4 C30 11 14 13 0 0Z"/><path d="M4 -1 L41 -5"/></g>
+    <g class="leaf l2"><path d="M0 0 C-18 -18 -37 -18 -48 -4 C-30 11 -14 13 0 0Z"/><path d="M-4 -1 L-41 -5"/></g>
+    <g class="leaf l3"><path d="M0 0 C18 -18 37 -18 48 -4 C30 11 14 13 0 0Z"/><path d="M4 -1 L41 -5"/></g>
+    <g class="leaf l4"><path d="M0 0 C-18 -18 -37 -18 -48 -4 C-30 11 -14 13 0 0Z"/><path d="M-4 -1 L-41 -5"/></g>
+  </g>
+</svg></div><div class="wrap">
 <div class="section-head reveal"><div><div class="eyebrow">Purple Roses Tattoo</div><h2 class="display">Le shop.</h2></div><p>Retrouve-nous au cœur de Saint-Léonard-de-Noblat. Un lieu avec sa propre identité, pensé autour du tatouage, du piercing et de la culture du studio.</p></div>
-<div class="studio-grid reveal"><div class="studio-main"><img src="studio-vitrine.jpg" alt="Vitrine de Purple Roses Tattoo"><div class="studio-label"><div class="eyebrow">3 rue des Sapeurs-Pompiers</div><h3 class="display">Saint-Léonard</h3></div></div><div class="studio-side"><img src="studio-machine.jpg" alt="Machine et enseigne Tattoo du studio" loading="lazy"><img src="studio-interieur.jpg" alt="Intérieur de Purple Roses Tattoo" loading="lazy"></div></div>
+<div class="studio-grid reveal"><div class="studio-main"><img src="49082.jpg" alt="Vitrine de Purple Roses Tattoo"><div class="studio-label"><div class="eyebrow">3 rue des Sapeurs-Pompiers</div><h3 class="display">Saint-Léonard</h3></div></div><div class="studio-side"><img src="49083.jpg" alt="Machine et enseigne Tattoo du studio" loading="lazy"><img src="49084.jpg" alt="Intérieur de Purple Roses Tattoo" loading="lazy"></div></div>
 <div class="location"><div class="info reveal"><div class="info-row"><span class="info-label">Adresse</span>3 rue des Sapeurs-Pompiers<br>87400 Saint-Léonard-de-Noblat</div><div class="info-row"><span class="info-label">Téléphone</span><a href="tel:+33767971675">07 67 97 16 75</a></div><div class="info-row"><span class="info-label">E-mail</span><a href="mailto:purplerosestattoo@outlook.fr">purplerosestattoo@outlook.fr</a></div><div class="info-row"><span class="info-label">Réseaux</span><a href="https://instagram.com/purplerosestattoo" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.tiktok.com/@purplerosestattoo" target="_blank" rel="noopener">TikTok</a> · <a href="https://www.facebook.com/purplerosestattoo" target="_blank" rel="noopener">Facebook</a></div><div class="info-row"><span class="info-label">Horaires</span>Lundi : fermé · Mardi à vendredi : 09h–12h / 16h–19h · Samedi et dimanche : 08h–20h.</div><div class="info-row"><span class="info-label">Rendez-vous</span>Formulaire, e-mail, téléphone, Instagram ou Messenger.</div></div><div class="map reveal"><iframe title="Carte Google Maps — Purple Roses Tattoo" src="https://www.google.com/maps?q=Purple%20Roses%20Tattoo%2C%203%20Rue%20des%20Sapeurs%20Pompiers%2C%2087400%20Saint-L%C3%A9onard-de-Noblat&output=embed" loading="lazy"></iframe></div></div>
 </div></section>
 
-<section id="reservation" class="booking">
-<div class="botanical-vine left vine-v10" aria-hidden="true">
-<svg viewBox="0 0 180 720" role="presentation">
-<defs>
- <linearGradient id="vgleft10" x1="0" y1="0" x2="1" y2="1">
-  <stop offset="0" stop-color="#3b236f"/><stop offset=".48" stop-color="#7b45d8"/><stop offset="1" stop-color="#c044c8"/>
- </linearGradient>
- <filter id="glleft10" x="-40%" y="-20%" width="180%" height="140%"><feGaussianBlur stdDeviation="1.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-</defs>
-<g class="vine-drawing" filter="url(#glleft10)">
- <path class="vine-main" d="M154 -30 C45 70 168 145 72 230 C8 287 132 348 48 438 C4 486 66 555 26 750"/>
- <path class="vine-branch" d="M89 176 C44 154 26 120 12 88"/>
- <path class="vine-branch" d="M72 230 C118 214 146 182 168 150"/>
- <path class="vine-branch" d="M48 438 C101 420 136 390 160 350"/>
- <path class="vine-branch" d="M40 535 C87 520 125 492 154 454"/>
- <g class="rose r1" transform="translate(71 228) scale(1.05)">
-   <circle class="rose-core" r="17"/><path d="M-16 1 C-15-16 -2-22 5-12 C17-18 23-2 12 6 C10 19-8 19-16 1Z"/>
-   <path d="M-9-1 C-3-12 9-10 10-1 C11 8-3 12-9 4Z"/>
- </g>
- <g class="rose r2" transform="translate(154 150) scale(.72)">
-   <circle class="rose-core" r="16"/><path d="M-15 1 C-14-15-2-21 5-11 C16-17 21-1 11 7 C9 17-8 18-15 1Z"/><path d="M-8-1 C-2-11 8-9 9-1 C10 7-2 11-8 4Z"/>
- </g>
- <g class="rose r3" transform="translate(48 438) scale(.82)">
-   <circle class="rose-core" r="16"/><path d="M-15 1 C-14-15-2-21 5-11 C16-17 21-1 11 7 C9 17-8 18-15 1Z"/><path d="M-8-1 C-2-11 8-9 9-1 C10 7-2 11-8 4Z"/>
- </g>
- <g class="leaf l1" transform="translate(35 92) rotate(-25)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
- <g class="leaf l2" transform="translate(120 185) rotate(35)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
- <g class="leaf l3" transform="translate(78 350) rotate(-28)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
- <g class="leaf l4" transform="translate(120 500) rotate(30)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
- <g class="leaf l5" transform="translate(25 590) rotate(-20)"><path d="M0 0 C12-19 31-19 39-4 C26 10 11 11 0 0Z"/><path d="M3 0 L33-4"/></g>
-</g></svg></div><div class="wrap booking-grid"><div class="reveal"><div class="eyebrow">Réservation</div><h2 class="display">On parle<br>du projet ?</h2><p class="muted">Décris-nous ton idée. Pour une création ou un cover-up, quelques photos et informations permettent de mieux comprendre le projet. Pour un cover-up, il faudra ensuite passer au shop afin de voir le tatouage directement.</p><p class="muted">Le piercing est réalisé par Smik.</p></div>
+<section id="reservation" class="booking"><div class="wrap booking-grid"><div class="reveal"><div class="eyebrow">Réservation</div><h2 class="display">On parle<br>du projet ?</h2><p class="muted">Décris-nous ton idée. Pour une création ou un cover-up, quelques photos et informations permettent de mieux comprendre le projet. Pour un cover-up, il faudra ensuite passer au shop afin de voir le tatouage directement.</p><p class="muted">Le piercing est réalisé par Smik.</p></div>
 <form class="form reveal" id="bookingForm"><div class="row"><input name="name" required placeholder="Nom / prénom"><input name="email" required type="email" placeholder="E-mail"></div><div class="row"><input name="phone" placeholder="Téléphone"><select name="type" required><option value="">Type de projet</option><option>Flash</option><option>Création personnalisée</option><option>Cover-up</option><option>Piercing</option><option>Autre</option></select></div><select name="artist"><option value="">Artiste (si besoin)</option><option>Smik</option><option>Looping</option><option>Je ne sais pas encore</option></select><textarea name="message" required placeholder="Parle-nous de ton projet… taille, emplacement, idée, références, contraintes, etc."></textarea><small>En envoyant, ton application e-mail s’ouvrira avec les informations de ta demande pré-remplies.</small><button class="btn primary" type="submit">ENVOYER LA DEMANDE</button></form>
 </div></section>
 </main>
@@ -721,13 +664,19 @@ body:before{transform:translateY(var(--bg-shift,0px));transition:transform .08s 
   }, { threshold: 0.08, rootMargin: '0px 0px -5% 0px' });
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-  // Botanical vines: enter from the side, draw themselves, then keep moving subtly.
-  const botanicalVines = [...document.querySelectorAll('.botanical-vine')];
+  // Decorative vines: draw themselves when their section enters the viewport, then sway subtly.
+  const botanicalVines = [...document.querySelectorAll('.decor-vine')];
   const vineObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('show');
+      if (entry.isIntersecting) {
+        entry.target.classList.remove('show');
+        void entry.target.offsetWidth;
+        entry.target.classList.add('show');
+      } else {
+        entry.target.classList.remove('show');
+      }
     });
-  }, { threshold: 0.02, rootMargin: '12% 0px 12% 0px' });
+  }, { threshold: 0.06, rootMargin: '0px 0px -8% 0px' });
   botanicalVines.forEach(v => vineObserver.observe(v));
 
   // Gallery cards animate one by one.
