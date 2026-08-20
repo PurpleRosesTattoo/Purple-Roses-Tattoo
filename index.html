@@ -189,525 +189,50 @@ section > .wrap,.hero > .wrap{position:relative;z-index:3}
 }
 
 </style>
-<style id="final-fix">
-/* FINAL POLISH — layout, visibility and real motion */
-.scroll-progress{position:fixed;left:0;top:0;width:100%;height:2px;z-index:1000;background:rgba(255,255,255,.05);pointer-events:none}
-.scroll-progress span{display:block;width:100%;height:100%;transform:scaleX(0);transform-origin:left;background:linear-gradient(90deg,var(--purple),var(--pink),var(--cyan));box-shadow:0 0 12px rgba(192,68,200,.55)}
-
-.hero{min-height:100svh}
-.hero-art{z-index:2}
-.hero-logo{position:relative;z-index:4;mix-blend-mode:screen;filter:drop-shadow(0 0 28px rgba(124,69,216,.35));will-change:transform}
-.hero-art:before{content:"";position:absolute;width:min(580px,105%);height:min(580px,105%);border-radius:50%;background:radial-gradient(circle,rgba(81,64,176,.18),rgba(5,6,16,0) 68%);z-index:1;pointer-events:none}
-.orb{z-index:2}
-.orb.two{z-index:2}
-
-.botanical-vine{z-index:1!important;overflow:visible;will-change:transform}
-.botanical-vine.left{left:-48px}
-.botanical-vine.right{right:-48px}
-.botanical-vine .vine-drawing{will-change:transform;transform:translate3d(var(--vine-x,0px),var(--vine-y,0px),0);transform-origin:50% 50%;rotate:var(--vine-rotate,0deg)}
-.botanical-vine .vine-main,.botanical-vine .vine-branch{stroke-width:4.8}
-.botanical-vine .vine-branch{stroke-width:2.4}
-.botanical-vine .rose,.botanical-vine .leaf{filter:drop-shadow(0 0 9px rgba(192,68,200,.35));transform-box:fill-box;transform-origin:center}
-.botanical-vine.show .vine-drawing{animation:vineSway 5.5s ease-in-out infinite}
-.botanical-vine.show .vine-main{animation:drawVine 2.1s cubic-bezier(.2,.7,.2,1) forwards}
-.botanical-vine.show .vine-branch{animation:drawVine 1.4s .4s cubic-bezier(.2,.7,.2,1) forwards}
-.botanical-vine.show .rose{animation:rosePop .75s .65s cubic-bezier(.16,1,.3,1) both,roseBreath 3.8s 1.7s ease-in-out infinite}
-.botanical-vine.show .rose.r2{animation-delay:.9s,2s}
-.botanical-vine.show .rose.r3{animation-delay:1.1s,2.2s}
-.botanical-vine.show .leaf{animation:leafPop .65s .8s cubic-bezier(.16,1,.3,1) both,leafSway 3.2s 1.5s ease-in-out infinite}
-.botanical-vine.show .leaf.l2{animation-delay:1s,1.8s}.botanical-vine.show .leaf.l3{animation-delay:1.2s,2s}.botanical-vine.show .leaf.l4{animation-delay:1.4s,2.2s}.botanical-vine.show .leaf.l5{animation-delay:1.6s,2.4s}
-@keyframes vineSway{0%,100%{rotate:-1deg}50%{rotate:1.3deg}}
-@keyframes roseBreath{0%,100%{scale:1;filter:drop-shadow(0 0 8px rgba(192,68,200,.28))}50%{scale:1.055;filter:drop-shadow(0 0 18px rgba(192,68,200,.55))}}
-@keyframes leafSway{0%,100%{rotate:-1deg}50%{rotate:3deg}}
-@keyframes sectionGlow{0%,100%{opacity:.18;transform:scale(.92)}50%{opacity:.45;transform:scale(1.06)}}
-
-.reveal{will-change:opacity,transform}
-.reveal.show{animation:revealUp .9s cubic-bezier(.16,1,.3,1) both}
-@keyframes revealUp{from{opacity:0;transform:translate3d(0,55px,0) scale(.97)}to{opacity:1;transform:none}}
-.section-head.reveal.show h2{animation:titleRise 1s .08s cubic-bezier(.16,1,.3,1) both}
-@keyframes titleRise{from{opacity:0;transform:translate3d(0,25px,0);letter-spacing:.08em}to{opacity:1;transform:none;letter-spacing:.02em}}
-
-.gallery .card{opacity:0;transform:translate3d(0,35px,0) scale(.97);transition:transform .5s cubic-bezier(.16,1,.3,1),opacity .7s ease,box-shadow .5s ease}
-.gallery.gallery-ready .card{opacity:1;transform:none}
-.gallery.gallery-ready .card:nth-child(3n+1){transition-delay:.04s}.gallery.gallery-ready .card:nth-child(3n+2){transition-delay:.12s}.gallery.gallery-ready .card:nth-child(3n){transition-delay:.2s}
-.gallery .card:hover{transform:translate3d(0,-7px,0) rotate(.2deg)!important}
-.card img{will-change:transform}
-.card .meta{left:auto;right:10px;bottom:10px;width:max-content;max-width:calc(100% - 20px);padding:7px 9px;border-radius:999px;background:rgba(5,6,16,.72);font-size:8px;letter-spacing:.12em;line-height:1;white-space:nowrap}
-.card:hover .meta{background:rgba(81,64,176,.78)}
-
-.artist,.studio-main,.flash-main{will-change:transform}
-.artist:after,.studio-main:before,.flash-main:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.07) 50%,transparent 65%);transform:translateX(-120%);z-index:5}
-.artist:hover:after,.studio-main:hover:before,.flash-main:hover:after{animation:sweep 1.1s ease}
-@keyframes sweep{to{transform:translateX(120%)}}
-
-.hero-copy,.story-copy,.section-head p{position:relative;z-index:4}
-.hero-actions{position:relative;z-index:5}
-.btn{z-index:5}
-.btn.primary{box-shadow:0 0 0 1px rgba(182,55,198,.08),0 14px 45px rgba(81,64,176,.3)}
-.btn.primary:after{content:"";position:absolute;inset:-2px;border-radius:inherit;border:1px solid rgba(255,255,255,.12);opacity:0;animation:buttonPulse 2.8s 1s ease-in-out infinite}
-@keyframes buttonPulse{0%,100%{opacity:0;transform:scale(1)}50%{opacity:1;transform:scale(1.035)}}
-
-.flash-main img,.studio-main img,.studio-side img,.artist-photo{will-change:transform}
-.flash-main,.studio-main,.studio-side img,.artist,.card{overflow:hidden}
-
-.form .btn{cursor:pointer}
-.form .btn:hover{transform:translateY(-2px)}
-
-@media(max-width:700px){
-  .wrap{width:calc(100% - 28px)}
-  .hero{padding-top:92px;padding-bottom:55px}
-  .hero-grid{gap:8px}
-  .hero h1{font-size:clamp(54px,17vw,70px);line-height:.84;letter-spacing:.01em;margin:12px 0 18px}
-  .hero h1 span{white-space:nowrap}
-  .hero-copy{font-size:15px;line-height:1.6}
-  .hero-art{height:315px;order:-1}
-  .hero-logo{width:min(88vw,390px)}
-  .orb{width:300px;height:115px}.orb.two{width:340px;height:135px}
-  section{padding:72px 0}
-  .section-head{margin-bottom:32px}
-  .section-head h2,.story h2,.booking h2{font-size:clamp(48px,14vw,64px);line-height:.86;letter-spacing:.01em}
-  .section-head p{font-size:14px;line-height:1.6}
-  .artists{gap:14px}
-  .artist{min-height:560px}
-  .artist-copy h3{font-size:55px}
-  .artist-copy p{font-size:13px}
-  .botanical-vine{width:86px!important;opacity:.72}
-  .botanical-vine.left{left:-38px}.botanical-vine.right{right:-38px}
-  .hero .botanical-vine{width:75px!important;opacity:.48}
-  .gallery{columns:2 140px;column-gap:10px}
-  .gallery .card{margin-bottom:10px}
-  .card .meta{font-size:7px;padding:6px 7px;right:7px;bottom:7px}
-  .flash-board{gap:12px}
-  .flash-note{padding:24px;min-height:300px}
-  .flash-note h3{font-size:50px}
-  .studio-main{min-height:430px}
-  .studio-side{gap:12px}
-  .location{gap:12px}
-}
-@media(max-width:390px){
-  .hero h1{font-size:54px}
-  .hero-art{height:285px}
-  .hero-actions .btn{width:100%}
-  .artist{min-height:520px}
-  .artist-copy h3{font-size:50px}
-  .section-head h2,.story h2,.booking h2{font-size:47px}
-}
-@media(prefers-reduced-motion:reduce){
-  .scroll-progress{display:none}
-  .botanical-vine.show .vine-drawing,.botanical-vine.show .rose,.botanical-vine.show .leaf{animation:none!important}
-  .reveal.show{animation:none!important}
-  .btn.primary:after{animation:none}
-}
-
-<style>
-body:before{transform:translateY(var(--bg-shift,0px));transition:transform .08s linear}
-.image-missing{min-height:120px;background:linear-gradient(135deg,#111427,#251c3d);object-fit:contain}
-
-/* FINAL BOTANICAL VINES — purple roses + blue stems/leaves, entering from the sides */
-.decor-vine{position:absolute;top:0;bottom:0;width:220px;z-index:1;pointer-events:none;overflow:visible;opacity:0}
-.decor-vine.left{left:-225px}.decor-vine.right{right:-225px}
-.decor-vine svg{width:100%;height:100%;overflow:visible}
-.vine-art{transform-origin:center;transform-box:fill-box}
-.vine-path,.vine-branch{fill:none;stroke:#557bd0;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
-.vine-path{stroke-width:4.2;stroke-dasharray:1300;stroke-dashoffset:1300;filter:drop-shadow(0 0 6px rgba(85,123,208,.3))}
-.vine-branch{stroke-width:2.2;stroke-dasharray:280;stroke-dashoffset:280;opacity:.9}
-.leaf{fill:#5f84d8;stroke:#9bb5ff;stroke-width:1.1;opacity:0;transform-box:fill-box;transform-origin:center}
-.leaf path:last-child{fill:none;stroke:#334f9e;stroke-width:1.2}
-.rose{fill:#7b45d8;stroke:#c45be2;stroke-width:1.2;opacity:0;transform-box:fill-box;transform-origin:center;filter:drop-shadow(0 0 10px rgba(123,69,216,.5))}
-.rose-inner{fill:#35135e;stroke:#d98bf0;stroke-width:1}
-.decor-vine.show{opacity:1}
-.decor-vine.left.show{animation:vineEnterLeft 1.15s cubic-bezier(.16,1,.3,1) both}
-.decor-vine.right.show{animation:vineEnterRight 1.15s cubic-bezier(.16,1,.3,1) both}
-.decor-vine.show .vine-path{animation:vineDraw 1.8s .15s cubic-bezier(.2,.75,.2,1) both}
-.decor-vine.show .vine-branch{animation:vineBranch 1s .75s cubic-bezier(.2,.75,.2,1) both}
-.decor-vine.show .rose{animation:roseBloom .7s 1s cubic-bezier(.16,1,.3,1) both}
-.decor-vine.show .rose.r2{animation-delay:1.18s}.decor-vine.show .rose.r3{animation-delay:1.36s}
-.decor-vine.show .leaf{animation:leafBloom .55s 1.15s cubic-bezier(.16,1,.3,1) both}
-.decor-vine.show .leaf.l2{animation-delay:1.3s}.decor-vine.show .leaf.l3{animation-delay:1.45s}.decor-vine.show .leaf.l4{animation-delay:1.6s}
-@keyframes vineEnterLeft{from{transform:translateX(-150px)}to{transform:translateX(0)}}
-@keyframes vineEnterRight{from{transform:translateX(150px)}to{transform:translateX(0)}}
-@keyframes vineDraw{to{stroke-dashoffset:0}}
-@keyframes vineBranch{to{stroke-dashoffset:0}}
-@keyframes roseBloom{0%{opacity:0;transform:scale(.35) rotate(-15deg)}70%{opacity:1;transform:scale(1.08) rotate(2deg)}100%{opacity:1;transform:scale(1) rotate(0)}}
-@keyframes leafBloom{0%{opacity:0;transform:scale(.2) rotate(-25deg)}100%{opacity:.92;transform:scale(1) rotate(0)}}
-.decor-vine.show .vine-art{animation:vineSway 6s 2.2s ease-in-out infinite}
-@keyframes vineSway{0%,100%{transform:translateX(0) rotate(-.6deg)}50%{transform:translateX(5px) rotate(.8deg)}}
-/* Decorative vines always stay behind copy/cards, so they can never cross or tangle the typography. */
-.hero .decor-vine,.hero .hero-grid,.hero .scrollhint{position:relative}
-.hero .decor-vine{position:absolute;top:7%;bottom:4%;height:auto}
-.hero .decor-vine.left{left:-225px}.hero .decor-vine.right{right:-225px}
-.hero-grid{z-index:3}.hero .decor-vine{z-index:1}
-section > .decor-vine{z-index:1}section > .wrap{position:relative;z-index:3}
-.section-head h2{position:relative;z-index:4}
-@media(max-width:700px){
-  .decor-vine{width:150px}.decor-vine.left{left:-155px}.decor-vine.right{right:-155px}
-  .hero .decor-vine{width:145px}.hero .decor-vine.left{left:-150px}.hero .decor-vine.right{right:-150px}
-}
-@media(prefers-reduced-motion:reduce){.decor-vine.left.show,.decor-vine.right.show,.decor-vine.show .vine-art,.decor-vine.show .vine-path,.decor-vine.show .vine-branch,.decor-vine.show .rose,.decor-vine.show .leaf{animation:none!important}.decor-vine{opacity:.85;transform:none!important}.vine-path,.vine-branch{stroke-dashoffset:0}.rose,.leaf{opacity:1}}
-</style>
-
-<style id="final-v3">
-/* V3 — final visible botanical motion system */
-:root{--vine-blue:#315fbf;--vine-blue2:#4b86e8;--vine-purple:#9b43dc}
-/* remove every previous decorative system */
-.orb,.orn,.decor-vine,.vine-layer,.real-vine,.botanical-vine{display:none!important}
-.hero,.site-section{position:relative;overflow:hidden}
-.hero-grid{position:relative;z-index:5}
-.hero-art{display:grid;place-items:center;position:relative;z-index:5}
-.hero-logo{display:block;width:min(500px,92%);height:auto;max-height:570px;object-fit:contain;margin:auto;mix-blend-mode:normal!important;background:transparent!important;filter:drop-shadow(0 18px 45px rgba(124,69,216,.22))!important;animation:heroFloat 6s ease-in-out infinite}
-@keyframes heroFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-/* New real PNG vines: they begin outside the viewport and enter toward the content. */
-.v3-vine{position:absolute;top:0;bottom:0;width:250px;z-index:2;pointer-events:none;overflow:visible;opacity:1}
-.v3-vine.left{left:-205px}.v3-vine.right{right:-205px}
-.v3-vine img{position:absolute;max-width:none;width:340px;height:auto;opacity:0;will-change:transform,opacity;filter:drop-shadow(0 0 9px rgba(49,95,191,.22));}
-.v3-vine.left img{right:0;transform:translateX(-180px)}
-.v3-vine.right img{left:0;transform:translateX(180px) scaleX(-1)}
-.v3-vine.enter.left img{animation:v3InLeft 1.45s cubic-bezier(.16,1,.3,1) both,v3FloatL 8s 1.45s ease-in-out infinite}
-.v3-vine.enter.right img{animation:v3InRight 1.45s cubic-bezier(.16,1,.3,1) both,v3FloatR 8s 1.45s ease-in-out infinite}
-@keyframes v3InLeft{0%{opacity:0;transform:translateX(-180px)}35%{opacity:.15}100%{opacity:.9;transform:translateX(0)}}
-@keyframes v3InRight{0%{opacity:0;transform:translateX(180px) scaleX(-1)}35%{opacity:.15}100%{opacity:.9;transform:translateX(0) scaleX(-1)}}
-@keyframes v3FloatL{0%,100%{margin-top:0}50%{margin-top:-9px}}
-@keyframes v3FloatR{0%,100%{margin-top:0}50%{margin-top:9px}}
-.v3-vine.hero-v{height:65%;top:18%}.v3-vine.hero-v img{width:310px}
-.v3-vine.tall{height:78%;top:11%}.v3-vine.mid{height:42%;top:48%}.v3-vine.small{height:30%;top:64%}
-.v3-vine.horiz img{width:330px}
-/* Subtle independent motion on content — not simple fade-only reveals. */
-.v3-motion{opacity:0;will-change:transform,opacity}
-.v3-motion.from-left{transform:translate3d(-55px,18px,0)}
-.v3-motion.from-right{transform:translate3d(55px,18px,0)}
-.v3-motion.from-up{transform:translate3d(0,45px,0)}
-.v3-motion.in{opacity:1;transform:none;transition:opacity .8s ease,transform .95s cubic-bezier(.16,1,.3,1)}
-/* Keep typography clear of decorative art */
-section>.wrap{position:relative;z-index:5}
-.section-head h2,.section-head p{position:relative;z-index:6}
-/* compact clickable masonry galleries */
-#flashs .gallery,#realisations .gallery{columns:3 150px;column-gap:14px}
-#flashs .gallery .card,#realisations .gallery .card{break-inside:avoid;margin:0 0 14px;border:0;background:transparent;box-shadow:none;overflow:hidden;cursor:zoom-in;transition:transform .35s ease,filter .35s ease}
-#flashs .gallery .card:hover,#realisations .gallery .card:hover{transform:translateY(-4px) scale(1.015);filter:brightness(1.08)}
-#flashs .gallery .card img,#realisations .gallery .card img{display:block;width:100%;height:auto}
-#flashs .gallery .meta,#realisations .gallery .meta{display:none!important}
-/* no accidental flash items in tattoo gallery */
-@media(max-width:900px){
- .hero-grid{grid-template-columns:1fr;gap:10px}
- .hero-art{order:-1;height:390px}
- .hero-logo{width:min(360px,82vw);max-height:390px}
- .v3-vine{width:145px}.v3-vine.left{left:-115px}.v3-vine.right{right:-115px}
- .v3-vine img{width:240px}.v3-vine.hero-v img{width:225px}
- .v3-vine.horiz img{width:240px}
-}
-@media(max-width:560px){
- .hero{padding:86px 0 58px}
- .hero-art{height:315px}
- .hero-logo{width:min(300px,78vw);max-height:315px}
- .hero h1{font-size:clamp(64px,18vw,82px);line-height:.82;letter-spacing:0}
- .hero-copy{max-width:none;font-size:16px}
- .v3-vine{width:100px}.v3-vine.left{left:-72px}.v3-vine.right{right:-72px}
- .v3-vine img{width:180px}.v3-vine.hero-v img{width:175px}.v3-vine.horiz img{width:190px}
- #flashs .gallery,#realisations .gallery{columns:3 92px!important;column-gap:8px}
- #flashs .gallery .card,#realisations .gallery .card{margin-bottom:8px}
-}
-</style>
 
 
-<style id="actual-v4-layout">
-/* ACTUAL V4 — centered hero + real PNG vines entering from OUTSIDE toward the content */
-.hero-grid{grid-template-columns:1fr!important;justify-items:center;text-align:center;gap:8px;max-width:1100px}
-.hero-grid>div:first-child{width:100%;display:flex;flex-direction:column;align-items:center}
-.hero-art{order:-1!important;width:100%;height:clamp(390px,52vw,570px)!important}
-.hero-logo{width:min(540px,88vw)!important;max-height:none!important;margin:0 auto!important}
-.hero-copy{max-width:720px;margin-left:auto;margin-right:auto}
-.hero-actions{justify-content:center}
-.hero h1{margin-left:auto;margin-right:auto}
 
-/* The vines are intentionally horizontal, thin and subtle. Each one starts outside the section and slides inward. */
-.v4-vine{position:absolute;z-index:1;pointer-events:none;overflow:visible;width:420px;height:190px;opacity:0}
-.v4-vine.left{left:-20px}.v4-vine.right{right:-20px}
-.v4-vine img{position:absolute;width:420px;height:auto;max-width:none;top:0;filter:drop-shadow(0 0 8px rgba(49,95,191,.22));will-change:transform,opacity}
-.v4-vine.left img{left:-430px;transform:translateX(-140px)}
-.v4-vine.right img{right:-430px;transform:translateX(140px) scaleX(-1)}
-.v4-vine.enter{opacity:1}
-.v4-vine.enter.left img{animation:v4InLeft 1.35s cubic-bezier(.16,1,.3,1) both,v4SwayL 7s 1.35s ease-in-out infinite}
-.v4-vine.enter.right img{animation:v4InRight 1.35s cubic-bezier(.16,1,.3,1) both,v4SwayR 7s 1.35s ease-in-out infinite}
-@keyframes v4InLeft{0%{opacity:0;transform:translateX(-140px)}45%{opacity:.45}100%{opacity:.92;transform:translateX(0)}}
-@keyframes v4InRight{0%{opacity:0;transform:translateX(140px) scaleX(-1)}45%{opacity:.45}100%{opacity:.92;transform:translateX(0) scaleX(-1)}}
-@keyframes v4SwayL{0%,100%{margin-top:0;rotate:-.5deg}50%{margin-top:-7px;rotate:.8deg}}
-@keyframes v4SwayR{0%,100%{margin-top:0;rotate:.5deg}50%{margin-top:7px;rotate:-.8deg}}
-.hero .v4-vine{top:auto;height:180px}
-.v4-vine.v1{top:8%}.v4-vine.v2{top:48%}.v4-vine.v3{top:78%}
-section>.v4-vine{height:175px}
-#artistes>.v4-vine.v1{top:7%}#artistes>.v4-vine.v2{top:43%}#artistes>.v4-vine.v3{top:77%}
-#flashs>.v4-vine.v1{top:5%}#flashs>.v4-vine.v2{top:34%}#flashs>.v4-vine.v3{top:72%}
-#realisations>.v4-vine.v1{top:4%}#realisations>.v4-vine.v2{top:42%}#realisations>.v4-vine.v3{top:78%}
-#studio>.v4-vine.v1{top:5%}#studio>.v4-vine.v2{top:48%}#studio>.v4-vine.v3{top:82%}
-#reservation>.v4-vine.v1{top:7%}#reservation>.v4-vine.v2{top:47%}#reservation>.v4-vine.v3{top:82%}
 
-/* Keep the sections compact so vines visually bridge the categories without giant empty gaps. */
-section{padding:92px 0!important}
-.story{gap:38px!important}
-.booking-grid{gap:38px!important}
 
-@media(max-width:700px){
- .hero-grid{gap:0!important}
- .hero-art{height:335px!important}
- .hero-logo{width:min(350px,88vw)!important}
- .hero h1{font-size:clamp(58px,16vw,76px)!important}
- .hero-copy{font-size:15px!important}
- section{padding:70px 0!important}
- .v4-vine{width:300px;height:145px}
- .v4-vine img{width:300px}
- .v4-vine.left img{left:-305px;transform:translateX(-100px)}
- .v4-vine.right img{right:-305px;transform:translateX(100px) scaleX(-1)}
- .v4-vine.enter.left img{animation-name:v4InLeftM,v4SwayL}
- .v4-vine.enter.right img{animation-name:v4InRightM,v4SwayR}
- @keyframes v4InLeftM{0%{opacity:0;transform:translateX(-100px)}45%{opacity:.4}100%{opacity:.9;transform:translateX(0)}}
- @keyframes v4InRightM{0%{opacity:0;transform:translateX(100px) scaleX(-1)}45%{opacity:.4}100%{opacity:.9;transform:translateX(0) scaleX(-1)}}
- section>.v4-vine{height:140px}
-}
-@media(prefers-reduced-motion:reduce){.v4-vine.enter.left img,.v4-vine.enter.right img{animation:none!important;opacity:.9;transform:none!important}}
-</style>
 
-<style id="FINAL-V5-FIXES">
-/* V5: real side-entering PNG vines. Remove the old hidden/disabled animation rule. */
-.v4-vine{display:block!important;position:absolute;z-index:2;pointer-events:none;overflow:visible;width:clamp(220px,38vw,460px);height:190px;opacity:0;will-change:transform,opacity;}
-.v4-vine.left{left:-8px;right:auto}.v4-vine.right{right:-8px;left:auto}
-.v4-vine img{position:absolute!important;top:0;width:clamp(300px,42vw,500px)!important;height:auto!important;max-width:none!important;opacity:0!important;filter:drop-shadow(0 0 9px rgba(49,95,191,.24));will-change:transform,opacity;}
-.v4-vine.left img{left:-72%;right:auto;transform:translate3d(-170px,0,0)!important}
-.v4-vine.right img{right:-72%;left:auto;transform:translate3d(170px,0,0) scaleX(-1)!important}
-.v4-vine.enter{opacity:1!important}
-.v4-vine.enter.left img{animation:v5VineLeft 1.5s cubic-bezier(.16,1,.3,1) both,v5SwayL 7s 1.5s ease-in-out infinite!important}
-.v4-vine.enter.right img{animation:v5VineRight 1.5s cubic-bezier(.16,1,.3,1) both,v5SwayR 7s 1.5s ease-in-out infinite!important}
-@keyframes v5VineLeft{0%{opacity:0!important;transform:translate3d(-170px,0,0)!important}45%{opacity:.35!important}100%{opacity:.92!important;transform:translate3d(0,0,0)!important}}
-@keyframes v5VineRight{0%{opacity:0!important;transform:translate3d(170px,0,0) scaleX(-1)!important}45%{opacity:.35!important}100%{opacity:.92!important;transform:translate3d(0,0,0) scaleX(-1)!important}}
-@keyframes v5SwayL{0%,100%{margin-top:0;rotate:-.6deg}50%{margin-top:-8px;rotate:.8deg}}
-@keyframes v5SwayR{0%,100%{margin-top:0;rotate:.6deg}50%{margin-top:8px;rotate:-.8deg}}
-/* More strategic positions: the vines bridge the space between categories. */
-.hero>.v4-vine.v1{top:14%}.hero>.v4-vine.v2{top:62%}.hero>.v4-vine.v3{top:86%}
-#artistes>.v4-vine.v1{top:10%}#artistes>.v4-vine.v2{top:48%}#artistes>.v4-vine.v3{top:82%}
-#flashs>.v4-vine.v1{top:8%}#flashs>.v4-vine.v2{top:45%}#flashs>.v4-vine.v3{top:80%}
-#realisations>.v4-vine.v1{top:8%}#realisations>.v4-vine.v2{top:48%}#realisations>.v4-vine.v3{top:82%}
-#studio>.v4-vine.v1{top:8%}#studio>.v4-vine.v2{top:48%}#studio>.v4-vine.v3{top:82%}
-#reservation>.v4-vine.v1{top:8%}#reservation>.v4-vine.v2{top:48%}#reservation>.v4-vine.v3{top:82%}
-/* Hero: logo remains untouched, only its displayed size/spacing changes. */
-.hero-grid{grid-template-columns:1fr!important;justify-items:center;text-align:center;gap:18px!important;max-width:1000px;margin-inline:auto}
-.hero-grid>div:first-child{width:100%;display:flex;flex-direction:column;align-items:center;order:2}
-.hero-art{order:1!important;height:auto!important;min-height:0!important;width:100%;display:flex!important;justify-content:center;align-items:center;padding:8px 0 0}
-.hero-logo{width:min(360px,58vw)!important;max-height:390px!important;margin:0 auto!important}
-.hero h1{margin-top:18px!important;margin-bottom:24px!important;text-align:center!important}
-.hero-copy{max-width:720px!important;text-align:center!important}
-.hero-actions{justify-content:center!important}
-/* Artist cards: obvious entrance motion, then a subtle living effect. */
-.artist{overflow:hidden;will-change:transform,opacity;transform-style:preserve-3d}
-.artist .artist-photo{will-change:transform,filter;transition:transform .9s cubic-bezier(.16,1,.3,1),filter .9s ease}
-.artist .artist-copy{will-change:transform,opacity}
-.artist.v5-artist-left{opacity:0;transform:translate3d(-90px,35px,0) rotateY(4deg) scale(.97)}
-.artist.v5-artist-right{opacity:0;transform:translate3d(90px,35px,0) rotateY(-4deg) scale(.97)}
-.artist.v5-artist-left.v5-in,.artist.v5-artist-right.v5-in{opacity:1;transform:none;transition:opacity .8s ease,transform 1s cubic-bezier(.16,1,.3,1)}
-.artist.v5-in .artist-photo{animation:v5PhotoIn 1.1s .15s cubic-bezier(.16,1,.3,1) both}
-.artist.v5-in .artist-copy{animation:v5CopyIn .85s .28s cubic-bezier(.16,1,.3,1) both}
-.artist.v5-in:hover .artist-photo{transform:scale(1.045);filter:brightness(1.08) saturate(1.08)}
-.artist.v5-in:hover{transform:translateY(-5px);transition:transform .35s ease,box-shadow .35s ease;box-shadow:0 18px 60px rgba(124,69,216,.18)}
-@keyframes v5PhotoIn{from{opacity:0;transform:scale(1.12) translateX(-28px);filter:blur(5px)}to{opacity:1;transform:none;filter:none}}
-@keyframes v5CopyIn{from{opacity:0;transform:translateX(35px)}to{opacity:1;transform:none}}
-@media(max-width:700px){
- .v4-vine{width:46vw!important;height:155px!important}
- .v4-vine img{width:330px!important}
- .v4-vine.left{left:-2px}.v4-vine.right{right:-2px}
- .v4-vine.left img{left:-62%!important}.v4-vine.right img{right:-62%!important}
- .hero-art{height:300px!important;padding-top:0}
- .hero-logo{width:min(205px,58vw)!important;max-height:305px!important}
- .hero-grid{gap:8px!important}
- .hero h1{font-size:clamp(58px,16vw,82px)!important;line-height:.84!important;margin-top:12px!important}
- .hero-copy{font-size:16px!important;line-height:1.65!important}
- .artist.v5-artist-left,.artist.v5-artist-right{transform:translate3d(0,55px,0) scale(.98)}
- .artist.v5-artist-left.v5-in,.artist.v5-artist-right.v5-in{transform:none}
-}
-@media(prefers-reduced-motion:reduce){.v4-vine.enter.left img,.v4-vine.enter.right img,.artist.v5-in .artist-photo,.artist.v5-in .artist-copy{animation:none!important}.v4-vine{opacity:.8!important}.v4-vine img{opacity:.8!important;transform:none!important}}
-</style>
-<style id="REAL-SCROLL-MOTION-V6">
-.hero{overflow:hidden!important}
-.hero-grid{width:min(100%,980px)!important;margin-inline:auto!important;grid-template-columns:1fr!important;justify-items:center!important;text-align:center!important;display:grid!important;gap:12px!important}
-.hero-grid>div:first-child{order:2!important;width:100%!important;display:flex!important;flex-direction:column!important;align-items:center!important}
-.hero-art{order:1!important;width:100%!important;height:clamp(320px,48vw,500px)!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:0!important}
-.hero-logo{display:block!important;width:min(390px,62vw)!important;max-height:470px!important;height:auto!important;margin:0 auto!important;object-fit:contain!important;mix-blend-mode:screen!important}
-.hero h1{width:100%!important;text-align:center!important;margin:10px auto 22px!important}
-.hero-copy{width:min(100%,720px)!important;text-align:center!important;margin-inline:auto!important}
-.hero-actions{justify-content:center!important;width:100%!important}
-.edge-vine{position:absolute!important;z-index:1!important;pointer-events:none!important;width:230px!important;height:150px!important;opacity:0!important;overflow:visible!important;will-change:transform,opacity!important}
-.edge-vine img{position:absolute!important;width:300px!important;height:auto!important;max-width:none!important;top:0!important;opacity:0!important;filter:drop-shadow(0 0 8px rgba(64,112,230,.28))!important;will-change:transform,opacity,filter!important}
-.edge-vine.left{left:0!important}.edge-vine.right{right:0!important}
-.edge-vine.left img{left:-210px!important;transform:translate3d(-120px,0,0) rotate(-3deg)!important;transform-origin:left center!important}
-.edge-vine.right img{right:-210px!important;transform:translate3d(120px,0,0) scaleX(-1) rotate(-3deg)!important;transform-origin:right center!important}
-.edge-vine.in{opacity:1!important}
-.edge-vine.in.left img{animation:edgeEnterL 1.35s cubic-bezier(.16,1,.3,1) both,edgeFloatL 6.5s 1.35s ease-in-out infinite!important}
-.edge-vine.in.right img{animation:edgeEnterR 1.35s cubic-bezier(.16,1,.3,1) both,edgeFloatR 6.5s 1.35s ease-in-out infinite!important}
-@keyframes edgeEnterL{0%{opacity:0;transform:translate3d(-120px,0,0) rotate(-7deg);clip-path:inset(0 100% 0 0)}35%{opacity:.35}70%{clip-path:inset(0 28% 0 0)}100%{opacity:.9;transform:translate3d(0,0,0) rotate(-1deg);clip-path:inset(0 0 0 0)}}
-@keyframes edgeEnterR{0%{opacity:0;transform:translate3d(120px,0,0) scaleX(-1) rotate(-7deg);clip-path:inset(0 0 0 100%)}35%{opacity:.35}70%{clip-path:inset(0 0 0 28%)}100%{opacity:.9;transform:translate3d(0,0,0) scaleX(-1) rotate(-1deg);clip-path:inset(0 0 0 0)}}
-@keyframes edgeFloatL{0%,100%{margin-top:0;rotate:-1deg}50%{margin-top:-10px;rotate:1.2deg}}
-@keyframes edgeFloatR{0%,100%{margin-top:0;rotate:1deg}50%{margin-top:10px;rotate:-1.2deg}}
-.edge-vine.ev-a{top:12%!important}.edge-vine.ev-b{top:54%!important}.edge-vine.ev-c{top:82%!important}
-.edge-vine.ev-b img{width:270px!important}.edge-vine.ev-c img{width:245px!important}
-#artistes>.edge-vine.ev-a{top:9%!important}#artistes>.edge-vine.ev-b{top:46%!important}#artistes>.edge-vine.ev-c{top:80%!important}
-#flashs>.edge-vine.ev-a{top:7%!important}#flashs>.edge-vine.ev-b{top:42%!important}#flashs>.edge-vine.ev-c{top:78%!important}
-#realisations>.edge-vine.ev-a{top:6%!important}#realisations>.edge-vine.ev-b{top:43%!important}#realisations>.edge-vine.ev-c{top:79%!important}
-#studio>.edge-vine.ev-a{top:8%!important}#studio>.edge-vine.ev-b{top:48%!important}#studio>.edge-vine.ev-c{top:82%!important}
-#reservation>.edge-vine.ev-a{top:8%!important}#reservation>.edge-vine.ev-b{top:46%!important}#reservation>.edge-vine.ev-c{top:80%!important}
-.scroll-float{--sf:0;transform:translate3d(0,calc(var(--sf) * -18px),0) scale(calc(1 + var(--sf) * .025));will-change:transform}
-.section-head,.story,.artists,.gallery,.studio-grid,.booking-grid{position:relative;z-index:4}
-.artist{perspective:1000px;transform-style:preserve-3d;overflow:hidden!important}
-.artist.v6-left,.artist.v6-right{opacity:0;filter:blur(3px)}
-.artist.v6-left{transform:translate3d(-110px,40px,0) rotateY(5deg) scale(.965)!important}
-.artist.v6-right{transform:translate3d(110px,40px,0) rotateY(-5deg) scale(.965)!important}
-.artist.v6-in{opacity:1;filter:none;transform:none!important;transition:opacity .75s ease,filter .75s ease,transform 1.05s cubic-bezier(.16,1,.3,1)!important}
-.artist.v6-in .artist-photo{animation:artistPhotoTravel 1.35s cubic-bezier(.16,1,.3,1) both!important}
-.artist.v6-in .artist-copy{animation:artistCopyTravel .95s .18s cubic-bezier(.16,1,.3,1) both!important}
-.artist.v6-in .artist-years{animation:artistBadge .75s .42s cubic-bezier(.16,1,.3,1) both!important}
-.artist.v6-in .tag{animation:tagRise .6s calc(.5s + var(--tag-i,0) * .07s) cubic-bezier(.16,1,.3,1) both!important}
-@keyframes artistPhotoTravel{from{opacity:0;transform:scale(1.14) translate3d(-35px,0,0);filter:blur(7px) saturate(.7)}to{opacity:1;transform:scale(1.035) translate3d(0,0,0);filter:none}}
-@keyframes artistCopyTravel{from{opacity:0;transform:translate3d(0,55px,0)}to{opacity:1;transform:none}}
-@keyframes artistBadge{from{opacity:0;transform:translateX(-28px) scale(.9)}to{opacity:1;transform:none}}
-@keyframes tagRise{from{opacity:0;transform:translateY(15px) scale(.9)}to{opacity:1;transform:none}}
-.artist.v6-in:hover .artist-photo{transform:scale(1.06)!important;filter:brightness(1.06) saturate(1.08)!important}
-.artist.v6-in:hover .artist-copy{transform:translate3d(0,-5px,0);transition:transform .35s ease}
-.gallery .card.v6-card{opacity:0;will-change:transform,opacity}
-.gallery .card.v6-card.in{animation:galleryCardIn .9s cubic-bezier(.16,1,.3,1) both}
-@keyframes galleryCardIn{from{opacity:0;transform:translate3d(0,45px,0) rotateX(8deg) scale(.96)}to{opacity:1;transform:none}}
-@media(max-width:700px){
- .hero-art{height:300px!important}.hero-logo{width:min(235px,60vw)!important;max-height:300px!important}.hero-grid{gap:7px!important}.hero h1{font-size:clamp(58px,16vw,82px)!important}
- .edge-vine{width:135px!important;height:120px!important}.edge-vine img{width:220px!important}.edge-vine.ev-b img{width:205px!important}.edge-vine.ev-c img{width:190px!important}
- .edge-vine.left img{left:-150px!important}.edge-vine.right img{right:-150px!important}
-}
-@media(prefers-reduced-motion:reduce){.edge-vine.in img,.artist.v6-in .artist-photo,.artist.v6-in .artist-copy,.artist.v6-in .artist-years,.artist.v6-in .tag,.gallery .card.v6-card.in{animation:none!important}.edge-vine{opacity:.85!important}.edge-vine img{opacity:.85!important;transform:none!important;clip-path:none!important}.scroll-float{transform:none!important}}
-</style>
 
-<style id="FINAL-V7-LIANA-CENTER-MOTION">
-/* V7: visible side-entry vines + true repeatable motion */
-.hero-grid{width:min(100%,980px)!important;margin-inline:auto!important;grid-template-columns:1fr!important;justify-items:center!important;text-align:center!important;display:grid!important;gap:18px!important}
-.hero-grid>div:first-child{order:2!important;width:100%!important;display:flex!important;flex-direction:column!important;align-items:center!important}
-.hero-art{order:1!important;width:100%!important;display:flex!important;align-items:center!important;justify-content:center!important}
-.hero-logo{display:block!important;margin:0 auto!important;position:relative!important;left:auto!important;right:auto!important}
-.hero h1,.hero .eyebrow,.hero-copy,.hero-actions{margin-left:auto!important;margin-right:auto!important;text-align:center!important}
-.edge-vine{display:block!important;position:absolute!important;z-index:2!important;pointer-events:none!important;overflow:visible!important;width:clamp(250px,38vw,430px)!important;height:170px!important;opacity:1!important;will-change:transform!important}
-.edge-vine img{position:absolute!important;top:0!important;width:clamp(330px,42vw,470px)!important;height:auto!important;max-width:none!important;opacity:.92!important;filter:drop-shadow(0 0 10px rgba(91,77,220,.25))!important;will-change:transform,clip-path!important}
-.edge-vine.left{left:0!important;right:auto!important}
-.edge-vine.right{right:0!important;left:auto!important}
-.edge-vine.left img{left:-165px!important;right:auto!important;transform:translate3d(-230px,0,0) rotate(-3deg)!important;transform-origin:left center!important}
-.edge-vine.right img{right:-165px!important;left:auto!important;transform:translate3d(230px,0,0) scaleX(-1) rotate(-3deg)!important;transform-origin:right center!important}
-.edge-vine.in.left img{animation:vineEnterLeft 1.7s cubic-bezier(.16,1,.3,1) both,vineDriftLeft 7s 1.7s ease-in-out infinite!important}
-.edge-vine.in.right img{animation:vineEnterRight 1.7s cubic-bezier(.16,1,.3,1) both,vineDriftRight 7s 1.7s ease-in-out infinite!important}
-@keyframes vineEnterLeft{0%{opacity:0;transform:translate3d(-230px,0,0) rotate(-7deg);clip-path:inset(0 100% 0 0)}45%{opacity:.65}100%{opacity:.92;transform:translate3d(0,0,0) rotate(-1deg);clip-path:inset(0 0 0 0)}}
-@keyframes vineEnterRight{0%{opacity:0;transform:translate3d(230px,0,0) scaleX(-1) rotate(-7deg);clip-path:inset(0 0 0 100%)}45%{opacity:.65}100%{opacity:.92;transform:translate3d(0,0,0) scaleX(-1) rotate(-1deg);clip-path:inset(0 0 0 0)}}
-@keyframes vineDriftLeft{0%,100%{translate:0 0;rotate:-1deg}50%{translate:20px -9px;rotate:2deg}}
-@keyframes vineDriftRight{0%,100%{translate:0 0;rotate:1deg}50%{translate:-20px 9px;rotate:-2deg}}
-.edge-vine.ev-a{top:8%!important}.edge-vine.ev-b{top:42%!important}.edge-vine.ev-c{top:74%!important}
-.hero>.edge-vine.ev-a{top:18%!important}.hero>.edge-vine.ev-b{top:70%!important}.hero>.edge-vine.ev-c{top:88%!important}
-#artistes>.edge-vine.ev-a{top:8%!important}#artistes>.edge-vine.ev-b{top:42%!important}#artistes>.edge-vine.ev-c{top:78%!important}
-#flashs>.edge-vine.ev-a{top:5%!important}#flashs>.edge-vine.ev-b{top:38%!important}#flashs>.edge-vine.ev-c{top:72%!important}
-#realisations>.edge-vine.ev-a{top:6%!important}#realisations>.edge-vine.ev-b{top:40%!important}#realisations>.edge-vine.ev-c{top:75%!important}
-#studio>.edge-vine.ev-a{top:6%!important}#studio>.edge-vine.ev-b{top:42%!important}#studio>.edge-vine.ev-c{top:76%!important}
-#reservation>.edge-vine.ev-a{top:6%!important}#reservation>.edge-vine.ev-b{top:42%!important}#reservation>.edge-vine.ev-c{top:76%!important}
-/* repeatable artist motion */
-.artist.v6-left,.artist.v6-right{opacity:0;filter:blur(3px)}
-.artist.v6-left{transform:translate3d(-90px,30px,0) rotateY(4deg) scale(.97)!important}
-.artist.v6-right{transform:translate3d(90px,30px,0) rotateY(-4deg) scale(.97)!important}
-.artist.v6-in{opacity:1;filter:none;transform:none!important;transition:opacity .6s ease,filter .6s ease,transform .9s cubic-bezier(.16,1,.3,1)!important}
-.artist.v6-in .artist-photo{animation:artistPhotoTravel2 1.25s cubic-bezier(.16,1,.3,1) both!important}
-.artist.v6-in .artist-copy{animation:artistCopyTravel2 .9s .12s cubic-bezier(.16,1,.3,1) both!important}
-@keyframes artistPhotoTravel2{from{opacity:0;transform:scale(1.12) translate3d(45px,0,0);filter:blur(6px)}to{opacity:1;transform:scale(1.035) translate3d(0,0,0);filter:none}}
-@keyframes artistCopyTravel2{from{opacity:0;transform:translate3d(0,35px,0)}to{opacity:1;transform:none}}
-@media(max-width:700px){
- .edge-vine{width:48vw!important;height:125px!important}
- .edge-vine img{width:275px!important}
- .edge-vine.left img{left:-125px!important;transform:translate3d(-170px,0,0) rotate(-3deg)!important}
- .edge-vine.right img{right:-125px!important;transform:translate3d(170px,0,0) scaleX(-1) rotate(-3deg)!important}
- .hero>.edge-vine.ev-a{top:10%!important}.hero>.edge-vine.ev-b{top:66%!important}.hero>.edge-vine.ev-c{top:88%!important}
-}
-@media(prefers-reduced-motion:reduce){.edge-vine.in img,.artist.v6-in .artist-photo,.artist.v6-in .artist-copy{animation:none!important}.edge-vine img{opacity:.92!important;transform:none!important;clip-path:none!important}}
-</style>
-<script id="FINAL-V7-REPEATABLE-MOTION">
-(()=>{
-  const vineObserver=new IntersectionObserver(entries=>entries.forEach(e=>{
-    if(e.isIntersecting){e.target.classList.remove('in');void e.target.offsetWidth;e.target.classList.add('in');}
-    else e.target.classList.remove('in');
-  }),{threshold:.08,rootMargin:'-5% 0px -8% 0px'});
-  document.querySelectorAll('.edge-vine').forEach(v=>vineObserver.observe(v));
 
-  const artistObserver=new IntersectionObserver(entries=>entries.forEach(e=>{
-    if(e.isIntersecting){e.target.classList.remove('v6-in');void e.target.offsetWidth;e.target.classList.add('v6-in');}
-    else e.target.classList.remove('v6-in');
-  }),{threshold:.18,rootMargin:'-5% 0px -12% 0px'});
-  document.querySelectorAll('.artist').forEach(a=>artistObserver.observe(a));
-})();
-</script>
-<style id="pr-final-motion">
-/* ===== PURPLE ROSES — FINAL MOTION SYSTEM ===== */
-:root{--pr-purple:#9d55ff;--pr-blue:#4c9dff;--pr-bg:#07050b}
-html,body{width:100%;max-width:100%;overflow-x:hidden}
-body{background:var(--pr-bg)}
-/* Hero: one mathematical center line */
-.hero,.hero-inner,.hero-content,.hero-copy,.hero-logo-wrap{
-  width:100%;max-width:none;margin-left:auto!important;margin-right:auto!important;
-  text-align:center!important;
-}
-.hero-inner,.hero-content{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important}
-.hero-logo-wrap{display:flex!important;justify-content:center!important;align-items:center!important}
-.hero-logo-wrap img,.hero-logo,.hero img.logo{display:block!important;margin:0 auto!important;left:auto!important;right:auto!important;transform-origin:center center}
 
-/* Botanical transition rails: between sections only */
-.pr-vine-zone{
-  position:relative;
-  height:clamp(110px,16vw,210px);
-  width:100%;
-  overflow:hidden;
-  pointer-events:none;
-  z-index:1;
-}
-.pr-vine{
-  position:absolute;
-  top:50%;
-  width:min(72vw,760px);
-  max-height:190px;
-  height:auto;
-  object-fit:contain;
-  will-change:transform;
-  transform:translate3d(0,-50%,0);
-  opacity:1;
-  filter:drop-shadow(0 8px 18px rgba(80,40,180,.12));
-}
-.pr-vine.left{right:calc(100% - 5vw);transform:translate3d(0,-50%,0) rotate(0deg)}
-.pr-vine.right{left:calc(100% - 5vw);transform:translate3d(0,-50%,0) scaleX(-1)}
-.pr-vine.left.vine-enter{transform:translate3d(58%, -50%,0) rotate(0deg)}
-.pr-vine.right.vine-enter{transform:translate3d(-58%, -50%,0) scaleX(-1)}
-.pr-vine.left.vine-rest{transform:translate3d(38%, -50%,0)}
-.pr-vine.right.vine-rest{transform:translate3d(-38%, -50%,0) scaleX(-1)}
 
-@keyframes pr-breathe-left{0%,100%{margin-top:0}50%{margin-top:-5px}}
-@keyframes pr-breathe-right{0%,100%{margin-top:0}50%{margin-top:5px}}
-.pr-vine.left.vine-live{animation:pr-breathe-left 4.8s ease-in-out infinite}
-.pr-vine.right.vine-live{animation:pr-breathe-right 5.2s ease-in-out infinite}
 
-/* Artist cards: entire card moves as one piece */
-.artist-card,.artist,.artist-panel,.tattooer-card{
-  will-change:transform,opacity;
-  transform-origin:center center;
-}
-.pr-artist-motion-left{transform:translate3d(-12vw,0,0);opacity:.25}
-.pr-artist-motion-right{transform:translate3d(12vw,0,0);opacity:.25}
-.pr-artist-motion-left.pr-active,.pr-artist-motion-right.pr-active{transform:translate3d(0,0,0);opacity:1}
 
-/* Subtle gallery depth */
-.gallery img,.flash-card img,.tattoo-card img{
-  will-change:transform;
-  transition:transform .15s linear;
-}
-
-/* Interactive buttons */
-a,button{transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s ease}
-a:hover,button:hover{transform:translateY(-2px)}
-
-/* Never allow decorative layers to cover content */
-.pr-vine-zone{isolation:isolate}
-.pr-vine{z-index:0}
-.pr-vine-zone>*:not(.pr-vine){position:relative;z-index:2}
+<style id="PR-FINAL-2026">
+:root{--pr-purple:#9b4de5;--pr-pink:#c54be0;--pr-blue:#4b86e8;--pr-white:#f5f2fb}
+html,body{width:100%;max-width:100%;overflow-x:hidden}html{scroll-behavior:smooth}body{min-width:0}
+.wrap{width:min(1240px,calc(100% - 42px));max-width:100%;margin-inline:auto}
+/* HERO — everything shares one physical center axis */
+.hero{min-height:100svh;display:flex;align-items:center;padding:110px 0 70px;position:relative;overflow:hidden}
+.hero-grid{width:min(100%,1080px)!important;margin-inline:auto!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:10px!important;text-align:center!important}
+.hero-grid>div:first-child{order:2!important;width:100%!important;display:flex!important;flex-direction:column!important;align-items:center!important;text-align:center!important}
+.hero-art{order:1!important;width:100%!important;height:clamp(330px,52vw,570px)!important;display:flex!important;align-items:center!important;justify-content:center!important;margin-inline:auto!important;position:relative!important}
+.hero-logo{display:block!important;width:min(500px,82vw)!important;max-height:540px!important;height:auto!important;margin:0 auto!important;position:relative!important;left:0!important;right:0!important;mix-blend-mode:normal!important;filter:drop-shadow(0 18px 45px rgba(124,69,216,.22))!important;animation:prHeroFloat 6s ease-in-out infinite}
+@keyframes prHeroFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.hero h1{width:100%!important;margin:12px auto 24px!important;text-align:center!important;line-height:.82!important}.hero .eyebrow,.hero .hero-copy,.hero .hero-actions{margin-left:auto!important;margin-right:auto!important;text-align:center!important}
+.hero-copy{width:min(100%,720px)!important;max-width:720px!important;font-size:18px;line-height:1.7}.hero-actions{display:flex!important;justify-content:center!important;align-items:center!important;flex-wrap:wrap!important;gap:12px;margin-top:28px!important}
+.hero .orb,.hero .orn,.hero .decor-vine,.hero .botanical-vine,.hero .edge-vine,.hero .v3-vine,.hero .vine-layer,.hero .real-vine,.hero .section-vines{display:none!important}
+/* VINES — ONLY in the gaps between sections */
+.pr-vine-zone{position:relative!important;width:100vw!important;margin-left:calc(50% - 50vw)!important;margin-right:calc(50% - 50vw)!important;height:clamp(170px,19vw,260px)!important;overflow:hidden!important;pointer-events:none!important;isolation:isolate!important;border:0!important;padding:0!important}
+.pr-vine{position:absolute!important;width:min(76vw,1100px)!important;height:auto!important;max-width:none!important;opacity:0;visibility:visible;will-change:transform,opacity,filter;filter:drop-shadow(0 0 9px rgba(73,103,220,.20))!important;z-index:1!important}
+.pr-vine.left{left:50%!important;top:10%!important;transform:translate3d(-200%,0,0);transform-origin:left center!important}.pr-vine.right{left:50%!important;right:auto!important;top:52%!important;transform:translate3d(100%,0,0) scaleX(-1);transform-origin:center center!important}
+.pr-vine.left.second{top:52%!important}.pr-vine.right.second{top:10%!important}
+/* ARTISTS — whole card moves as one object */
+.artist{will-change:transform,opacity,filter!important;backface-visibility:hidden;transform-origin:center center}.artist-photo{will-change:transform!important}
+/* GALLERIES — no fade-in, only tiny depth */
+.gallery .card{opacity:1!important;will-change:transform!important;transition:transform .28s ease,filter .28s ease!important}.gallery .card img{will-change:transform!important;transition:transform .25s ease!important}.gallery .card:hover img{transform:scale(1.018)!important}
+#flashs .gallery .meta,#realisations .gallery .meta{display:none!important}#flashs .gallery .card,#realisations .gallery .card{border:0;background:transparent;box-shadow:none}
+/* TITLES — fill sweep, like the reference video, not opacity */
+.pr-ink-title{--ink-progress:0%;position:relative!important;color:transparent!important;background-image:linear-gradient(90deg,var(--pr-white) 0%,var(--pr-white) calc(var(--ink-progress) - 1%),rgba(245,242,251,.14) calc(var(--ink-progress) + 1%),rgba(245,242,251,.14) 100%)!important;background-clip:text!important;-webkit-background-clip:text!important;-webkit-text-fill-color:transparent!important;-webkit-text-stroke:1px rgba(245,242,251,.76)!important;will-change:background-image!important}
+.hero h1.pr-ink-title{--ink-progress:100%;-webkit-text-stroke:0!important}
+section{position:relative;overflow:visible}section>.wrap{position:relative;z-index:3}.section-head,.story,.artists,.gallery,.studio-grid,.location,.booking-grid{position:relative;z-index:3}
+.scroll-progress{position:fixed;left:0;top:0;width:100%;height:2px;z-index:1000;background:rgba(255,255,255,.05);pointer-events:none}.scroll-progress span{display:block;width:100%;height:100%;transform:scaleX(0);transform-origin:left;background:linear-gradient(90deg,var(--pr-purple),var(--pr-pink),var(--pr-blue));box-shadow:0 0 12px rgba(192,68,200,.55)}
+@media(max-width:900px){.wrap{width:calc(100% - 28px)}.hero{padding:88px 0 58px}.hero-art{height:350px!important}.hero-logo{width:min(390px,82vw)!important;max-height:350px!important}.hero h1{font-size:clamp(64px,16vw,105px)!important}.hero-copy{font-size:16px;line-height:1.65}.pr-vine-zone{height:145px!important}.pr-vine{width:min(82vw,760px)!important;max-height:240px!important;object-fit:contain;object-position:center}}
+@media(max-width:560px){section{padding:78px 0}.hero{padding:82px 0 55px}.hero-art{height:300px!important}.hero-logo{width:min(300px,78vw)!important;max-height:300px!important}.hero h1{font-size:17vw!important;line-height:.84!important}.hero-copy{width:100%!important;font-size:15px}.hero-actions{width:100%!important}.hero-actions .btn{flex:1 1 100%}.pr-vine-zone{height:120px!important}.pr-vine{width:92vw!important;max-height:150px!important}.pr-vine.left{top:7%!important}.pr-vine.right{top:53%!important}.pr-vine.left.second{top:53%!important}.pr-vine.right.second{top:7%!important}.section-head h2,.story h2,.booking h2{font-size:clamp(48px,14vw,70px)!important;line-height:.86!important}}
+@media(prefers-reduced-motion:reduce){.hero-logo{animation:none}.pr-ink-title{--ink-progress:100%!important}}
 </style></head>
 <body>
 <div class="scroll-progress" aria-hidden="true"><span></span></div>
@@ -733,10 +258,11 @@ a:hover,button:hover{transform:translateY(-2px)}
 </div><div class="scrollhint">Faire défiler</div>
 </section>
 <div class="pr-vine-zone" aria-hidden="true" data-vine-zone>
-  <img class="pr-vine left" src="vine-new-01.png" alt="">
-  <img class="pr-vine right" src="vine-new-02.png" alt="">
+<img class="pr-vine left" src="vine-new-04.png" alt="">
+<img class="pr-vine right" src="vine-new-07.png" alt="">
+<img class="pr-vine left second" src="vine-new-07.png" alt="">
+<img class="pr-vine right second" src="vine-new-04.png" alt="">
 </div>
-
 
 <section id="artistes">
 <div class="wrap">
@@ -752,10 +278,11 @@ a:hover,button:hover{transform:translateY(-2px)}
 </article>
 </div></div></section>
 <div class="pr-vine-zone" aria-hidden="true" data-vine-zone>
-  <img class="pr-vine left" src="vine-new-03.png" alt="">
-  <img class="pr-vine right" src="vine-new-04.png" alt="">
+<img class="pr-vine left" src="vine-new-07.png" alt="">
+<img class="pr-vine right" src="vine-new-04.png" alt="">
+<img class="pr-vine left second" src="vine-new-04.png" alt="">
+<img class="pr-vine right second" src="vine-new-07.png" alt="">
 </div>
-
 
 <section>
 <div class="wrap story">
@@ -763,10 +290,11 @@ a:hover,button:hover{transform:translateY(-2px)}
 <div class="reveal"><p class="story-copy">Un projet commence par une idée. Une discussion, une inspiration, une envie de recouvrir, de transformer ou simplement de créer quelque chose qui te ressemble. Le studio accompagne chaque projet jusqu'à l'encre.</p></div>
 </div></section>
 <div class="pr-vine-zone" aria-hidden="true" data-vine-zone>
-  <img class="pr-vine left" src="vine-new-05.png" alt="">
-  <img class="pr-vine right" src="vine-new-06.png" alt="">
+<img class="pr-vine left" src="vine-new-07.png" alt="">
+<img class="pr-vine right" src="vine-new-07.png" alt="">
+<img class="pr-vine left second" src="vine-new-07.png" alt="">
+<img class="pr-vine right second" src="vine-new-07.png" alt="">
 </div>
-
 
 <section id="flashs">
 <div class="wrap flashes"><div class="section-head reveal"><div><div class="eyebrow">Flashs</div><h2 class="display">À prendre<br>à l’encre.</h2></div><p>Une sélection de flashs de Smik. Clique sur un flash pour l’agrandir.</p></div><div class="gallery reveal" id="flashGallery"><div class="card flash-card"><img src="48806.jpg" alt="Flash Smik" loading="lazy"></div>
@@ -795,10 +323,11 @@ a:hover,button:hover{transform:translateY(-2px)}
 <div class="card flash-card"><img src="49025.jpg" alt="Flash Smik" loading="lazy"></div>
 <div class="card flash-card"><img src="49077.jpg" alt="Flash Smik" loading="lazy"></div></div></div></section>
 <div class="pr-vine-zone" aria-hidden="true" data-vine-zone>
-  <img class="pr-vine left" src="vine-new-07.png" alt="">
-  <img class="pr-vine right" src="vine-new-08.png" alt="">
+<img class="pr-vine left" src="vine-new-04.png" alt="">
+<img class="pr-vine right" src="vine-new-07.png" alt="">
+<img class="pr-vine left second" src="vine-new-07.png" alt="">
+<img class="pr-vine right second" src="vine-new-04.png" alt="">
 </div>
-
 
 <section id="realisations">
 <div class="wrap">
@@ -856,10 +385,11 @@ a:hover,button:hover{transform:translateY(-2px)}
 <div class="card" data-artist="smik" data-caption="Smik · réalisation"><img src="48859.jpg" alt="Tatouage réalisé par Smik" loading="lazy"></div>
 </div></div></section>
 <div class="pr-vine-zone" aria-hidden="true" data-vine-zone>
-  <img class="pr-vine left" src="vine-new-09.png" alt="">
-  <img class="pr-vine right" src="vine-new-01.png" alt="">
+<img class="pr-vine left" src="vine-new-04.png" alt="">
+<img class="pr-vine right" src="vine-new-07.png" alt="">
+<img class="pr-vine left second" src="vine-new-07.png" alt="">
+<img class="pr-vine right second" src="vine-new-04.png" alt="">
 </div>
-
 
 <section id="studio">
 <div class="wrap">
@@ -868,757 +398,62 @@ a:hover,button:hover{transform:translateY(-2px)}
 <div class="location"><div class="info reveal"><div class="info-row"><span class="info-label">Adresse</span>3 rue des Sapeurs-Pompiers<br>87400 Saint-Léonard-de-Noblat</div><div class="info-row"><span class="info-label">Téléphone</span><a href="tel:+33767971675">07 67 97 16 75</a></div><div class="info-row"><span class="info-label">E-mail</span><a href="mailto:purplerosestattoo@outlook.fr">purplerosestattoo@outlook.fr</a></div><div class="info-row"><span class="info-label">Réseaux</span><a href="https://instagram.com/purplerosestattoo" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.tiktok.com/@purplerosestattoo" target="_blank" rel="noopener">TikTok</a> · <a href="https://www.facebook.com/purplerosestattoo" target="_blank" rel="noopener">Facebook</a></div><div class="info-row"><span class="info-label">Horaires</span>Lundi : fermé · Mardi à vendredi : 09h–12h / 16h–19h · Samedi et dimanche : 08h–20h.</div><div class="info-row"><span class="info-label">Rendez-vous</span>Formulaire, e-mail, téléphone, Instagram ou Messenger.</div></div><div class="map reveal"><iframe title="Carte Google Maps — Purple Roses Tattoo" src="https://www.google.com/maps?q=Purple%20Roses%20Tattoo%2C%203%20Rue%20des%20Sapeurs%20Pompiers%2C%2087400%20Saint-L%C3%A9onard-de-Noblat&output=embed" loading="lazy"></iframe></div></div>
 </div></section>
 <div class="pr-vine-zone" aria-hidden="true" data-vine-zone>
-  <img class="pr-vine left" src="vine-new-02.png" alt="">
-  <img class="pr-vine right" src="vine-new-03.png" alt="">
+<img class="pr-vine left" src="vine-new-07.png" alt="">
+<img class="pr-vine right" src="vine-new-04.png" alt="">
+<img class="pr-vine left second" src="vine-new-04.png" alt="">
+<img class="pr-vine right second" src="vine-new-07.png" alt="">
 </div>
-
 
 <section id="reservation" class="booking"><div class="wrap booking-grid"><div class="reveal"><div class="eyebrow">Réservation</div><h2 class="display">On parle<br>du projet ?</h2><p class="muted">Décris-nous ton idée. Pour une création ou un cover-up, quelques photos et informations permettent de mieux comprendre le projet. Pour un cover-up, il faudra ensuite passer au shop afin de voir le tatouage directement.</p><p class="muted">Le piercing est réalisé par Smik.</p></div>
 <form class="form reveal" id="bookingForm"><div class="row"><input name="name" required placeholder="Nom / prénom"><input name="email" required type="email" placeholder="E-mail"></div><div class="row"><input name="phone" placeholder="Téléphone"><select name="type" required><option value="">Type de projet</option><option>Flash</option><option>Création personnalisée</option><option>Cover-up</option><option>Piercing</option><option>Autre</option></select></div><select name="artist"><option value="">Artiste (si besoin)</option><option>Smik</option><option>Looping</option><option>Je ne sais pas encore</option></select><textarea name="message" required placeholder="Parle-nous de ton projet… taille, emplacement, idée, références, contraintes, etc."></textarea><small>En envoyant, ton application e-mail s’ouvrira avec les informations de ta demande pré-remplies.</small><button class="btn primary" type="submit">ENVOYER LA DEMANDE</button></form>
 </div></section>
-<div class="pr-vine-zone" aria-hidden="true" data-vine-zone>
-  <img class="pr-vine left" src="vine-new-04.png" alt="">
-  <img class="pr-vine right" src="vine-new-05.png" alt="">
-</div>
-
 </main>
 <footer><div class="wrap footerline"><span>© 2026 Purple Roses Tattoo · Saint-Léonard-de-Noblat</span><div class="socials"><a href="https://instagram.com/purplerosestattoo" target="_blank" rel="noopener">Instagram</a><a href="https://www.tiktok.com/@purplerosestattoo" target="_blank" rel="noopener">TikTok</a><a href="https://www.facebook.com/purplerosestattoo" target="_blank" rel="noopener">Facebook</a></div></div></footer>
 
 <div class="lightbox" id="lightbox"><button class="close" aria-label="Fermer">×</button><img id="lightboxImg" alt=""><div class="lightbox-caption" id="lightboxCaption"></div></div>
 
-<script>
-(() => {
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  // Scroll progress
-  const progress = document.querySelector('.scroll-progress span');
-  const updateProgress = () => {
-    const max = document.documentElement.scrollHeight - window.innerHeight;
-    progress.style.transform = `scaleX(${max > 0 ? window.scrollY / max : 0})`;
-  };
-
-  // Reveal content as it enters the viewport.
-  const revealObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('show');
-    });
-  }, { threshold: 0.08, rootMargin: '0px 0px -5% 0px' });
-  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-  // Decorative vines: draw themselves when their section enters the viewport, then sway subtly.
-  const botanicalVines = [...document.querySelectorAll('.decor-vine')];
-  const vineObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.remove('show');
-        void entry.target.offsetWidth;
-        entry.target.classList.add('show');
-      } else {
-        entry.target.classList.remove('show');
-      }
-    });
-  }, { threshold: 0.06, rootMargin: '0px 0px -8% 0px' });
-  botanicalVines.forEach(v => vineObserver.observe(v));
-
-  // Gallery cards animate one by one.
-  const galleries = [...document.querySelectorAll('.gallery')];
-  const galleryObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('gallery-ready');
-        galleryObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.08 });
-  galleries.forEach(g => galleryObserver.observe(g));
-
-  // Filters
-  const filters = document.querySelectorAll('.filter');
-  const cards = document.querySelectorAll('.gallery .card');
-  filters.forEach(btn => btn.addEventListener('click', () => {
-    filters.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    const f = btn.dataset.filter;
-    cards.forEach((card, i) => {
-      const hidden = f !== 'all' && card.dataset.artist !== f;
-      card.dataset.hidden = hidden ? 'true' : 'false';
-      if (!hidden) {
-        card.style.transitionDelay = `${Math.min(i * 35, 280)}ms`;
-      }
-    });
-  }));
-
-  // Lightbox
-  const lb = document.getElementById('lightbox');
-  const lbImg = document.getElementById('lightboxImg');
-  const lbCap = document.getElementById('lightboxCaption');
-  cards.forEach(card => card.addEventListener('click', () => {
-    const img = card.querySelector('img');
-    lbImg.src = img.currentSrc || img.src;
-    lbImg.alt = img.alt;
-    lbCap.textContent = card.dataset.caption || '';
-    lb.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }));
-  const closeLightbox = () => {
-    lb.classList.remove('open');
-    document.body.style.overflow = '';
-  };
-  document.querySelector('.close').addEventListener('click', closeLightbox);
-  lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
-
-  // Scroll-driven motion. This is the part that makes the page feel alive while scrolling.
-  let raf = 0;
-  const updateMotion = () => {
-    raf = 0;
-    updateProgress();
-
-    const vh = window.innerHeight;
-    const scrollY = window.scrollY;
-
-    document.querySelectorAll('[data-parallax]').forEach((el, i) => {
-      const r = el.getBoundingClientRect();
-      const center = (r.top + r.height / 2 - vh / 2) / vh;
-      const shift = Math.max(-38, Math.min(38, -center * 22));
-      el.style.setProperty('--shift', `${shift}px`);
-      if (!reduceMotion) {
-        el.style.transform = `translate3d(0, ${shift}px, 0)`;
-      }
-    });
-
-    botanicalVines.forEach((v, i) => {
-      const r = v.getBoundingClientRect();
-      const center = (r.top + r.height / 2 - vh / 2) / vh;
-      const y = Math.max(-24, Math.min(24, -center * 20));
-      const x = Math.sin(scrollY / 420 + i * 1.7) * 5;
-      const rot = Math.sin(scrollY / 700 + i) * 1.5;
-      v.style.setProperty('--vine-y', `${y}px`);
-      v.style.setProperty('--vine-x', `${x}px`);
-      v.style.setProperty('--vine-rotate', `${rot}deg`);
-    });
-
-    // Gentle background drift.
-    document.body.style.setProperty('--bg-shift', `${(scrollY * 0.035).toFixed(1)}px`);
-  };
-
-  const requestMotion = () => {
-    if (!raf) raf = requestAnimationFrame(updateMotion);
-  };
-  window.addEventListener('scroll', requestMotion, { passive: true });
-  window.addEventListener('resize', requestMotion);
-  requestMotion();
-
-  // Desktop tilt only: restrained and never used on mobile.
-  if (!reduceMotion) {
-    document.querySelectorAll('.artist,.studio-main,.flash-main').forEach(el => {
-      el.addEventListener('pointermove', e => {
-        if (window.innerWidth < 900) return;
-        const r = el.getBoundingClientRect();
-        const x = (e.clientX - r.left) / r.width - .5;
-        const y = (e.clientY - r.top) / r.height - .5;
-        el.style.transform = `perspective(1100px) rotateX(${(-y * 1.4).toFixed(2)}deg) rotateY(${(x * 1.4).toFixed(2)}deg)`;
-      });
-      el.addEventListener('pointerleave', () => { el.style.transform = ''; });
-    });
-  }
-
-  // Booking form -> e-mail
-  const form = document.getElementById('bookingForm');
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    const d = new FormData(form);
-    const subject = encodeURIComponent('Demande de rendez-vous — Purple Roses Tattoo');
-    const body = encodeURIComponent(
-`Nom / prénom : ${d.get('name')}
-E-mail : ${d.get('email')}
-Téléphone : ${d.get('phone')}
-Type de projet : ${d.get('type')}
-Artiste : ${d.get('artist')}
-
-Projet :
-${d.get('message')}`);
-    window.location.href = `mailto:purplerosestattoo@outlook.fr?subject=${subject}&body=${body}`;
-  });
-
-  // Make broken image paths obvious during development instead of leaving empty black boxes.
-  document.querySelectorAll('img').forEach(img => {
-    img.addEventListener('error', () => {
-      img.classList.add('image-missing');
-      console.warn('Image introuvable :', img.getAttribute('src'));
-    });
-  });
-})();
-</script>
-
-<style id="site-final-correction">
-html,body{width:100%;max-width:100%;overflow-x:hidden}
-body{min-width:0}
-.wrap{width:min(1240px,calc(100% - 36px));max-width:100%}
-/* Keep the supplied rose artwork centered and visually clean. */
-.hero{min-height:auto;padding:115px 0 70px;overflow:hidden}
-.hero-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:40px}
-.hero-art{height:560px;display:grid;place-items:center;overflow:visible}
-.hero-logo{display:block;width:min(470px,100%);height:auto;max-height:560px;object-fit:contain;mix-blend-mode:normal!important;background:transparent!important;filter:drop-shadow(0 18px 45px rgba(124,69,216,.2));}
-.orb,.orn,.decor-vine{display:none!important}
-.hero-copy{max-width:none}
-/* Headings never get trapped by decorative elements. */
-.section-head,.story,.artists,.gallery,.studio-grid,.location,.booking-grid{position:relative;z-index:5}
-.section-head h2,.story h2,.booking h2,.hero h1{overflow:visible;word-break:normal;overflow-wrap:normal}
-.story{align-items:start;gap:55px}
-.story-copy{margin:10px 0 0}
-.booking-grid{align-items:start}
-.booking-grid>.reveal{transform:none!important;opacity:1}
-.booking .form{margin-top:0}
-/* Flash and tattoo galleries: small, clean, clickable images only. */
-#flashs .gallery{columns:3 150px;column-gap:14px}
-#flashs .gallery .card,#realisations .gallery .card{border:0;background:transparent;box-shadow:none}
-#flashs .gallery .meta,#realisations .gallery .meta{display:none!important}
-#flashs .gallery .card img,#realisations .gallery .card img{cursor:zoom-in}
-/* Real side-entry motion. */
-.motion-left,.motion-right{opacity:0;will-change:transform,opacity}
-.motion-left{transform:translate3d(-80px,18px,0)}
-.motion-right{transform:translate3d(80px,18px,0)}
-.motion-left.show,.motion-right.show{opacity:1;transform:none;transition:opacity .8s ease,transform 1s cubic-bezier(.16,1,.3,1)}
-.motion-left:nth-child(2){transition-delay:.08s}.motion-right:nth-child(2){transition-delay:.14s}
-/* Botanical PNGs: outside -> inside, subtle and never covering text. */
-.vine-layer{position:absolute;top:0;bottom:0;width:245px;pointer-events:none;z-index:1;overflow:visible}
-.vine-layer.left{left:0}.vine-layer.right{right:0}
-.vine-layer img{position:absolute;width:330px;height:auto;max-width:none;opacity:0;will-change:transform,clip-path,opacity;filter:drop-shadow(0 0 7px rgba(55,120,245,.16))}
-.vine-layer.left img{right:0;transform:translate3d(-170px,0,0)}
-.vine-layer.right img{left:0;transform:translate3d(170px,0,0) scaleX(-1)}
-.vine-layer.entered img{opacity:.9;clip-path:inset(0 0 0 0);animation:vineInLeft 1.55s cubic-bezier(.16,1,.3,1) both}
-.vine-layer.right.entered img{animation-name:vineInRight}
-.vine-layer.left img{clip-path:inset(0 100% 0 0)}
-.vine-layer.right img{clip-path:inset(0 0 0 100%)}
-@keyframes vineInLeft{0%{opacity:0;transform:translate3d(-170px,0,0);clip-path:inset(0 100% 0 0)}55%{opacity:.9;clip-path:inset(0 35% 0 0)}100%{opacity:.9;transform:translate3d(0,0,0);clip-path:inset(0 0 0 0)}}
-@keyframes vineInRight{0%{opacity:0;transform:translate3d(170px,0,0) scaleX(-1);clip-path:inset(0 0 0 100%)}55%{opacity:.9;clip-path:inset(0 0 0 35%)}100%{opacity:.9;transform:translate3d(0,0,0) scaleX(-1);clip-path:inset(0 0 0 0)}}
-.vine-layer.entered img{animation-duration:1.55s,6s;animation-delay:0s,1.55s;animation-iteration-count:1,infinite}
-.vine-layer.left.entered img{animation-name:vineInLeft,vineFloatLeft}
-.vine-layer.right.entered img{animation-name:vineInRight,vineFloatRight}
-@keyframes vineFloatLeft{0%,100%{margin-top:0}50%{margin-top:-7px}}
-@keyframes vineFloatRight{0%,100%{margin-top:0}50%{margin-top:7px}}
-@media(max-width:900px){
- .wrap{width:calc(100% - 28px)}
- .hero{padding:88px 0 60px}
- .hero-grid{grid-template-columns:1fr;gap:12px}
- .hero-art{order:-1;height:340px;width:100%}
- .hero-logo{width:min(330px,78vw);max-height:330px}
- .hero h1{font-size:clamp(62px,16vw,105px);line-height:.82}
- .hero-copy{font-size:16px;line-height:1.65}
- .story{gap:28px;align-items:start}
- .booking-grid{gap:35px}
- .vine-layer{width:125px}
- .vine-layer img{width:230px}
- .vine-layer.left img{right:-20px}.vine-layer.right img{left:-20px}
-}
-@media(max-width:560px){
- section{padding:78px 0}
- .hero{padding:82px 0 56px}
- .hero-art{height:300px}
- .hero-logo{width:min(300px,78vw)}
- .hero h1{font-size:17vw;letter-spacing:0;white-space:normal}
- .hero h1 span{white-space:nowrap}
- .hero-copy{width:100%;max-width:none}
- .hero-actions{width:100%}.hero-actions .btn{flex:1 1 100%}
- .section-head h2,.story h2,.booking h2{font-size:clamp(48px,14vw,70px);line-height:.86}
- #flashs .gallery{columns:3 95px!important;column-gap:8px}
- .vine-layer{width:92px}.vine-layer img{width:185px}
- .vine-layer.left img{right:-30px}.vine-layer.right img{left:-30px}
-}
-@media(prefers-reduced-motion:reduce){.motion-left,.motion-right{opacity:1;transform:none}.vine-layer img{animation:none!important;opacity:.8;clip-path:none!important;transform:none!important}}
-</style>
-<script id="site-final-correction-js">
-(() => {
-  // Build real transparent PNG vine layers. They enter from the outside edge toward the content.
-  const placements={
-    hero:[['left','8%','botanical-left-1.png'],['right','46%','botanical-right-2.png']],
-    artistes:[['left','12%','botanical-left-3.png'],['right','54%','botanical-right-4.png']],
-    flashs:[['left','8%','botanical-left-2.png'],['right','57%','botanical-right-1.png']],
-    realisations:[['left','18%','botanical-left-4.png'],['right','62%','botanical-right-3.png']],
-    studio:[['left','10%','botanical-left-1.png'],['right','55%','botanical-right-2.png']],
-    reservation:[['left','22%','botanical-left-3.png'],['right','66%','botanical-right-4.png']]
-  };
-  Object.entries(placements).forEach(([id,items])=>{
-    const section=document.getElementById(id)||document.querySelector('.hero');
-    if(!section) return;
-    section.querySelectorAll(':scope>.vine-layer').forEach(v=>v.remove());
-    items.forEach(([side,top,src])=>{
-      const layer=document.createElement('div'); layer.className='vine-layer '+side; layer.style.top=top;
-      const img=document.createElement('img'); img.src=src; img.alt=''; img.setAttribute('aria-hidden','true');
-      layer.appendChild(img); section.appendChild(layer);
-    });
-  });
-  const vines=[...document.querySelectorAll('.vine-layer')];
-  const vineIO=new IntersectionObserver(entries=>entries.forEach(e=>{
-    if(e.isIntersecting){e.target.classList.remove('entered');void e.target.offsetWidth;e.target.classList.add('entered');}
-    else e.target.classList.remove('entered');
-  }),{threshold:.05,rootMargin:'0px 0px -10% 0px'});
-  vines.forEach(v=>vineIO.observe(v));
-
-  // Alternate side motion across the galleries/cards so scrolling has visible movement.
-  document.querySelectorAll('.artist,.gallery .card,.studio-main,.studio-side img,.location .info,.location .map').forEach((el,i)=>{
-    el.classList.add(i%2?'motion-right':'motion-left');
-  });
-  const motionIO=new IntersectionObserver(entries=>entries.forEach(e=>{
-    if(e.isIntersecting){e.target.classList.add('show');motionIO.unobserve(e.target);}
-  }),{threshold:.06,rootMargin:'0px 0px -8% 0px'});
-  document.querySelectorAll('.motion-left,.motion-right').forEach(el=>motionIO.observe(el));
-
-  // No flash images inside tattoo realisations.
-  const flashFiles=new Set(['48806.jpg','48807.jpg','48814.jpg','48817.jpg','48820.jpg','48841.jpg','48844.jpg','48847.jpg','48850.jpg','48853.jpg','48856.jpg','48870.jpg','48873.jpg','48876.jpg','48879.jpg','48882.jpg','48885.jpg','48888.jpg','48891.jpg','48903.jpg','49016.jpg','49019.jpg','49022.jpg','49025.jpg','49077.jpg','48867.jpg','48823.jpg']);
-  document.querySelectorAll('#realisations .card').forEach(card=>{const src=(card.querySelector('img')?.getAttribute('src')||'').split('/').pop();if(flashFiles.has(src))card.remove();});
-
-  // Keep experience only in the dedicated badge.
-  document.querySelectorAll('.artist-copy p').forEach(p=>p.innerHTML=p.innerHTML.replace(/\s*\d+\s+ans?\s+d['’]expérience\.?/gi,''));
-})();
-</script>
 
 
-<script id="final-v4-js">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script id="PR-FUNCTIONAL">
 (()=>{
-  // Remove every previous decorative vine system so only the real PNG assets below remain.
-  document.querySelectorAll('.decor-vine,.vine-layer,.real-vine,.botanical-vine,.v3-vine').forEach(e=>e.remove());
-
-  const assets=['vine-new-04.png','vine-new-05.png','vine-new-06.png','vine-new-07.png','vine-new-03.png','vine-new-01.png'];
-  const sections=[document.querySelector('.hero'),document.getElementById('artistes'),document.getElementById('flashs'),document.getElementById('realisations'),document.getElementById('studio'),document.getElementById('reservation')].filter(Boolean);
-
-  sections.forEach((section,si)=>{
-    // Three staggered pairs per section: clearly visible, but never covering the content.
-    const positions=['v1','v2','v3'];
-    positions.forEach((pos,pi)=>{
-      ['left','right'].forEach((side,di)=>{
-        const v=document.createElement('div');
-        v.className=`v4-vine ${side} ${pos}`;
-        const img=document.createElement('img');
-        img.src=assets[(si*2+pi+di)%assets.length];
-        img.alt=''; img.setAttribute('aria-hidden','true');
-        v.appendChild(img); section.appendChild(v);
-      });
-    });
-  });
-
-  const vines=[...document.querySelectorAll('.v4-vine')];
-  const io=new IntersectionObserver(entries=>entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.classList.remove('enter');
-      void entry.target.offsetWidth;
-      entry.target.classList.add('enter');
-    } else {
-      entry.target.classList.remove('enter');
-    }
-  }),{threshold:.03,rootMargin:'0px 0px -4% 0px'});
-  vines.forEach(v=>io.observe(v));
-
-  // Ensure the realisations gallery can never contain an image that is also a flash.
-  const flashSrc=new Set([...document.querySelectorAll('#flashGallery img')].map(i=>i.getAttribute('src')));
-  document.querySelectorAll('#realisations .card').forEach(card=>{
-    const img=card.querySelector('img');
-    if(img && flashSrc.has(img.getAttribute('src'))) card.remove();
-  });
+ const progress=document.querySelector('.scroll-progress span');
+ const filters=[...document.querySelectorAll('.filter')], cards=[...document.querySelectorAll('.gallery .card')];
+ const lb=document.getElementById('lightbox'), lbImg=document.getElementById('lightboxImg'), lbCap=document.getElementById('lightboxCaption');
+ filters.forEach(btn=>btn.addEventListener('click',()=>{filters.forEach(b=>b.classList.remove('active'));btn.classList.add('active');const f=btn.dataset.filter;cards.forEach(c=>c.dataset.hidden=(f!=='all'&&c.dataset.artist!==f)?'true':'false')}));
+ cards.forEach(card=>card.addEventListener('click',()=>{const img=card.querySelector('img');if(!img||!lb)return;lbImg.src=img.currentSrc||img.src;lbImg.alt=img.alt||'';lbCap.textContent=card.dataset.caption||'';lb.classList.add('open');document.body.style.overflow='hidden'}));
+ const close=()=>{lb?.classList.remove('open');document.body.style.overflow=''};document.querySelector('.close')?.addEventListener('click',close);lb?.addEventListener('click',e=>{if(e.target===lb)close()});document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
+ document.getElementById('bookingForm')?.addEventListener('submit',e=>{e.preventDefault();const d=new FormData(e.currentTarget);const subject=encodeURIComponent('Demande de rendez-vous — Purple Roses Tattoo');const body=encodeURIComponent(`Nom / prénom : ${d.get('name')}\nE-mail : ${d.get('email')}\nTéléphone : ${d.get('phone')}\nType de projet : ${d.get('type')}\nArtiste : ${d.get('artist')}\n\nProjet :\n${d.get('message')}`);location.href=`mailto:purplerosestattoo@outlook.fr?subject=${subject}&body=${body}`});
+ const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v)),ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+ const zones=[...document.querySelectorAll('.pr-vine-zone')], artists=[...document.querySelectorAll('.artist')], gallery=[...document.querySelectorAll('#flashs .gallery .card,#realisations .gallery .card')], titles=[...document.querySelectorAll('.section-head h2,.story h2,.flash-note h3,.studio-label h3,.booking h2')];
+ titles.forEach(t=>t.classList.add('pr-ink-title'));
+ const artistDocTop=artists.map(e=>e.getBoundingClientRect().top+scrollY), galleryDocTop=gallery.map(e=>e.getBoundingClientRect().top+scrollY);
+ let raf=0;
+ function render(){
+  raf=0;const vh=innerHeight||1;
+  if(progress){const max=document.documentElement.scrollHeight-vh;progress.style.transform=`scaleX(${max>0?scrollY/max:0})`}
+  zones.forEach(z=>{const r=z.getBoundingClientRect();const p=clamp((vh*.80-r.top)/(vh*.50));const e=ease(p);z.querySelectorAll('.pr-vine').forEach((v,vi)=>{const right=v.classList.contains('right'),travel=(1-e)*100,y=(vi%2?1:-1)*(1-e)*6,rot=(right?1:-1)*(1-e)*2;v.style.opacity=(.98*e).toFixed(3);v.style.transform=right?`translate3d(${travel}%,${y}px,0) scaleX(-1) rotate(${rot}deg)`:`translate3d(${-100-travel}%,${y}px,0) rotate(${rot}deg)`;v.style.filter=`drop-shadow(0 0 ${6+7*e}px rgba(73,103,220,${.14+.18*e}))`})});
+  artists.forEach((c,i)=>{const rTop=artistDocTop[i]-scrollY,p=clamp((vh*.90-rTop)/(vh*.64)),e=ease(p),dir=i===0?-1:1;c.style.opacity='1';c.style.filter='none';c.style.transform=`translate3d(${(1-e)*dir*115}%,${(1-e)*18}px,0) rotate(${(1-e)*dir*2}deg)`;const photo=c.querySelector('.artist-photo');if(photo)photo.style.transform=`scale(${1.035-.035*e}) translate3d(${(1-e)*-8*dir}px,0,0)`});
+  gallery.forEach((c,i)=>{const rTop=galleryDocTop[i]-scrollY,p=clamp((vh*.95-rTop)/(vh*.78)),e=ease(p),dir=i%2?-1:1;c.style.transform=`translate3d(${dir*(1-e)*7}px,${(1-e)*7}px,0)`});
+  titles.forEach(t=>{const r=t.getBoundingClientRect(),p=clamp((vh*.88-r.top)/(vh*.58)),e=ease(p);t.style.setProperty('--ink-progress',`${(e*100).toFixed(2)}%`)});
+ }
+ function req(){if(!raf)raf=requestAnimationFrame(render)} addEventListener('scroll',req,{passive:true});addEventListener('resize',req,{passive:true});render();
 })();
-</script>
-
-
-<script id="FINAL-V5-MOTION-JS">
-(()=>{
-  // Re-trigger side-entering vines whenever their section comes back into view.
-  const vines=[...document.querySelectorAll('.v4-vine')];
-  const vineIO=new IntersectionObserver(entries=>entries.forEach(e=>{
-    if(e.isIntersecting){e.target.classList.remove('enter');void e.target.offsetWidth;e.target.classList.add('enter');}
-    else e.target.classList.remove('enter');
-  }),{threshold:.01,rootMargin:'0px 0px -2% 0px'});
-  vines.forEach(v=>vineIO.observe(v));
-
-  // Real entrance animations for both tattooer cards.
-  const artists=[...document.querySelectorAll('.artist')];
-  artists.forEach((card,i)=>card.classList.add(i%2?'v5-artist-right':'v5-artist-left'));
-  const artistIO=new IntersectionObserver(entries=>entries.forEach(e=>{
-    if(e.isIntersecting){e.target.classList.add('v5-in');artistIO.unobserve(e.target);}
-  }),{threshold:.12,rootMargin:'0px 0px -10% 0px'});
-  artists.forEach(a=>artistIO.observe(a));
-})();
-</script>
-<script id="REAL-SCROLL-MOTION-V6-JS">
-(()=>{
-  document.querySelectorAll('.v4-vine,.vine-layer,.decor-vine,.botanical-vine,.section-vines,.artist-vine,.vine-hero').forEach(el=>el.remove());
-  const assets=['vine-new-04.png','vine-new-06.png','vine-new-07.png','vine-new-05.png','vine-new-03.png','vine-new-01.png'];
-  const targets=[document.querySelector('.hero'),...['artistes','flashs','realisations','studio','reservation'].map(id=>document.getElementById(id)).filter(Boolean)];
-  targets.forEach((section,si)=>{
-    if(!section) return;
-    ['ev-a','ev-b','ev-c'].forEach((pos,pi)=>{
-      ['left','right'].forEach((side,di)=>{
-        const v=document.createElement('div');
-        v.className=`edge-vine ${side} ${pos}`;
-        const img=document.createElement('img');
-        img.src=assets[(si*3+pi*2+di)%assets.length];
-        img.alt=''; img.setAttribute('aria-hidden','true');
-        v.appendChild(img); section.appendChild(v);
-      });
-    });
-  });
-  const vineObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
-    if(entry.isIntersecting){entry.target.classList.remove('in');void entry.target.offsetWidth;entry.target.classList.add('in');}
-    else entry.target.classList.remove('in');
-  }),{threshold:.02,rootMargin:'0px 0px -8% 0px'});
-  document.querySelectorAll('.edge-vine').forEach(v=>vineObserver.observe(v));
-
-  document.querySelectorAll('.artist').forEach((card,i)=>{
-    card.classList.add(i%2?'v6-right':'v6-left');
-    card.querySelectorAll('.tag').forEach((tag,j)=>tag.style.setProperty('--tag-i',j));
-  });
-  const artistObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
-    if(entry.isIntersecting){entry.target.classList.add('v6-in');artistObserver.unobserve(entry.target);}
-  }),{threshold:.16,rootMargin:'0px 0px -10% 0px'});
-  document.querySelectorAll('.artist').forEach(a=>artistObserver.observe(a));
-
-  document.querySelectorAll('.gallery .card').forEach((card,i)=>{card.classList.add('v6-card');card.style.animationDelay=`${Math.min(i*55,700)}ms`;});
-  const galleryObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
-    if(entry.isIntersecting){entry.target.classList.add('in');galleryObserver.unobserve(entry.target);}
-  }),{threshold:.05,rootMargin:'0px 0px -5% 0px'});
-  document.querySelectorAll('.gallery .card').forEach(c=>galleryObserver.observe(c));
-
-  const floaters=[...document.querySelectorAll('.hero-logo,.artist-photo,.story h2,.flashs img,.studio-main img,.studio-side img')];
-  let ticking=false;
-  const update=()=>{
-    const vh=window.innerHeight||1;
-    floaters.forEach(el=>{const r=el.getBoundingClientRect();const center=(r.top+r.height/2-vh/2)/vh;const amount=Math.max(-1,Math.min(1,-center));el.style.setProperty('--sf',amount.toFixed(3));el.classList.add('scroll-float');});
-    ticking=false;
-  };
-  const onScroll=()=>{if(!ticking){requestAnimationFrame(update);ticking=true;}};
-  window.addEventListener('scroll',onScroll,{passive:true});window.addEventListener('resize',update,{passive:true});update();
-
-  if(matchMedia('(pointer:fine)').matches){
-    document.querySelectorAll('.artist').forEach(card=>{
-      card.addEventListener('pointermove',e=>{const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;card.style.setProperty('--rx',`${(-y*3).toFixed(2)}deg`);card.style.setProperty('--ry',`${(x*4).toFixed(2)}deg`);card.style.transform=`perspective(1000px) rotateX(var(--rx)) rotateY(var(--ry)) translateY(-3px)`;});
-      card.addEventListener('pointerleave',()=>{card.style.transform='';});
-    });
-  }
-})();
-</script>
-
-<style id="FINAL-V8-VINES-PERSIST">
-/* V8: lianes are visible, enter from outside to inside, then stay alive. */
-.edge-vine{display:block!important;visibility:visible!important;}
-.edge-vine img{visibility:visible!important;}
-.edge-vine.in.left img{animation:vineEnterLeftV8 1.9s cubic-bezier(.16,1,.3,1) both, vineAliveLeftV8 5.8s 1.9s ease-in-out infinite!important;}
-.edge-vine.in.right img{animation:vineEnterRightV8 1.9s cubic-bezier(.16,1,.3,1) both, vineAliveRightV8 5.8s 1.9s ease-in-out infinite!important;}
-@keyframes vineEnterLeftV8{0%{opacity:0;transform:translate3d(-260px,0,0) rotate(-8deg);clip-path:inset(0 100% 0 0)}35%{opacity:.45}70%{opacity:.82;clip-path:inset(0 25% 0 0)}100%{opacity:.95;transform:translate3d(0,0,0) rotate(-1deg);clip-path:inset(0 0 0 0)}}
-@keyframes vineEnterRightV8{0%{opacity:0;transform:translate3d(260px,0,0) scaleX(-1) rotate(-8deg);clip-path:inset(0 0 0 100%)}35%{opacity:.45}70%{opacity:.82;clip-path:inset(0 0 0 25%)}100%{opacity:.95;transform:translate3d(0,0,0) scaleX(-1) rotate(-1deg);clip-path:inset(0 0 0 0)}}
-@keyframes vineAliveLeftV8{0%,100%{translate:0 0;rotate:-1deg;filter:drop-shadow(0 0 7px rgba(91,77,220,.22))}25%{translate:9px -5px;rotate:1deg}50%{translate:20px 2px;rotate:2.5deg;filter:drop-shadow(0 0 15px rgba(160,76,230,.38))}75%{translate:7px 6px;rotate:-.5deg}}
-@keyframes vineAliveRightV8{0%,100%{translate:0 0;rotate:1deg;filter:drop-shadow(0 0 7px rgba(91,77,220,.22))}25%{translate:-9px 5px;rotate:-1deg}50%{translate:-20px -2px;rotate:-2.5deg;filter:drop-shadow(0 0 15px rgba(160,76,230,.38))}75%{translate:-7px -6px;rotate:.5deg}}
-/* Keep them tucked at the edges; the artwork travels inward, never outside the viewport. */
-@media(max-width:700px){
- .edge-vine{width:48vw!important;height:145px!important;z-index:3!important}
- .edge-vine img{width:290px!important}
- .edge-vine.left img{left:-118px!important}
- .edge-vine.right img{right:-118px!important}
-}
-</style>
-<script id="FINAL-V8-VINES-JS">
-(()=>{
-  const sections=[document.querySelector('.hero'),...['artistes','flashs','realisations','studio','reservation'].map(id=>document.getElementById(id)).filter(Boolean)];
-  const bySection=new Map();
-  sections.forEach(section=>{
-    const vines=[...section.querySelectorAll(':scope>.edge-vine')];
-    if(vines.length) bySection.set(section,vines);
-  });
-  // Observe the whole section, not each tiny vine. This prevents a vine from disappearing
-  // while its section is still on screen. It replays only when the section genuinely returns.
-  const io=new IntersectionObserver(entries=>entries.forEach(entry=>{
-    const vines=bySection.get(entry.target)||[];
-    if(entry.isIntersecting){
-      vines.forEach(v=>{v.classList.remove('in'); void v.offsetWidth; v.classList.add('in');});
-    } else if(entry.boundingClientRect.bottom<=0 || entry.boundingClientRect.top>=innerHeight){
-      vines.forEach(v=>v.classList.remove('in'));
-    }
-  }),{threshold:.02});
-  sections.forEach(s=>io.observe(s));
-})();
-</script>
-
-<style id="V9-FINAL-REAL-SCROLL">
-/* V9 — scrubbed vine motion: the scroll position controls the whole entrance.
-   No one-shot IntersectionObserver animation. Going down = enter, going back up = reverse. */
-.hero,.site-section,section{overflow:hidden}
-.hero-grid{
-  width:min(100%,1080px)!important;
-  margin-inline:auto!important;
-  display:grid!important;
-  grid-template-columns:1fr!important;
-  justify-items:center!important;
-  text-align:center!important;
-}
-.hero-grid>div:first-child{
-  order:2!important;width:100%!important;
-  display:flex!important;flex-direction:column!important;
-  align-items:center!important;
-}
-.hero-art{
-  order:1!important;width:100%!important;
-  height:clamp(320px,52vw,520px)!important;
-  display:flex!important;align-items:center!important;justify-content:center!important;
-  margin-inline:auto!important;
-}
-.hero-logo{
-  display:block!important;
-  width:min(430px,68vw)!important;
-  max-height:500px!important;
-  height:auto!important;
-  margin:0 auto!important;
-  position:relative!important;
-  left:0!important;
-  right:0!important;
-}
-.hero h1,.hero .eyebrow,.hero .hero-copy,.hero .hero-actions{
-  margin-left:auto!important;margin-right:auto!important;
-  text-align:center!important;
-}
-.hero h1{width:100%!important}
-.hero-copy{width:min(100%,720px)!important}
-.hero-actions{justify-content:center!important}
-
-/* Vines are never display:none. They are scrubbed by JS from outside -> inside. */
-.scroll-vine{
-  position:absolute!important;
-  width:300px!important;
-  height:180px!important;
-  z-index:2!important;
-  pointer-events:none!important;
-  overflow:visible!important;
-  opacity:0;
-  will-change:transform,opacity,clip-path,filter;
-}
-.scroll-vine img{
-  position:absolute!important;
-  top:0!important;
-  width:330px!important;
-  height:auto!important;
-  max-width:none!important;
-  opacity:1!important;
-  will-change:transform;
-  filter:drop-shadow(0 0 8px rgba(73,103,220,.32));
-}
-.scroll-vine.left{left:0!important}
-.scroll-vine.right{right:0!important}
-.scroll-vine.left img{left:-225px!important;transform-origin:left center!important}
-.scroll-vine.right img{right:-225px!important;transform-origin:right center!important;transform:scaleX(-1)!important}
-
-/* Slightly smaller, but still clearly visible, on phones. */
-@media(max-width:700px){
-  .hero-art{height:315px!important}
-  .hero-logo{width:min(88vw,390px)!important;max-height:330px!important}
-  .scroll-vine{width:175px!important;height:150px!important}
-  .scroll-vine img{width:255px!important}
-  .scroll-vine.left img{left:-125px!important}
-  .scroll-vine.right img{right:-125px!important}
-}
-</style>
-
-<script id="V9-FINAL-REAL-SCROLL-JS">
-(()=>{
-  /* Remove only the old generated vine wrappers. Keep the actual PNG assets. */
-  document.querySelectorAll('.edge-vine,.v4-vine,.decor-vine,.vine-layer,.botanical-vine,.v3-vine,.vine-hero,.artist-vine,.section-vines')
-    .forEach(el=>el.remove());
-
-  const assets=[
-    'vine-new-04.png','vine-new-07.png','vine-new-06.png',
-    'vine-new-05.png','vine-new-03.png','vine-new-01.png'
-  ];
-  const sections=[
-    document.querySelector('.hero'),
-    ...['artistes','flashs','realisations','studio','reservation']
-      .map(id=>document.getElementById(id)).filter(Boolean)
-  ];
-
-  /* Three pairs per section = visible decoration between categories, not one lonely vine. */
-  const positions=[12,48,82];
-  const vines=[];
-  sections.forEach((section,si)=>{
-    positions.forEach((top,pi)=>{
-      ['left','right'].forEach((side,di)=>{
-        const v=document.createElement('div');
-        v.className='scroll-vine '+side;
-        v.style.top=top+'%';
-        v.dataset.side=side;
-        v.dataset.index=pi;
-        const img=document.createElement('img');
-        img.src=assets[(si*3+pi+di)%assets.length];
-        img.alt='';
-        img.setAttribute('aria-hidden','true');
-        v.appendChild(img);
-        section.appendChild(v);
-        vines.push({el:v,img,section,side,pi});
-      });
-    });
-  });
-
-  /* Scroll-scrubbed boomerang:
-     section enters from the bottom -> vine travels from outside to inside.
-     Scroll back upward -> the exact same motion reverses.
-     Scroll down again -> it plays forward again.
-     No "play once", no unobserve(), no disappearing timer. */
-  let ticking=false;
-  const clamp=(n,a=0,b=1)=>Math.max(a,Math.min(b,n));
-  const ease=(t)=>t*t*(3-2*t);
-
-  function render(){
-    const vh=innerHeight||1;
-    vines.forEach(({el,img,section,side,pi})=>{
-      const r=section.getBoundingClientRect();
-      /* 0 while the section is below the viewport, 1 once its top reaches the top.
-         This naturally reverses when the user scrolls back upward. */
-      let p=clamp((vh-r.top)/(vh*.82));
-      p=ease(p);
-
-      /* Stagger the three vines so they don't all move together. */
-      const stagger=pi*.10;
-      const q=clamp((p-stagger)/(1-stagger));
-      const e=ease(q);
-
-      const dir=side==='left'?-1:1;
-      const travel=(1-e)*150;
-      const lift=(1-e)*18;
-      const rot=dir*(1-e)*7;
-      const scale=.94+.06*e;
-      const opacity=.05+.9*e;
-      const blur=(1-e)*2.5;
-      const sway=Math.sin((window.scrollY*.008)+pi*1.7+(siSeed(section)*.2))*3*e;
-
-      el.style.opacity=opacity.toFixed(3);
-      el.style.transform=`translate3d(${dir*travel}px,${lift+sway}px,0) rotate(${rot}deg)`;
-      el.style.clipPath=side==='left'
-        ? `inset(0 ${((1-e)*100).toFixed(1)}% 0 0)`
-        : `inset(0 0 0 ${((1-e)*100).toFixed(1)}%)`;
-
-      /* The artwork itself breathes while it is installed, but remains tied to scroll. */
-      const imgScale=scale + Math.sin(window.scrollY*.004+pi)*.012*e;
-      const imgRot=dir*.7*Math.sin(window.scrollY*.003+pi)*e;
-      img.style.transform=side==='left'
-        ? `scale(${imgScale}) rotate(${imgRot}deg)`
-        : `scaleX(-1) scale(${imgScale}) rotate(${imgRot}deg)`;
-      img.style.filter=`drop-shadow(0 0 ${8+10*e}px rgba(110,90,235,${.20+.18*e})) blur(${blur}px)`;
-    });
-
-    ticking=false;
-  }
-  function siSeed(section){
-    return sections.indexOf(section)+1;
-  }
-  function onScroll(){
-    if(!ticking){requestAnimationFrame(render);ticking=true;}
-  }
-  addEventListener('scroll',onScroll,{passive:true});
-  addEventListener('resize',render,{passive:true});
-  render();
-
-  /* Tattooer cards: replay in both directions instead of unobserving after the first play. */
-  const artists=[...document.querySelectorAll('.artist')];
-  artists.forEach((card,i)=>{
-    card.classList.add(i%2?'v9-from-right':'v9-from-left');
-  });
-  function renderArtists(){
-    const vh=innerHeight||1;
-    artists.forEach((card,i)=>{
-      const r=card.getBoundingClientRect();
-      let p=clamp((vh-r.top)/(vh*.72));
-      p=ease(p);
-      const dir=i%2?-1:1;
-      const x=(1-p)*70*dir;
-      const rot=(1-p)*3*dir;
-      card.style.opacity=(.18+.82*p).toFixed(3);
-      card.style.transform=`translate3d(${x}px,${(1-p)*35}px,0) rotateY(${rot}deg) scale(${.965+.035*p})`;
-      card.style.filter=`blur(${(1-p)*2}px)`;
-      const photo=card.querySelector('.artist-photo');
-      if(photo){
-        photo.style.transform=`scale(${1.06-.06*p}) translateX(${(1-p)*-18*dir}px)`;
-      }
-    });
-  }
-  let at=false;
-  function rafArtists(){if(!at){requestAnimationFrame(()=>{renderArtists();at=false});at=true}}
-  addEventListener('scroll',rafArtists,{passive:true});
-  addEventListener('resize',renderArtists,{passive:true});
-  renderArtists();
-
-  /* Cards/galleries also scrub rather than one-shot reveal. */
-  const cards=[...document.querySelectorAll('.gallery .card')];
-  function renderCards(){
-    const vh=innerHeight||1;
-    cards.forEach((card,i)=>{
-      const r=card.getBoundingClientRect();
-      let p=clamp((vh-r.top)/(vh*.78));
-      p=ease(p);
-      const dir=i%2?-1:1;
-      card.style.opacity=(.15+.85*p).toFixed(3);
-      card.style.transform=`translate3d(${dir*(1-p)*28}px,${(1-p)*28}px,0) scale(${.97+.03*p})`;
-    });
-  }
-  let ct=false;
-  function rafCards(){if(!ct){requestAnimationFrame(()=>{renderCards();ct=false});ct=true}}
-  addEventListener('scroll',rafCards,{passive:true});
-  addEventListener('resize',renderCards,{passive:true});
-  renderCards();
-})();
-</script>
-
-<script id="pr-final-motion-js">
-(() => {
-  const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
-  const zones=[...document.querySelectorAll('[data-vine-zone]')];
-  const cards=[...document.querySelectorAll('.artist-card,.artist,.artist-panel,.tattooer-card')];
-
-  // Artist cards: assign alternating directions and animate reversibly with scroll.
-  cards.forEach((el,i)=>{
-    el.classList.add(i%2===0?'pr-artist-motion-left':'pr-artist-motion-right');
-  });
-
-  let raf=0;
-  function update(){
-    raf=0;
-    const vh=innerHeight;
-    zones.forEach((z)=>{
-      const r=z.getBoundingClientRect();
-      // progress 0..1 as the zone travels through the middle 65% of viewport
-      const p=clamp((vh*.82-r.top)/(vh*.58),0,1);
-      const eased=p<.5 ? 2*p*p : 1-Math.pow(-2*p+2,2)/2;
-      const left=z.querySelector('.pr-vine.left');
-      const right=z.querySelector('.pr-vine.right');
-      if(left){
-        const x=58-(20*eased);
-        left.style.transform=`translate3d(${x}%, -50%, 0)`;
-        left.style.opacity=String(.82+.18*eased);
-      }
-      if(right){
-        const x=-(58-(20*eased));
-        right.style.transform=`translate3d(${x}%, -50%, 0) scaleX(-1)`;
-        right.style.opacity=String(.82+.18*eased);
-      }
-      z.style.setProperty('--vine-progress',eased.toFixed(3));
-    });
-
-    cards.forEach((el,i)=>{
-      const r=el.getBoundingClientRect();
-      const p=clamp((vh*.88-r.top)/(vh*.62),0,1);
-      const e=p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2;
-      const dir=i%2===0?-1:1;
-      el.style.transform=`translate3d(${(1-e)*dir*12}vw,0,0)`;
-      el.style.opacity=String(.35+.65*e);
-    });
-  }
-  function request(){ if(!raf) raf=requestAnimationFrame(update); }
-  addEventListener('scroll',request,{passive:true});
-  addEventListener('resize',request,{passive:true});
-  request();
-
-  // Gentle depth for gallery images based on pointer position.
-  document.addEventListener('pointermove',e=>{
-    document.querySelectorAll('.gallery img,.flash-card img,.tattoo-card img').forEach((img,i)=>{
-      const dx=(e.clientX-innerWidth/2)/innerWidth;
-      const dy=(e.clientY-innerHeight/2)/innerHeight;
-      img.style.transform=`translate3d(${dx*(i%2?3:-3)}px,${dy*2}px,0)`;
-    });
-  },{passive:true});
-})();
-</script>
-</body></html>
+</script></body></html>
