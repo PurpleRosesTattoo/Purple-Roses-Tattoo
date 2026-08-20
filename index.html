@@ -345,6 +345,69 @@ section > .decor-vine{z-index:1}section > .wrap{position:relative;z-index:3}
 }
 @media(prefers-reduced-motion:reduce){.decor-vine.left.show,.decor-vine.right.show,.decor-vine.show .vine-art,.decor-vine.show .vine-path,.decor-vine.show .vine-branch,.decor-vine.show .rose,.decor-vine.show .leaf{animation:none!important}.decor-vine{opacity:.85;transform:none!important}.vine-path,.vine-branch{stroke-dashoffset:0}.rose,.leaf{opacity:1}}
 </style>
+
+<style id="final-v3">
+/* V3 — final visible botanical motion system */
+:root{--vine-blue:#315fbf;--vine-blue2:#4b86e8;--vine-purple:#9b43dc}
+/* remove every previous decorative system */
+.orb,.orn,.decor-vine,.vine-layer,.real-vine,.botanical-vine{display:none!important}
+.hero,.site-section{position:relative;overflow:hidden}
+.hero-grid{position:relative;z-index:5}
+.hero-art{display:grid;place-items:center;position:relative;z-index:5}
+.hero-logo{display:block;width:min(500px,92%);height:auto;max-height:570px;object-fit:contain;margin:auto;mix-blend-mode:normal!important;background:transparent!important;filter:drop-shadow(0 18px 45px rgba(124,69,216,.22))!important;animation:heroFloat 6s ease-in-out infinite}
+@keyframes heroFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+/* New real PNG vines: they begin outside the viewport and enter toward the content. */
+.v3-vine{position:absolute;top:0;bottom:0;width:250px;z-index:2;pointer-events:none;overflow:visible;opacity:1}
+.v3-vine.left{left:-205px}.v3-vine.right{right:-205px}
+.v3-vine img{position:absolute;max-width:none;width:340px;height:auto;opacity:0;will-change:transform,opacity;filter:drop-shadow(0 0 9px rgba(49,95,191,.22));}
+.v3-vine.left img{right:0;transform:translateX(-180px)}
+.v3-vine.right img{left:0;transform:translateX(180px) scaleX(-1)}
+.v3-vine.enter.left img{animation:v3InLeft 1.45s cubic-bezier(.16,1,.3,1) both,v3FloatL 8s 1.45s ease-in-out infinite}
+.v3-vine.enter.right img{animation:v3InRight 1.45s cubic-bezier(.16,1,.3,1) both,v3FloatR 8s 1.45s ease-in-out infinite}
+@keyframes v3InLeft{0%{opacity:0;transform:translateX(-180px)}35%{opacity:.15}100%{opacity:.9;transform:translateX(0)}}
+@keyframes v3InRight{0%{opacity:0;transform:translateX(180px) scaleX(-1)}35%{opacity:.15}100%{opacity:.9;transform:translateX(0) scaleX(-1)}}
+@keyframes v3FloatL{0%,100%{margin-top:0}50%{margin-top:-9px}}
+@keyframes v3FloatR{0%,100%{margin-top:0}50%{margin-top:9px}}
+.v3-vine.hero-v{height:65%;top:18%}.v3-vine.hero-v img{width:310px}
+.v3-vine.tall{height:78%;top:11%}.v3-vine.mid{height:42%;top:48%}.v3-vine.small{height:30%;top:64%}
+.v3-vine.horiz img{width:330px}
+/* Subtle independent motion on content — not simple fade-only reveals. */
+.v3-motion{opacity:0;will-change:transform,opacity}
+.v3-motion.from-left{transform:translate3d(-55px,18px,0)}
+.v3-motion.from-right{transform:translate3d(55px,18px,0)}
+.v3-motion.from-up{transform:translate3d(0,45px,0)}
+.v3-motion.in{opacity:1;transform:none;transition:opacity .8s ease,transform .95s cubic-bezier(.16,1,.3,1)}
+/* Keep typography clear of decorative art */
+section>.wrap{position:relative;z-index:5}
+.section-head h2,.section-head p{position:relative;z-index:6}
+/* compact clickable masonry galleries */
+#flashs .gallery,#realisations .gallery{columns:3 150px;column-gap:14px}
+#flashs .gallery .card,#realisations .gallery .card{break-inside:avoid;margin:0 0 14px;border:0;background:transparent;box-shadow:none;overflow:hidden;cursor:zoom-in;transition:transform .35s ease,filter .35s ease}
+#flashs .gallery .card:hover,#realisations .gallery .card:hover{transform:translateY(-4px) scale(1.015);filter:brightness(1.08)}
+#flashs .gallery .card img,#realisations .gallery .card img{display:block;width:100%;height:auto}
+#flashs .gallery .meta,#realisations .gallery .meta{display:none!important}
+/* no accidental flash items in tattoo gallery */
+@media(max-width:900px){
+ .hero-grid{grid-template-columns:1fr;gap:10px}
+ .hero-art{order:-1;height:390px}
+ .hero-logo{width:min(360px,82vw);max-height:390px}
+ .v3-vine{width:145px}.v3-vine.left{left:-115px}.v3-vine.right{right:-115px}
+ .v3-vine img{width:240px}.v3-vine.hero-v img{width:225px}
+ .v3-vine.horiz img{width:240px}
+}
+@media(max-width:560px){
+ .hero{padding:86px 0 58px}
+ .hero-art{height:315px}
+ .hero-logo{width:min(300px,78vw);max-height:315px}
+ .hero h1{font-size:clamp(64px,18vw,82px);line-height:.82;letter-spacing:0}
+ .hero-copy{max-width:none;font-size:16px}
+ .v3-vine{width:100px}.v3-vine.left{left:-72px}.v3-vine.right{right:-72px}
+ .v3-vine img{width:180px}.v3-vine.hero-v img{width:175px}.v3-vine.horiz img{width:190px}
+ #flashs .gallery,#realisations .gallery{columns:3 92px!important;column-gap:8px}
+ #flashs .gallery .card,#realisations .gallery .card{margin-bottom:8px}
+}
+</style>
+
 </head>
 <body>
 <div class="scroll-progress" aria-hidden="true"><span></span></div>
@@ -776,85 +839,43 @@ body{min-width:0}
 })();
 </script>
 
-<style id="final-vine-system">
-/* FINAL: real PNG vines, outside -> inside. No SVG vines, no circles, no black panels. */
-.orb,.orn,.botanical-vine,.vine-layer{display:none!important}
-.hero-art{overflow:visible!important;display:grid;place-items:center;min-width:0}
-.hero-logo{width:min(430px,88%);max-width:430px;height:auto;margin:auto;mix-blend-mode:normal!important;background:transparent!important;filter:drop-shadow(0 16px 38px rgba(124,69,216,.22))!important;animation:heroFloat 6s ease-in-out infinite}
-@keyframes heroFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-.hero-grid{position:relative;z-index:2}.hero-copy{max-width:680px}.hero h1{max-width:760px}
-.section-head,.story,.artists,.gallery,.studio-grid,.location,.booking-grid{position:relative;z-index:4}
-.section-head h2,.story h2,.booking h2,.hero h1{overflow:visible;word-break:normal;overflow-wrap:normal}
-.story{align-items:start;gap:48px}.story-copy{margin:4px 0 0;max-width:760px}
-.booking-grid{align-items:start;gap:45px}.booking-grid>.reveal{transform:none!important}.booking .form{margin-top:0}
-/* Small, clickable galleries. */
-#flashs .gallery{columns:3 150px;column-gap:14px}
-#flashs .gallery .card,#realisations .gallery .card{border:0;background:transparent;box-shadow:none}
-#flashs .gallery .card img,#realisations .gallery .card img{cursor:zoom-in}
-#flashs .gallery .card{transition:transform .45s cubic-bezier(.16,1,.3,1),opacity .7s ease}
-#flashs .gallery .card:hover{transform:translateY(-5px) scale(1.012)}
-/* Real PNG vine layers */
-.real-vine{position:absolute;top:0;width:260px;height:100%;z-index:1;pointer-events:none;overflow:visible}
-.real-vine.left{left:-225px}.real-vine.right{right:-225px}
-.real-vine img{position:absolute;width:330px;max-width:none;height:auto;opacity:0;filter:drop-shadow(0 0 8px rgba(69,111,255,.18));will-change:transform,opacity}
-.real-vine.left img{right:0;transform:translateX(-160px)}
-.real-vine.right img{left:0;transform:translateX(160px) scaleX(-1)}
-.real-vine.in.left img{animation:vineEnterL 1.65s cubic-bezier(.16,1,.3,1) both,vineBreathL 7s 1.65s ease-in-out infinite}
-.real-vine.in.right img{animation:vineEnterR 1.65s cubic-bezier(.16,1,.3,1) both,vineBreathR 7s 1.65s ease-in-out infinite}
-@keyframes vineEnterL{0%{opacity:0;transform:translateX(-160px)}45%{opacity:.95}100%{opacity:.9;transform:translateX(0)}}
-@keyframes vineEnterR{0%{opacity:0;transform:translateX(160px) scaleX(-1)}45%{opacity:.95}100%{opacity:.9;transform:translateX(0) scaleX(-1)}}
-@keyframes vineBreathL{0%,100%{margin-top:0}50%{margin-top:-9px}}
-@keyframes vineBreathR{0%,100%{margin-top:0}50%{margin-top:9px}}
-.hero .real-vine{height:78%;top:15%}.hero .real-vine img{width:300px}
-section>.real-vine{height:92%;top:4%}
-.real-vine.v2{top:52%!important;height:45%!important}
-.real-vine.v3{top:18%!important;height:60%!important}
-/* More visible section motion: content slides from alternating sides, not only fades. */
-.real-motion-left,.real-motion-right{opacity:0;will-change:transform,opacity}
-.real-motion-left{transform:translate3d(-55px,20px,0)}.real-motion-right{transform:translate3d(55px,20px,0)}
-.real-motion-left.show,.real-motion-right.show{opacity:1;transform:none;transition:opacity .75s ease,transform 1s cubic-bezier(.16,1,.3,1)}
-@media(max-width:900px){
- .hero-art{height:330px;order:-1}.hero-logo{width:min(330px,82vw)}
- .real-vine{width:145px}.real-vine.left{left:-125px}.real-vine.right{right:-125px}
- .real-vine img{width:235px}.hero .real-vine img{width:220px}
- .story{gap:24px}.story-copy{margin-top:0}
-}
-@media(max-width:560px){
- section{padding:70px 0}.hero{padding:88px 0 55px}.hero-art{height:285px}.hero-logo{width:min(300px,80vw)}
- .real-vine{width:105px}.real-vine.left{left:-92px}.real-vine.right{right:-92px}.real-vine img{width:175px}.hero .real-vine img{width:175px}
- #flashs .gallery{columns:3 95px!important;column-gap:8px}
- .story{gap:20px}.story-copy{font-size:17px;line-height:1.7}
-}
-</style>
-<script id="final-vine-system-js">
+
+<script id="final-v3-js">
 (()=>{
-  // Remove every previous generated vine implementation.
-  document.querySelectorAll('.botanical-vine,.vine-layer').forEach(e=>e.remove());
-  const sections=[
-    ['top','left','lianes_final/left_tall.png','hero'],['top','right','lianes_final/right_tall.png','hero'],
-    ['artistes','left','lianes_final/left_tall_alt.png','v3'],['artistes','right','lianes_final/right_tall_alt.png','v3'],
-    ['flashs','left','lianes_final/horizontal_alt.png','v2'],['flashs','right','lianes_final/horizontal.png','v2'],
-    ['realisations','left','lianes_final/left_tall.png','v3'],['realisations','right','lianes_final/right_tall.png','v3'],
-    ['reservation','left','lianes_final/left_tall_alt.png','v2'],['reservation','right','lianes_final/right_tall_alt.png','v2']
-  ];
-  for(const [id,side,src,variant] of sections){
-    const sec=id==='top'?document.querySelector('.hero'):document.getElementById(id);
-    if(!sec) continue;
-    const v=document.createElement('div');v.className=`real-vine ${side} ${variant}`;
-    const img=document.createElement('img');img.src=src;img.alt='';img.setAttribute('aria-hidden','true');v.appendChild(img);sec.appendChild(v);
+  // Purge any old decorative nodes and create only real PNG assets.
+  document.querySelectorAll('.decor-vine,.vine-layer,.real-vine,.botanical-vine').forEach(e=>e.remove());
+  const plan={
+    top:[['left','vine-new-03.png','hero-v'],['right','vine-new-01.png','hero-v']],
+    artistes:[['left','vine-new-01.png','tall'],['right','vine-new-03.png','tall']],
+    flashs:[['left','vine-new-04.png','horiz'],['right','vine-new-07.png','horiz']],
+    realisations:[['left','vine-new-02.png','tall'],['right','vine-new-08.png','tall']],
+    studio:[['left','vine-new-06.png','mid'],['right','vine-new-05.png','mid']],
+    reservation:[['left','vine-new-04.png','small'],['right','vine-new-07.png','small']]
+  };
+  function addVines(sec, items){
+    if(!sec)return;
+    items.forEach(([side,file,variant])=>{
+      const v=document.createElement('div');v.className=`v3-vine ${side} ${variant}`;
+      const img=document.createElement('img');img.src=file;img.alt='';img.setAttribute('aria-hidden','true');
+      v.appendChild(img);sec.appendChild(v);
+    });
   }
-  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.08,rootMargin:'0px 0px -12% 0px'});
-  document.querySelectorAll('.real-vine').forEach(v=>io.observe(v));
+  addVines(document.querySelector('.hero'),plan.top);
+  Object.entries(plan).forEach(([id,items])=>{if(id!=='top')addVines(document.getElementById(id),items)});
+  const vines=[...document.querySelectorAll('.v3-vine')];
+  const vio=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('enter')}),{threshold:.05,rootMargin:'0px 0px -8% 0px'});
+  vines.forEach(v=>vio.observe(v));
 
-  // Make gallery/cards and important text visibly move into place as the user scrolls.
-  const targets=[...document.querySelectorAll('.artist,.story>div,.section-head,.gallery .card,.booking-grid>*,.studio-grid>*')];
-  targets.forEach((el,i)=>{el.classList.add(i%2?'real-motion-right':'real-motion-left')});
-  const mo=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');mo.unobserve(e.target)}}),{threshold:.08,rootMargin:'0px 0px -10% 0px'});
-  targets.forEach(t=>mo.observe(t));
+  // Make actual page elements move from alternating directions as they enter the viewport.
+  const els=[...document.querySelectorAll('.artist,.story>div,.section-head,.gallery .card,.booking-grid>*,.studio-grid>*,.location>*')];
+  els.forEach((el,i)=>{el.classList.add('v3-motion',i%3===0?'from-left':i%3===1?'from-right':'from-up')});
+  const eio=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');eio.unobserve(e.target)}}),{threshold:.08,rootMargin:'0px 0px -10% 0px'});
+  els.forEach(el=>eio.observe(el));
 
-  // Ensure no flash sheet/image accidentally remains in the tattoo gallery.
-  const flashSet=new Set([...document.querySelectorAll('#flashGallery img')].map(i=>i.getAttribute('src')));
-  document.querySelectorAll('#realisations .card').forEach(card=>{const img=card.querySelector('img');if(img && flashSet.has(img.getAttribute('src')))card.remove()});
+  // Hard-remove any duplicate flash images from the tattoo gallery.
+  const flashSrc=new Set([...document.querySelectorAll('#flashGallery img')].map(i=>i.getAttribute('src')));
+  document.querySelectorAll('#realisations .card').forEach(card=>{const img=card.querySelector('img');if(img && flashSrc.has(img.getAttribute('src')))card.remove()});
 })();
 </script>
+
 </body></html>
