@@ -190,8 +190,8 @@ section{overflow:visible!important}
 .pr-ink-title{position:relative!important;color:transparent!important;-webkit-text-fill-color:transparent!important;-webkit-text-stroke:0!important;overflow:visible!important}
 .pr-ink-title .pr-title-layer{display:block!important;position:relative!important}
 .pr-ink-title .pr-title-base{color:transparent!important;-webkit-text-fill-color:transparent!important;-webkit-text-stroke:1px rgba(245,242,251,.92)!important;text-shadow:0 0 8px rgba(157,85,255,.06)!important}
-.pr-ink-title .pr-title-white{position:absolute!important;inset:0!important;color:#f5f2fb!important;-webkit-text-fill-color:#f5f2fb!important;-webkit-text-stroke:0!important;pointer-events:none!important}
-.pr-ink-title .pr-title-black{position:absolute!important;inset:0!important;color:#050610!important;-webkit-text-fill-color:#050610!important;-webkit-text-stroke:0!important;pointer-events:none!important;clip-path:inset(100% 0 0 0)!important;will-change:clip-path!important}
+.pr-ink-title .pr-title-white{position:absolute!important;inset:0!important;color:#f5f2fb!important;-webkit-text-fill-color:#f5f2fb!important;-webkit-text-stroke:0!important;pointer-events:none!important;clip-path:inset(100% 0 0 0)!important;-webkit-clip-path:inset(100% 0 0 0)!important;will-change:clip-path!important}
+.pr-ink-title .pr-title-black{position:absolute!important;inset:0!important;color:#050610!important;-webkit-text-fill-color:#050610!important;-webkit-text-stroke:0!important;pointer-events:none!important;clip-path:none!important;will-change:auto!important}
 .pr-ink-title .roseword{color:transparent!important;-webkit-text-fill-color:transparent!important;-webkit-text-stroke:1px rgba(245,242,251,.92)!important}
 .pr-ink-title .pr-title-white .roseword{color:#f5f2fb!important;-webkit-text-fill-color:#f5f2fb!important;-webkit-text-stroke:0!important}
 .pr-ink-title .pr-title-black .roseword{color:#050610!important;-webkit-text-fill-color:#050610!important;-webkit-text-stroke:0!important}
@@ -248,10 +248,26 @@ section{overflow:visible!important}
   text-stroke:0!important;
 }
 .pr-ink-title .pr-title-black{
+  clip-path:none!important;
+  -webkit-clip-path:none!important;
+  will-change:auto!important;
+}
+.pr-ink-title .pr-title-white{
   clip-path:inset(100% 0 0 0)!important;
   -webkit-clip-path:inset(100% 0 0 0)!important;
   will-change:clip-path!important;
 }
+
+/* EXTRA LIQUID AURA: visible flowing highlights, without changing the approved oval size. */
+.hero-glow-a::before,.hero-glow-a::after,.hero-glow-b::before,.hero-glow-b::after{content:"";position:absolute;inset:-12%;border-radius:inherit;pointer-events:none;filter:blur(24px);mix-blend-mode:screen;opacity:.65;background:radial-gradient(ellipse at 25% 35%,rgba(226,104,255,.5),transparent 34%),radial-gradient(ellipse at 72% 65%,rgba(76,186,255,.32),transparent 38%);will-change:transform,background-position;}
+.hero-glow-a::before{animation:waterSheenA 7s ease-in-out infinite;}
+.hero-glow-a::after{animation:waterSheenA2 9s ease-in-out infinite;}
+.hero-glow-b::before{animation:waterSheenB 8s ease-in-out infinite;}
+.hero-glow-b::after{animation:waterSheenB2 11s ease-in-out infinite;}
+@keyframes waterSheenA{0%,100%{transform:translate(-10%,-6%) scale(.9);background-position:0% 30%}50%{transform:translate(12%,8%) scale(1.12);background-position:100% 70%}}
+@keyframes waterSheenA2{0%,100%{transform:translate(12%,10%) scale(1.05);background-position:100% 20%}50%{transform:translate(-14%,-8%) scale(.9);background-position:15% 90%}}
+@keyframes waterSheenB{0%,100%{transform:translate(8%,-10%) scale(.92);background-position:90% 40%}50%{transform:translate(-10%,12%) scale(1.1);background-position:10% 80%}}
+@keyframes waterSheenB2{0%,100%{transform:translate(-8%,8%) scale(1.08);background-position:15% 85%}50%{transform:translate(12%,-12%) scale(.94);background-position:85% 15%}}
 </style>
 </head>
 <body>
@@ -402,7 +418,7 @@ titles.forEach(title=>{
   black.innerHTML=html;
   black.setAttribute('aria-hidden','true');
   title.append(base,white,black);
-  titleRecords.push({title,black,hero:title.closest('.hero')!==null});
+  titleRecords.push({title,white,hero:title.closest('.hero')!==null});
 });
 
 const identityNames=[];
@@ -442,11 +458,11 @@ document.getElementById('bookingForm')?.addEventListener('submit',e=>{
 const artists=$('.artist');
 const gallery=$('#flashs .gallery .card,#realisations .gallery .card');
 let raf=0;
-function setInk(black,q){
+function setInk(white,q){
   const x=clamp(q);
   const pct=x*100;
-  /* Down-scroll: black rises from the bottom. Up-scroll: white returns from the top as the black region shrinks downward. */
-  black.style.clipPath=`inset(${100-pct}% 0 0 0)`;
+  white.style.clipPath=`inset(${100-pct}% 0 0 0)`;
+  white.style.webkitClipPath=`inset(${100-pct}% 0 0 0)`;
 }
 function render(){
  raf=0;
@@ -475,10 +491,10 @@ function render(){
  });
 
  // All true titles: solid interior is revealed and unrevealed directly by scroll.
- titleRecords.forEach(({title,black})=>{
+ titleRecords.forEach(({title,white})=>{
    const r=title.getBoundingClientRect();
    const p=clamp((vh*.84-r.top)/(vh*.58));
-   setInk(black,ease(p));
+   setInk(white,ease(p));
  });
 
  // Names / shop location: separate editorial slide, not the title effect.
@@ -551,8 +567,8 @@ function titleProgress(title){
   return Math.max(0,Math.min(1,p));
 }
 function applyInk(title){
-  const black=title.querySelector('.pr-title-black');
-  if(!black)return;
+  const white=title.querySelector('.pr-title-white');
+  if(!white)return;
   const p=titleProgress(title);
   const baseY=(1-p)*100;
   const amp=Math.min(3.2,Math.max(1.2,3.2*Math.sin(Math.PI*p)));
@@ -562,10 +578,10 @@ function applyInk(title){
     const wave=Math.sin(i*1.37 + p*7.0)*amp + Math.sin(i*.63+p*4.2)*amp*.45;
     pts.push(`${x}% ${Math.max(0,Math.min(100,baseY+wave))}%`);
   }
-  /* The polygon is the black area below the moving, slightly irregular ink front. */
-  const poly=`polygon(${pts.join(',')},100% 100%,0% 100%)`;
-  black.style.setProperty('clip-path',poly,'important');
-  black.style.setProperty('-webkit-clip-path',poly,'important');
+  /* The polygon is the WHITE area above the moving ink/water front. */
+  const poly=`polygon(0% 0%,100% 0%,${pts.slice().reverse().join(',')})`;
+  white.style.setProperty('clip-path',poly,'important');
+  white.style.setProperty('-webkit-clip-path',poly,'important');
 }
 let titleRaf=0;
 function titleFrame(){
