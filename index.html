@@ -160,7 +160,7 @@ section{overflow:visible!important}
  .hero-actions .btn{flex:0 1 auto!important}
  .section-head h2,.story h2,.booking h2{font-size:clamp(48px,14vw,70px)!important;line-height:.86!important}
 }
-@media(prefers-reduced-motion:reduce){.hero-logo,.hero-glow-a,.hero-glow-b,.hero h1.pr-ink-title .pr-title-fill{animation:none!important}.hero h1.pr-ink-title .pr-title-fill{clip-path:polygon(0 0,100% 0,100% 100%,0 100%)!important}}
+@media(prefers-reduced-motion:reduce){.hero-logo{animation:none!important}}
 
 /* HERO AMBIENT GLOW — vertical living aura behind the complete rose mark */
 .hero-art{isolation:isolate!important}
@@ -168,8 +168,14 @@ section{overflow:visible!important}
 .hero-glow-a{width:min(62vw,430px)!important;height:min(96vw,690px)!important;transform:translate(-50%,-50%) scale(.90,.84)!important;background:radial-gradient(ellipse at 50% 50%,rgba(139,78,238,.82) 0%,rgba(101,60,190,.52) 30%,rgba(78,53,145,.24) 53%,transparent 76%)!important;animation:heroGlowA 10s ease-in-out infinite!important}
 .hero-glow-b{width:min(48vw,330px)!important;height:min(82vw,570px)!important;transform:translate(calc(-50% + 12px),calc(-50% - 4px)) scale(.94,.88)!important;background:radial-gradient(ellipse at 50% 48%,rgba(209,59,225,.46) 0%,rgba(112,75,218,.24) 38%,rgba(64,171,217,.12) 58%,transparent 78%)!important;animation:heroGlowB 13s ease-in-out infinite!important}
 .hero-logo{position:relative!important;z-index:2!important}
-@keyframes heroGlowA{0%{transform:translate(-50%,-50%) translate(-8px,5px) scale(.93,.86);border-radius:48% 52% 50% 50%;opacity:.82}18%{transform:translate(-50%,-50%) translate(4px,-7px) scale(1,.90);border-radius:52% 48% 47% 53%;opacity:.90}37%{transform:translate(-50%,-50%) translate(9px,4px) scale(.96,.98);border-radius:46% 54% 52% 48%;opacity:.98}56%{transform:translate(-50%,-50%) translate(-5px,9px) scale(1.04,.92);border-radius:54% 46% 49% 51%;opacity:.88}78%{transform:translate(-50%,-50%) translate(-10px,-3px) scale(.97,1);border-radius:49% 51% 55% 45%;opacity:.95}100%{transform:translate(-50%,-50%) translate(-8px,5px) scale(.93,.86);border-radius:48% 52% 50% 50%;opacity:.82}}
-@keyframes heroGlowB{0%{transform:translate(calc(-50% + 11px),calc(-50% - 5px)) translate(-3px,4px) scale(.95,.89);border-radius:51% 49% 55% 45%;opacity:.45}22%{transform:translate(calc(-50% + 11px),calc(-50% - 5px)) translate(7px,-5px) scale(1.02,.94);border-radius:45% 55% 49% 51%;opacity:.62}44%{transform:translate(calc(-50% + 11px),calc(-50% - 5px)) translate(-4px,-8px) scale(.94,1.01);border-radius:56% 44% 52% 48%;opacity:.50}67%{transform:translate(calc(-50% + 11px),calc(-50% - 5px)) translate(-8px,6px) scale(1.05,.91);border-radius:48% 52% 45% 55%;opacity:.68}84%{transform:translate(calc(-50% + 11px),calc(-50% - 5px)) translate(5px,8px) scale(.98,.97);border-radius:53% 47% 57% 43%;opacity:.54}100%{transform:translate(calc(-50% + 11px),calc(-50% - 5px)) translate(-3px,4px) scale(.95,.89);border-radius:51% 49% 55% 45%;opacity:.45}}
+@keyframes heroGlowA{0%,100%{transform:translate(-50%,-50%) scale(.90,.84);opacity:.78}25%{transform:translate(calc(-50% - 7px),calc(-50% + 5px)) scale(.96,.88);opacity:.92}50%{transform:translate(calc(-50% + 10px),calc(-50% - 9px)) scale(1.04,.96);opacity:1}75%{transform:translate(calc(-50% - 4px),calc(-50% + 7px)) scale(.98,.91);opacity:.88}}
+@keyframes heroGlowB{0%,100%{transform:translate(calc(-50% + 12px),calc(-50% - 4px)) scale(.94,.88);opacity:.46}50%{transform:translate(calc(-50% - 11px),calc(-50% + 8px)) scale(1.05,.98);opacity:.72}}
+/* Aura — continuous water-like light movement; visual shape/intensity otherwise preserved. */
+.hero-glow-a,.hero-glow-b{background-size:180% 180%!important;background-position:0% 50%!important;will-change:transform,background-position,border-radius,opacity!important}
+.hero-glow-a{animation:heroGlowWaterA 9s ease-in-out infinite!important}
+.hero-glow-b{animation:heroGlowWaterB 12s ease-in-out infinite!important}
+@keyframes heroGlowWaterA{0%,100%{background-position:0% 50%;border-radius:47% 53% 51% 49% / 42% 46% 54% 58%;transform:translate(-50%,-50%) scale(.90,.84);opacity:.78}20%{background-position:78% 28%;border-radius:53% 47% 43% 57% / 48% 39% 61% 52%;transform:translate(calc(-50% - 9px),calc(-50% + 6px)) scale(.98,.91);opacity:.94}43%{background-position:100% 72%;border-radius:43% 57% 57% 43% / 58% 47% 53% 42%;transform:translate(calc(-50% + 11px),calc(-50% - 10px)) scale(1.04,.97);opacity:1}68%{background-position:28% 100%;border-radius:57% 43% 47% 53% / 44% 60% 40% 56%;transform:translate(calc(-50% - 5px),calc(-50% + 9px)) scale(.97,.90);opacity:.88}}
+@keyframes heroGlowWaterB{0%,100%{background-position:100% 45%;border-radius:52% 48% 46% 54% / 48% 56% 44% 52%;transform:translate(calc(-50% + 12px),calc(-50% - 4px)) scale(.94,.88);opacity:.46}24%{background-position:22% 18%;border-radius:44% 56% 53% 47% / 57% 43% 51% 49%;transform:translate(calc(-50% - 10px),calc(-50% + 7px)) scale(1.03,.95);opacity:.68}51%{background-position:0% 82%;border-radius:59% 41% 45% 55% / 42% 55% 45% 58%;transform:translate(calc(-50% + 7px),calc(-50% - 8px)) scale(.98,.93);opacity:.76}76%{background-position:76% 100%;border-radius:47% 53% 59% 41% / 53% 45% 55% 47%;transform:translate(calc(-50% - 7px),calc(-50% + 10px)) scale(1.05,.98);opacity:.58}}
 @media(max-width:560px){
  .hero-glow-a{width:clamp(250px,72vw,340px)!important;height:clamp(390px,116vw,540px)!important}
  .hero-glow-b{width:clamp(205px,56vw,280px)!important;height:clamp(330px,96vw,450px)!important}
@@ -180,18 +186,17 @@ section{overflow:visible!important}
 .hero-grid{flex:0 0 auto!important}
 .scrollhint{position:relative!important;left:auto!important;bottom:auto!important;transform:none!important;margin:22px auto 0!important;z-index:5!important;text-align:center!important;flex:0 0 auto!important}
 
-/* Titles — robust liquid/infusion sweep, scroll controlled. */
+/* TITLES — fine permanent outline + white fill + black level controlled directly by scroll */
 .pr-ink-title{position:relative!important;color:transparent!important;-webkit-text-fill-color:transparent!important;-webkit-text-stroke:0!important;overflow:visible!important}
 .pr-ink-title .pr-title-layer{display:block!important;position:relative!important}
-/* The outline is ALWAYS visible. Only the solid interior is controlled by scroll. */
-.pr-ink-title .pr-title-base{color:#f5f2fb!important;-webkit-text-fill-color:#f5f2fb!important;-webkit-text-stroke:1px rgba(245,242,251,.92)!important;text-shadow:0 0 10px rgba(157,85,255,.08)!important}
-.pr-ink-title .pr-title-fill{position:absolute!important;inset:0!important;color:#050610!important;-webkit-text-fill-color:#050610!important;-webkit-text-stroke:0!important;pointer-events:none!important;clip-path:inset(100% 0 0 0)!important;filter:none!important;will-change:clip-path!important;background:none!important}
-/* Preserve the two-tone hero structure while keeping its outline visible. */
-.pr-ink-title .roseword{color:#f5f2fb!important;-webkit-text-fill-color:#f5f2fb!important;-webkit-text-stroke:1px rgba(245,242,251,.92)!important}
-.pr-ink-title .pr-title-fill .roseword{color:#050610!important;-webkit-text-fill-color:#050610!important;-webkit-text-stroke:0!important}
-.pr-ink-title.pr-title-active .pr-title-fill{opacity:1!important}
-/* Hero uses the same effect and is no longer a one-shot load animation. */
-.hero h1.pr-ink-title .pr-title-fill{animation:none!important}
+.pr-ink-title .pr-title-base{color:transparent!important;-webkit-text-fill-color:transparent!important;-webkit-text-stroke:.7px rgba(245,242,251,.92)!important;text-shadow:0 0 8px rgba(157,85,255,.06)!important}
+.pr-ink-title .pr-title-white{position:absolute!important;inset:0!important;color:#f5f2fb!important;-webkit-text-fill-color:#f5f2fb!important;-webkit-text-stroke:0!important;pointer-events:none!important}
+.pr-ink-title .pr-title-black{position:absolute!important;inset:0!important;color:#050610!important;-webkit-text-fill-color:#050610!important;-webkit-text-stroke:0!important;pointer-events:none!important;clip-path:inset(100% 0 0 0)!important;will-change:clip-path!important}
+.pr-ink-title .roseword{color:transparent!important;-webkit-text-fill-color:transparent!important;-webkit-text-stroke:.7px rgba(245,242,251,.92)!important}
+.pr-ink-title .pr-title-white .roseword{color:#f5f2fb!important;-webkit-text-fill-color:#f5f2fb!important;-webkit-text-stroke:0!important}
+.pr-ink-title .pr-title-black .roseword{color:#050610!important;-webkit-text-fill-color:#050610!important;-webkit-text-stroke:0!important}
+.pr-ink-title .pr-title-black:after{content:"";position:absolute;left:-3%;right:-3%;top:0;height:100%;pointer-events:none;opacity:.12;background:radial-gradient(ellipse at 50% 0%,rgba(157,85,255,.55),transparent 58%);filter:blur(12px)}
+.hero h1.pr-ink-title .pr-title-black{animation:none!important}
 
 /* EXPERIENCE — compact like the other section heads */
 .story{align-items:start!important;gap:36px!important}
@@ -350,7 +355,7 @@ const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
 const ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
 const progress=document.querySelector('.scroll-progress span');
 
-// Titles: permanent white text with a fine outline + reversible black waterline fill.
+// Titles: duplicate each title into an outline base + a solid ink layer.
 // The fill edge is reshaped every frame, giving an organic infusion/ink front.
 // Only true section titles use the liquid ink treatment.
 // Artist names and the shop location use a separate editorial motion system.
@@ -364,12 +369,16 @@ titles.forEach(title=>{
   const base=document.createElement('span');
   base.className='pr-title-layer pr-title-base';
   base.innerHTML=html;
-  const fill=document.createElement('span');
-  fill.className='pr-title-layer pr-title-fill';
-  fill.innerHTML=html;
-  fill.setAttribute('aria-hidden','true');
-  title.append(base,fill);
-  titleRecords.push({title,fill,hero:title.closest('.hero')!==null});
+  const white=document.createElement('span');
+  white.className='pr-title-layer pr-title-white';
+  white.innerHTML=html;
+  white.setAttribute('aria-hidden','true');
+  const black=document.createElement('span');
+  black.className='pr-title-layer pr-title-black';
+  black.innerHTML=html;
+  black.setAttribute('aria-hidden','true');
+  title.append(base,white,black);
+  titleRecords.push({title,black,hero:title.closest('.hero')!==null});
 });
 
 const identityNames=[];
@@ -409,18 +418,16 @@ document.getElementById('bookingForm')?.addEventListener('submit',e=>{
 const artists=$('.artist');
 const gallery=$('#flashs .gallery .card,#realisations .gallery .card');
 let raf=0;
-function setInk(fill,q){
+function setInk(black,q){
   const x=clamp(q);
-  // Descending: black rises from the bottom. Ascending: white returns from the top.
-  // The wavy waterline is derived from the same scroll value, so it is fully reversible.
-  const y0=100-x*100;
-  const wobble=1.8;
-  const y1=clamp(y0+wobble*Math.sin(x*Math.PI*4),0,100);
-  const y2=clamp(y0-wobble*Math.sin(x*Math.PI*3.1+1.2),0,100);
-  const y3=clamp(y0+wobble*Math.sin(x*Math.PI*5.2+2.1),0,100);
-  const poly=`polygon(0% 100%,0% ${y1}%,25% ${y2}%,50% ${y0}%,75% ${y3}%,100% ${y1}%,100% 100%)`;
-  fill.style.clipPath=poly;
-  fill.style.webkitClipPath=poly;
+  const top=100-x*100;
+  /* Liquid ink front: down-scroll makes the black field rise from the bottom.
+     Up-scroll reverses the exact same front, so white returns from the top. */
+  const amp=Math.min(2.8,1.1+Math.sin(x*Math.PI)*1.7);
+  const phase=x*Math.PI*2.4;
+  const wave=v=>Math.max(0,Math.min(100,top + Math.sin(phase+v*2.15)*amp + Math.sin(phase*1.7+v*4.1)*amp*.42));
+  const pts=[0,.12,.24,.36,.48,.60,.72,.84,1].map(v=>`${Math.round(v*100)}% ${wave(v).toFixed(2)}%`);
+  black.style.clipPath=`polygon(${pts.join(',')},100% 100%,0 100%)`;
 }
 function render(){
  raf=0;
@@ -449,10 +456,10 @@ function render(){
  });
 
  // All true titles: solid interior is revealed and unrevealed directly by scroll.
- titleRecords.forEach(({title,fill})=>{
+ titleRecords.forEach(({title,black})=>{
    const r=title.getBoundingClientRect();
    const p=clamp((vh*.84-r.top)/(vh*.58));
-   setInk(fill,ease(p));
+   setInk(black,ease(p));
  });
 
  // Names / shop location: separate editorial slide, not the title effect.
