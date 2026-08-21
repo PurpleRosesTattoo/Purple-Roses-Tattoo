@@ -356,24 +356,24 @@ let auraStart=performance.now();
 function animateAura(now){
   const t=(now-auraStart)/1000;
   if(auraA){
-    const x=Math.sin(t*.42)*18+Math.sin(t*.17+1.4)*9;
-    const y=Math.cos(t*.34)*14+Math.sin(t*.21)*7;
-    const sx=.92+Math.sin(t*.48)*.065+Math.sin(t*.23)*.035;
-    const sy=.88+Math.cos(t*.39)*.065+Math.sin(t*.19+1)*.035;
-    const r1=50+12*Math.sin(t*.31),r2=50+10*Math.sin(t*.49+1),r3=50+11*Math.sin(t*.23+2),r4=50+12*Math.sin(t*.41+1);
+    const x=Math.sin(t*.55)*24+Math.sin(t*.23+1.4)*11;
+    const y=Math.cos(t*.43)*18+Math.sin(t*.31)*9;
+    const sx=.92+Math.sin(t*.70)*.075+Math.sin(t*.37)*.035;
+    const sy=.88+Math.cos(t*.58)*.075+Math.sin(t*.29+1)*.035;
+    const r1=50+14*Math.sin(t*.43),r2=50+13*Math.sin(t*.67+1),r3=50+12*Math.sin(t*.31+2),r4=50+14*Math.sin(t*.57+1);
     auraA.style.setProperty('transform',`translate(calc(-50% + ${x.toFixed(2)}px),calc(-50% + ${y.toFixed(2)}px)) scale(${sx.toFixed(3)},${sy.toFixed(3)})`,'important');
     auraA.style.setProperty('border-radius',`${r1.toFixed(1)}% ${(100-r1).toFixed(1)}% ${r2.toFixed(1)}% ${(100-r2).toFixed(1)}% / ${r3.toFixed(1)}% ${(100-r3).toFixed(1)}% ${r4.toFixed(1)}% ${(100-r4).toFixed(1)}%`,'important');
-    auraA.style.setProperty('background-position',`${(50+30*Math.sin(t*.19)).toFixed(1)}% ${(50+26*Math.cos(t*.27)).toFixed(1)}%`,'important');
+    auraA.style.setProperty('background-position',`${(50+38*Math.sin(t*.27)).toFixed(1)}% ${(50+32*Math.cos(t*.34)).toFixed(1)}%`,'important');
   }
   if(auraB){
-    const x=Math.cos(t*.31)*16+Math.sin(t*.20+2)*7;
-    const y=Math.sin(t*.47)*12+Math.cos(t*.25)*6;
-    const sx=.95+Math.cos(t*.43)*.055+Math.sin(t*.21)*.025;
-    const sy=.90+Math.sin(t*.35)*.055+Math.cos(t*.18)*.025;
-    const r1=50+11*Math.sin(t*.29+1),r2=50+10*Math.sin(t*.45+2),r3=50+10*Math.sin(t*.22+1),r4=50+11*Math.sin(t*.39+2);
+    const x=Math.cos(t*.42)*20+Math.sin(t*.28+2)*9;
+    const y=Math.sin(t*.63)*16+Math.cos(t*.36)*7;
+    const sx=.95+Math.cos(t*.61)*.065+Math.sin(t*.33)*.03;
+    const sy=.90+Math.sin(t*.47)*.065+Math.cos(t*.25)*.03;
+    const r1=50+12*Math.sin(t*.37+1),r2=50+12*Math.sin(t*.59+2),r3=50+11*Math.sin(t*.29+1),r4=50+12*Math.sin(t*.53+2);
     auraB.style.setProperty('transform',`translate(calc(-50% + 12px + ${x.toFixed(2)}px),calc(-50% - 4px + ${y.toFixed(2)}px)) scale(${sx.toFixed(3)},${sy.toFixed(3)})`,'important');
     auraB.style.setProperty('border-radius',`${r1.toFixed(1)}% ${(100-r1).toFixed(1)}% ${r2.toFixed(1)}% ${(100-r2).toFixed(1)}% / ${r3.toFixed(1)}% ${(100-r3).toFixed(1)}% ${r4.toFixed(1)}% ${(100-r4).toFixed(1)}%`,'important');
-    auraB.style.setProperty('background-position',`${(50+32*Math.cos(t*.17)).toFixed(1)}% ${(50+28*Math.sin(t*.25+1)).toFixed(1)}%`,'important');
+    auraB.style.setProperty('background-position',`${(50+42*Math.cos(t*.24)).toFixed(1)}% ${(50+36*Math.sin(t*.32+1)).toFixed(1)}%`,'important');
   }
   requestAnimationFrame(animateAura);
 }
