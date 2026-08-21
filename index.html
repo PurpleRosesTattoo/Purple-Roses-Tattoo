@@ -160,7 +160,7 @@ section{overflow:visible!important}
  .hero-actions .btn{flex:0 1 auto!important}
  .section-head h2,.story h2,.booking h2{font-size:clamp(48px,14vw,70px)!important;line-height:.86!important}
 }
-@media(prefers-reduced-motion:reduce){.hero-logo{animation:none!important}}
+@media(prefers-reduced-motion:reduce){.hero-logo,.hero-glow-a,.hero-glow-b,.hero h1.pr-ink-title .pr-title-fill{animation:none!important}.hero h1.pr-ink-title .pr-title-fill{clip-path:polygon(0 0,100% 0,100% 100%,0 100%)!important}}
 
 /* HERO AMBIENT GLOW — vertical living aura behind the complete rose mark */
 .hero-art{isolation:isolate!important}
@@ -171,11 +171,11 @@ section{overflow:visible!important}
 @keyframes heroGlowA{0%,100%{transform:translate(-50%,-50%) scale(.90,.84);opacity:.78}25%{transform:translate(calc(-50% - 7px),calc(-50% + 5px)) scale(.96,.88);opacity:.92}50%{transform:translate(calc(-50% + 10px),calc(-50% - 9px)) scale(1.04,.96);opacity:1}75%{transform:translate(calc(-50% - 4px),calc(-50% + 7px)) scale(.98,.91);opacity:.88}}
 @keyframes heroGlowB{0%,100%{transform:translate(calc(-50% + 12px),calc(-50% - 4px)) scale(.94,.88);opacity:.46}50%{transform:translate(calc(-50% - 11px),calc(-50% + 8px)) scale(1.05,.98);opacity:.72}}
 /* Aura — continuous water-like light movement; visual shape/intensity otherwise preserved. */
-.hero-glow-a,.hero-glow-b{background-size:180% 180%!important;background-position:0% 50%!important;will-change:transform,background-position,border-radius,opacity!important}
-.hero-glow-a{animation:heroGlowWaterA 9s ease-in-out infinite!important}
-.hero-glow-b{animation:heroGlowWaterB 12s ease-in-out infinite!important}
-@keyframes heroGlowWaterA{0%,100%{background-position:0% 50%;border-radius:47% 53% 51% 49% / 42% 46% 54% 58%;transform:translate(-50%,-50%) scale(.90,.84);opacity:.78}20%{background-position:78% 28%;border-radius:53% 47% 43% 57% / 48% 39% 61% 52%;transform:translate(calc(-50% - 9px),calc(-50% + 6px)) scale(.98,.91);opacity:.94}43%{background-position:100% 72%;border-radius:43% 57% 57% 43% / 58% 47% 53% 42%;transform:translate(calc(-50% + 11px),calc(-50% - 10px)) scale(1.04,.97);opacity:1}68%{background-position:28% 100%;border-radius:57% 43% 47% 53% / 44% 60% 40% 56%;transform:translate(calc(-50% - 5px),calc(-50% + 9px)) scale(.97,.90);opacity:.88}}
-@keyframes heroGlowWaterB{0%,100%{background-position:100% 45%;border-radius:52% 48% 46% 54% / 48% 56% 44% 52%;transform:translate(calc(-50% + 12px),calc(-50% - 4px)) scale(.94,.88);opacity:.46}24%{background-position:22% 18%;border-radius:44% 56% 53% 47% / 57% 43% 51% 49%;transform:translate(calc(-50% - 10px),calc(-50% + 7px)) scale(1.03,.95);opacity:.68}51%{background-position:0% 82%;border-radius:59% 41% 45% 55% / 42% 55% 45% 58%;transform:translate(calc(-50% + 7px),calc(-50% - 8px)) scale(.98,.93);opacity:.76}76%{background-position:76% 100%;border-radius:47% 53% 59% 41% / 53% 45% 55% 47%;transform:translate(calc(-50% - 7px),calc(-50% + 10px)) scale(1.05,.98);opacity:.58}}
+.hero-glow-a,.hero-glow-b{background-size:150% 150%!important;background-position:0% 50%!important;will-change:transform,background-position,border-radius,opacity!important}
+.hero-glow-a{animation:heroGlowWaterA 11s ease-in-out infinite!important}
+.hero-glow-b{animation:heroGlowWaterB 14s ease-in-out infinite!important}
+@keyframes heroGlowWaterA{0%{background-position:0% 50%;border-radius:47% 53% 51% 49% / 42% 46% 54% 58%}22%{background-position:70% 35%;border-radius:52% 48% 44% 56% / 50% 40% 60% 50%}47%{background-position:100% 68%;border-radius:44% 56% 55% 45% / 57% 48% 52% 43%}71%{background-position:35% 100%;border-radius:56% 44% 48% 52% / 45% 58% 42% 55%}100%{background-position:0% 50%;border-radius:47% 53% 51% 49% / 42% 46% 54% 58%}}
+@keyframes heroGlowWaterB{0%{background-position:100% 45%;border-radius:52% 48% 46% 54% / 48% 56% 44% 52%}25%{background-position:25% 20%;border-radius:45% 55% 52% 48% / 56% 44% 50% 50%}50%{background-position:0% 78%;border-radius:58% 42% 46% 54% / 43% 53% 47% 57%}75%{background-position:75% 100%;border-radius:48% 52% 58% 42% / 52% 46% 54% 48%}100%{background-position:100% 45%;border-radius:52% 48% 46% 54% / 48% 56% 44% 52%}}
 @media(max-width:560px){
  .hero-glow-a{width:clamp(250px,72vw,340px)!important;height:clamp(390px,116vw,540px)!important}
  .hero-glow-b{width:clamp(205px,56vw,280px)!important;height:clamp(330px,96vw,450px)!important}
@@ -189,13 +189,13 @@ section{overflow:visible!important}
 /* TITLES — fine permanent outline + white fill + black level controlled directly by scroll */
 .pr-ink-title{position:relative!important;color:transparent!important;-webkit-text-fill-color:transparent!important;-webkit-text-stroke:0!important;overflow:visible!important}
 .pr-ink-title .pr-title-layer{display:block!important;position:relative!important}
-.pr-ink-title .pr-title-base{color:transparent!important;-webkit-text-fill-color:transparent!important;-webkit-text-stroke:.7px rgba(245,242,251,.92)!important;text-shadow:0 0 8px rgba(157,85,255,.06)!important}
+.pr-ink-title .pr-title-base{color:transparent!important;-webkit-text-fill-color:transparent!important;-webkit-text-stroke:1px rgba(245,242,251,.92)!important;text-shadow:0 0 8px rgba(157,85,255,.06)!important}
 .pr-ink-title .pr-title-white{position:absolute!important;inset:0!important;color:#f5f2fb!important;-webkit-text-fill-color:#f5f2fb!important;-webkit-text-stroke:0!important;pointer-events:none!important}
 .pr-ink-title .pr-title-black{position:absolute!important;inset:0!important;color:#050610!important;-webkit-text-fill-color:#050610!important;-webkit-text-stroke:0!important;pointer-events:none!important;clip-path:inset(100% 0 0 0)!important;will-change:clip-path!important}
-.pr-ink-title .roseword{color:transparent!important;-webkit-text-fill-color:transparent!important;-webkit-text-stroke:.7px rgba(245,242,251,.92)!important}
+.pr-ink-title .roseword{color:transparent!important;-webkit-text-fill-color:transparent!important;-webkit-text-stroke:1px rgba(245,242,251,.92)!important}
 .pr-ink-title .pr-title-white .roseword{color:#f5f2fb!important;-webkit-text-fill-color:#f5f2fb!important;-webkit-text-stroke:0!important}
 .pr-ink-title .pr-title-black .roseword{color:#050610!important;-webkit-text-fill-color:#050610!important;-webkit-text-stroke:0!important}
-.pr-ink-title .pr-title-black:after{content:"";position:absolute;left:-3%;right:-3%;top:0;height:100%;pointer-events:none;opacity:.12;background:radial-gradient(ellipse at 50% 0%,rgba(157,85,255,.55),transparent 58%);filter:blur(12px)}
+.pr-ink-title .pr-title-black:after{content:"";position:absolute;left:0;right:0;top:-3%;height:18px;transform:translateY(-50%);background:radial-gradient(ellipse at 20% 50%,rgba(255,255,255,.12),transparent 45%),radial-gradient(ellipse at 65% 50%,rgba(157,85,255,.14),transparent 55%);filter:blur(5px);opacity:.65;pointer-events:none}
 .hero h1.pr-ink-title .pr-title-black{animation:none!important}
 
 /* EXPERIENCE — compact like the other section heads */
@@ -420,14 +420,9 @@ const gallery=$('#flashs .gallery .card,#realisations .gallery .card');
 let raf=0;
 function setInk(black,q){
   const x=clamp(q);
-  const top=100-x*100;
-  /* Liquid ink front: down-scroll makes the black field rise from the bottom.
-     Up-scroll reverses the exact same front, so white returns from the top. */
-  const amp=Math.min(2.8,1.1+Math.sin(x*Math.PI)*1.7);
-  const phase=x*Math.PI*2.4;
-  const wave=v=>Math.max(0,Math.min(100,top + Math.sin(phase+v*2.15)*amp + Math.sin(phase*1.7+v*4.1)*amp*.42));
-  const pts=[0,.12,.24,.36,.48,.60,.72,.84,1].map(v=>`${Math.round(v*100)}% ${wave(v).toFixed(2)}%`);
-  black.style.clipPath=`polygon(${pts.join(',')},100% 100%,0 100%)`;
+  const pct=x*100;
+  /* Down-scroll: black rises from the bottom. Up-scroll: white returns from the top as the black region shrinks downward. */
+  black.style.clipPath=`inset(${100-pct}% 0 0 0)`;
 }
 function render(){
  raf=0;
